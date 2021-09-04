@@ -6,10 +6,16 @@ const Pallete = {
 		padding: 20,
 		flex: 1,
 	},
+
 	h1: {
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
 		fontSize: 30,
+	},
+	h3: {
+		color: Colors.secondary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 15,
 	},
 	paragraph: {
 		color: Colors.secondary,
