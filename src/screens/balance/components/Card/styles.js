@@ -18,13 +18,6 @@ const styles = StyleSheet.create({
 		width: '20%',
 	},
 
-	col: {
-		alignItems: 'flex-start',
-		flexDirection: 'column',
-		marginTop: 38,
-		width: '100%',
-	},
-
 	container: {
 		alignItems: 'center',
 		backgroundColor: Colors.white,
@@ -38,7 +31,15 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 
-	h4: {
+	date: {
+		color: Colors.secondary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 20,
+		marginBottom: 10,
+		marginLeft: 6,
+	},
+
+	saldo: {
 		backgroundColor: Colors.white,
 		borderRadius: 25,
 		borderStyle: 'solid',
@@ -49,14 +50,6 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		paddingHorizontal: 35,
 		paddingVertical: 10,
-	},
-
-	header: {
-		color: Colors.secondary,
-		fontFamily: 'Roboto-Bold',
-		fontSize: 20,
-		marginBottom: 10,
-		marginLeft: 6,
 	},
 });
 

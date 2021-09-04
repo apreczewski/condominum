@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto-Bold',
 		fontSize: 20,
 		marginBottom: 20,
-		marginTop: 20,
 	},
 	h3: {
+		alignContent: 'center',
 		backgroundColor: Colors.backgroundLabel,
 		borderRadius: 25,
 		borderStyle: 'solid',
@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto-Bold',
 		fontSize: 15,
 		marginTop: 8,
-		paddingHorizontal: 35,
+		paddingHorizontal: 10,
 		paddingVertical: 10,
+		width: 210,
 	},
 
 	h4: {

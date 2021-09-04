@@ -4,6 +4,7 @@ const Strings = {
 	add: 'Incluir',
 	balancete: 'Balancete',
 	balanceteDescription: 'Confira seus balancetes',
+	balanceteDetails: 'Ver detalhes',
 };
 
 export default Strings;

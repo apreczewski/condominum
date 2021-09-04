@@ -9,8 +9,8 @@ import styles from './styles';
 const Card = ({ id, data, saldo }) => (
 	<View key={id} style={styles.container}>
 		<View style={styles.bodyLeft}>
-			<Text style={styles.header}>{data}</Text>
-			<Text style={styles.h4}>{saldo}</Text>
+			<Text style={styles.date}>{data}</Text>
+			<Text style={styles.saldo}>{saldo}</Text>
 		</View>
 		<View style={styles.bodyRight}>
 			<TouchableOpacity

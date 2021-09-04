@@ -54,7 +54,9 @@ export default function BalanceScreen() {
 				</View>
 				<View style={styles.row}>
 					<View style={styles.col}>
-						<Text style={styles.h2}>Ver detalhes </Text>
+						<Text style={styles.h2}>
+							{Strings.balanceteDetails}
+						</Text>
 
 						{balancetes &&
 							balancetes.map((item) => (
