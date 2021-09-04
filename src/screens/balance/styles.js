@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 		marginTop: 38,
 		width: '100%',
 	},
+
 	container: {
 		alignItems: 'flex-start',
 		backgroundColor: Colors.white,

@@ -6,6 +6,7 @@ import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 
 import * as Navigation from '../../lib/utils/navigation';
 import styles from './styles';
+import Card from './components/Card';
 
 export default function BalanceScreen() {
 	const balancetes = [
@@ -54,26 +55,16 @@ export default function BalanceScreen() {
 				<View style={styles.row}>
 					<View style={styles.col}>
 						<Text style={styles.h2}>Ver detalhes </Text>
-						{balancetes.map((item) => (
-							<View key={item.id} style={styles.container}>
-								<Text style={styles.header}>{item.data}</Text>
-								<View style={styles.body}>
-									<Text style={styles.h4}>{item.saldo}</Text>
-									<TouchableOpacity
-										onPress={() =>
-											Navigation.navigate(
-												'BalanceDetails',
-											)
-										}>
-										<MaterialIcons
-											name="arrow-forward-ios"
-											size={30}
-											color={Colors.secondary}
-										/>
-									</TouchableOpacity>
-								</View>
-							</View>
-						))}
+
+						{balancetes &&
+							balancetes.map((item) => (
+								<Card
+									key={item.id}
+									id={item.id}
+									data={item?.data}
+									saldo={item?.saldo}
+								/>
+							))}
 					</View>
 				</View>
 			</View>
