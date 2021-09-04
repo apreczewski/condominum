@@ -7,7 +7,7 @@ import { Pallete } from '../../lib/constants';
 const TitleWithSubTitle = ({ title, subTitle }) => (
 	<View>
 		<Text style={Pallete.h1}>{title}</Text>
-		<Text style={Pallete.paragraph}>{subTitle}</Text>
+		<Text style={Pallete.paragraphSecundary}>{subTitle}</Text>
 	</View>
 );
 

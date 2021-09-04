@@ -27,6 +27,11 @@ const Pallete = {
 		fontFamily: 'Roboto-Regular',
 		fontSize: 14,
 	},
+	paragraphSecundary: {
+		color: Colors.tertiary,
+		fontFamily: 'Roboto-Regular',
+		fontSize: 14,
+	},
 };
 
 export default Pallete;
