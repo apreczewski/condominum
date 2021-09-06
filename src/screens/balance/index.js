@@ -6,6 +6,7 @@ import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 
 import * as Navigation from '../../lib/utils/navigation';
 import styles from './styles';
+import Card from './components/Card';
 
 import balancetes from './data.json';
 
@@ -31,53 +32,35 @@ export default function BalanceScreen() {
 					<View style={styles.col}>
 						<Text style={styles.h1}>{balancetes[0].data}</Text>
 						<Text style={Pallete.h3}>
-							{`Saldo Anterior: R$ ${balancetes[0].saldo_anterior}`}
+							{`Saldo Anterior ${balancetes[0].saldo_anterior}`}
 						</Text>
 						<Text
 							style={
 								Pallete.h3
-							}>{`Pagamentos: R$ ${balancetes[0].pagamentos}`}</Text>
+							}>{`Pagamentos ${balancetes[0].pagamentos}`}</Text>
 						<Text style={Pallete.h3}>
-							{`Recebimentos: R$ ${balancetes[0].rebimentos}`}
+							{`Recebimentos ${balancetes[0].rebimentos}`}
 						</Text>
 						<Text
 							style={
 								styles.h3
-							}>{`Saldo: R$ ${balancetes[0].saldo}`}</Text>
+							}>{`Saldo ${balancetes[0].saldo}`}</Text>
 					</View>
 				</View>
 				<View style={styles.row}>
 					<View style={styles.col}>
-						<Text style={styles.h2}>Ver detalhes </Text>
-						{balancetes.map((item, index) => (
-							<>
-								{index > 0 && (
-									<TouchableOpacity
-										key={item.id}
-										onPress={() =>
-											Navigation.navigate(
-												'BalanceDetails',
-											)
-										}>
-										<View style={styles.col}>
-											<Text style={styles.h2}>
-												{item.data}
-											</Text>
-											<View style={styles.row}>
-												<Text style={styles.h2}>
-													{item.saldo}
-												</Text>
-												<MaterialIcons
-													name="arrow-forward-ios"
-													size={30}
-													color={Colors.secondary}
-												/>
-											</View>
-										</View>
-									</TouchableOpacity>
-								)}
-							</>
-						))}
+						<Text style={styles.h2}>
+							{Strings.balanceteDetails}
+						</Text>
+						{balancetes &&
+							balancetes.map((item) => (
+								<Card
+									key={item.id}
+									id={item.id}
+									data={item?.data}
+									saldo={item?.saldo}
+								/>
+							))}
 					</View>
 				</View>
 			</View>

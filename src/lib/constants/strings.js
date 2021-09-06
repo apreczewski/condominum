@@ -9,6 +9,7 @@ const Strings = {
 	despesasDiversas: 'Despesas diversas',
 	honorariosSindico: 'Honorários de síndico',
 	luzForca: 'Luz e Força',
+	balanceteDetails: 'Ver detalhes',
 };
 
 export default Strings;
