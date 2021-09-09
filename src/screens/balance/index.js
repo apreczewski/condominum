@@ -6,10 +6,10 @@ import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 
 import * as Navigation from '../../lib/utils/navigation';
 import styles from './styles';
-import Card from './components/Card';
 
 import balancetes from './data.json';
-import { ValueFormat } from '../../components/FormatCurrency';
+import { ValueFormat } from '../../components/ValueFormat';
+import CardBalance from './components/CardBalance';
 
 export default function BalanceScreen() {
 	// const formatCurrency = new Intl.NumberFormat('pt-BR');
@@ -78,8 +78,8 @@ export default function BalanceScreen() {
 						</Text>
 						{balancetes &&
 							balancetes.map((item) => (
-								<Card
-									key={item.id}
+								<CardBalance
+									key={item?.id}
 									id={item.id}
 									data={item?.data}
 									saldo={item?.saldo}

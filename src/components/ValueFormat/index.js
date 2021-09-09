@@ -19,7 +19,8 @@ export function ValueFormat({ value, style }) {
 		<NumberFormat
 			value={value}
 			displayType="text"
-			thousandSeparator
+			thousandSeparator="."
+			decimalSeparator=","
 			prefix="R$ "
 			renderText={(formattedValue) => (
 				<Text style={style}>{formattedValue}</Text>
@@ -30,10 +31,10 @@ export function ValueFormat({ value, style }) {
 
 ValueFormat.propTypes = {
 	value: PropTypes.number,
-	style: PropTypes.string,
+	style: PropTypes.shape({}),
 };
 
 ValueFormat.defaultProps = {
 	value: 0,
-	style: '',
+	style: {},
 };

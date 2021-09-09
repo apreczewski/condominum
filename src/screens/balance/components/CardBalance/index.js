@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import { Colors, Pallete } from '../../../../lib/constants';
 import * as Navigation from '../../../../lib/utils/navigation';
 import styles from './styles';
-import { ValueFormat } from '../../../../components/FormatCurrency';
+import { ValueFormat } from '../../../../components/ValueFormat';
 
-const Card = ({ id, data, saldo }) => (
+const CardBalance = ({ data, saldo }) => (
 	<TouchableOpacity onPress={() => Navigation.navigate('BalanceDetails')}>
-		<View key={id} style={styles.container}>
+		<View style={styles.container}>
 			<View style={styles.bodyLeft}>
 				<Text style={styles.date}>{data}</Text>
 				<View style={styles.saldo}>
@@ -28,16 +28,14 @@ const Card = ({ id, data, saldo }) => (
 	</TouchableOpacity>
 );
 
-export default Card;
+export default CardBalance;
 
-Card.propTypes = {
-	id: PropTypes.number,
+CardBalance.propTypes = {
 	data: PropTypes.string,
 	saldo: PropTypes.number,
 };
 
-Card.defaultProps = {
-	id: '',
+CardBalance.defaultProps = {
 	data: '',
 	saldo: 0,
 };
