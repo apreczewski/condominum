@@ -9,8 +9,11 @@ import styles from './styles';
 import Card from './components/Card';
 
 import balancetes from './data.json';
+import { ValueFormat } from '../../components/FormatCurrency';
 
 export default function BalanceScreen() {
+	// const formatCurrency = new Intl.NumberFormat('pt-BR');
+
 	return (
 		<ScrollView style={styles.scrollView}>
 			<View style={Pallete.screen}>
@@ -31,20 +34,41 @@ export default function BalanceScreen() {
 				<View style={styles.row}>
 					<View style={styles.col}>
 						<Text style={styles.h1}>{balancetes[0].data}</Text>
-						<Text style={Pallete.h3}>
-							{`Saldo Anterior ${balancetes[0].saldo_anterior}`}
-						</Text>
-						<Text
-							style={
-								Pallete.h3
-							}>{`Pagamentos ${balancetes[0].pagamentos}`}</Text>
-						<Text style={Pallete.h3}>
-							{`Recebimentos ${balancetes[0].rebimentos}`}
-						</Text>
-						<Text
-							style={
-								styles.h3
-							}>{`Saldo ${balancetes[0].saldo}`}</Text>
+
+						<View style={styles.row_balance}>
+							<Text style={Pallete.paragraph}>
+								Saldo Anterior:
+							</Text>
+							<ValueFormat
+								style={Pallete.paragraph}
+								value={balancetes[0].saldo_anterior}
+							/>
+						</View>
+
+						<View style={styles.row_balance}>
+							<Text style={Pallete.paragraph}>Pagamentos:</Text>
+							<ValueFormat
+								style={Pallete.paragraph}
+								value={balancetes[0].pagamentos}
+							/>
+						</View>
+
+						<View style={styles.row_balance}>
+							<Text style={Pallete.paragraph}>Recebimentos:</Text>
+							<ValueFormat
+								style={Pallete.paragraph}
+								value={balancetes[0].rebimentos}
+							/>
+						</View>
+
+						<View style={styles.label}>
+							<Text style={Pallete.paragraph}>Saldo:</Text>
+
+							<ValueFormat
+								style={Pallete.paragraph}
+								value={balancetes[0].saldo}
+							/>
+						</View>
 					</View>
 				</View>
 				<View style={styles.row}>

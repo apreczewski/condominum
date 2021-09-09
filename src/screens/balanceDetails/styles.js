@@ -55,8 +55,11 @@ const styles = StyleSheet.create({
 	colRight: {
 		alignItems: 'flex-end',
 		flexDirection: 'column',
+		height: 90,
+		justifyContent: 'flex-end',
 		width: '40%',
 	},
+
 	h1: {
 		color: Colors.primary,
 		fontFamily: 'Roboto-Bold',
@@ -74,17 +77,39 @@ const styles = StyleSheet.create({
 		borderStyle: 'solid',
 		borderWidth: 1,
 		color: Colors.secondary,
-		fontFamily: 'Roboto-Bold',
+		fontFamily: 'Roboto-Regular',
 		fontSize: 15,
-		marginTop: 8,
+		marginVertical: 20,
 		paddingHorizontal: 35,
 		paddingVertical: 10,
+	},
+
+	label: {
+		backgroundColor: Colors.backgroundLabel,
+		borderRadius: 25,
+		borderStyle: 'solid',
+		borderWidth: 1,
+		color: Colors.secondary,
+		flexDirection: 'row',
+		fontFamily: 'Roboto-Regular',
+		fontSize: 15,
+		justifyContent: 'space-between',
+		marginTop: 10,
+		paddingHorizontal: 30,
+		paddingVertical: 10,
+		width: 210,
 	},
 	row: {
 		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		width: '100%',
+	},
+	row_balance: {
+		alignItems: 'center',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		width: 210,
 	},
 });
 

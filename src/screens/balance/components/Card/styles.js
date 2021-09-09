@@ -40,16 +40,19 @@ const styles = StyleSheet.create({
 	},
 
 	saldo: {
+		alignContent: 'space-between',
 		backgroundColor: Colors.white,
 		borderRadius: 25,
 		borderStyle: 'solid',
 		borderWidth: 1,
 		color: Colors.secondary,
 		flexDirection: 'row',
-		fontFamily: 'Roboto-Bold',
+		fontFamily: 'Roboto-Regular',
 		fontSize: 15,
-		paddingHorizontal: 35,
+		justifyContent: 'space-between',
+		paddingHorizontal: 25,
 		paddingVertical: 10,
+		width: 200,
 	},
 });
 

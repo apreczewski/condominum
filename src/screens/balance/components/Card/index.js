@@ -2,27 +2,30 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-import { Colors } from '../../../../lib/constants';
+import { Colors, Pallete } from '../../../../lib/constants';
 import * as Navigation from '../../../../lib/utils/navigation';
 import styles from './styles';
+import { ValueFormat } from '../../../../components/FormatCurrency';
 
 const Card = ({ id, data, saldo }) => (
-	<View key={id} style={styles.container}>
-		<View style={styles.bodyLeft}>
-			<Text style={styles.date}>{data}</Text>
-			<Text style={styles.saldo}>{saldo}</Text>
-		</View>
-		<View style={styles.bodyRight}>
-			<TouchableOpacity
-				onPress={() => Navigation.navigate('BalanceDetails')}>
+	<TouchableOpacity onPress={() => Navigation.navigate('BalanceDetails')}>
+		<View key={id} style={styles.container}>
+			<View style={styles.bodyLeft}>
+				<Text style={styles.date}>{data}</Text>
+				<View style={styles.saldo}>
+					<Text style={Pallete.paragraph}>Saldo: </Text>
+					<ValueFormat style={Pallete.paragraph} value={saldo} />
+				</View>
+			</View>
+			<View style={styles.bodyRight}>
 				<MaterialIcons
 					name="arrow-forward-ios"
 					size={30}
 					color={Colors.secondary}
 				/>
-			</TouchableOpacity>
+			</View>
 		</View>
-	</View>
+	</TouchableOpacity>
 );
 
 export default Card;
@@ -30,11 +33,11 @@ export default Card;
 Card.propTypes = {
 	id: PropTypes.number,
 	data: PropTypes.string,
-	saldo: PropTypes.string,
+	saldo: PropTypes.number,
 };
 
 Card.defaultProps = {
 	id: '',
 	data: '',
-	saldo: '',
+	saldo: 0,
 };
