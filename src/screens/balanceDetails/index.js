@@ -8,6 +8,7 @@ import styles from './styles';
 
 import balancetes from '../balance/data.json';
 import { ValueFormat } from '../../lib/utils/formatCurrency';
+import CardDetails from './components/CardDetails';
 
 export default function BalanceDetailsScreen() {
 	return (
@@ -26,13 +27,16 @@ export default function BalanceDetailsScreen() {
 				</View>
 				<View style={styles.row}>
 					<View style={styles.col1}>
-						<Text style={styles.h1}>{balancetes[0].data}</Text>
+						<Text key="data" style={styles.h1}>
+							{balancetes[0].data}
+						</Text>
 
 						<View style={styles.row_balance}>
 							<Text style={Pallete.paragraph}>
 								Saldo Anterior:
 							</Text>
 							<ValueFormat
+								key="saldo_anterior"
 								style={Pallete.paragraph}
 								value={balancetes[0].saldo_anterior}
 							/>
@@ -41,6 +45,7 @@ export default function BalanceDetailsScreen() {
 						<View style={styles.row_balance}>
 							<Text style={Pallete.paragraph}>Pagamentos:</Text>
 							<ValueFormat
+								key="pagamentos"
 								style={Pallete.paragraph}
 								value={balancetes[0].pagamentos}
 							/>
@@ -49,6 +54,7 @@ export default function BalanceDetailsScreen() {
 						<View style={styles.row_balance}>
 							<Text style={Pallete.paragraph}>Recebimentos:</Text>
 							<ValueFormat
+								key="recebimentos"
 								style={Pallete.paragraph}
 								value={balancetes[0].rebimentos}
 							/>
@@ -57,6 +63,7 @@ export default function BalanceDetailsScreen() {
 							<Text style={Pallete.paragraph}>Saldo:</Text>
 
 							<ValueFormat
+								key="saldo"
 								style={Pallete.paragraph}
 								value={balancetes[0].saldo}
 							/>
@@ -75,48 +82,15 @@ export default function BalanceDetailsScreen() {
 				</View>
 
 				<View style={styles.col}>
-					{balancetes[0].detalhes.map((item, index) => (
-						<>
-							{index > 0 && (
-								<View style={styles.card}>
-									<View style={styles.colLeft}>
-										<Text style={styles.cardTitle}>
-											{`Dia ${item.data}`}
-										</Text>
-										<Text style={Pallete.paragraph}>
-											{Strings.despesasDiversas}
-										</Text>
-										<Text style={Pallete.paragraph}>
-											{Strings.honorariosSindico}
-										</Text>
-										<Text style={Pallete.paragraph}>
-											{Strings.luzForca}
-										</Text>
-									</View>
-									<View style={styles.colRight}>
-										<ValueFormat
-											style={{
-												...Pallete.h3,
-												color:
-													item.despesas_diversas >= 0
-														? Colors.secondary
-														: Colors.primary,
-											}}
-											value={item.despesas_diversas}
-										/>
-
-										<ValueFormat
-											style={Pallete.h3}
-											value={item.honorarios_sindico}
-										/>
-										<ValueFormat
-											style={Pallete.h3}
-											value={item.luz_forca}
-										/>
-									</View>
-								</View>
-							)}
-						</>
+					{balancetes[0].detalhes.map((item) => (
+						<CardDetails
+							key={item?.id}
+							id={item.id}
+							data={item.data}
+							despesasDiversas={item.despesas_diversas}
+							honorariosSindico={item.honorarios_sindico}
+							luzForca={item.luz_forca}
+						/>
 					))}
 				</View>
 			</View>
