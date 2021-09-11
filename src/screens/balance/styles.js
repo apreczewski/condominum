@@ -28,14 +28,7 @@ const styles = StyleSheet.create({
 	},
 
 	container: {
-		alignItems: 'flex-start',
-		backgroundColor: Colors.white,
-		borderRadius: 5,
-		height: 110,
-		justifyContent: 'flex-start',
-		marginBottom: 15,
-		padding: 6,
-		width: '100%',
+		marginTop: 10,
 	},
 	h1: {
 		color: Colors.primary,

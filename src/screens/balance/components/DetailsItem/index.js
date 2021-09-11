@@ -3,18 +3,17 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { Colors, Pallete } from '../../../../lib/constants';
-import * as Navigation from '../../../../lib/utils/navigation';
 import styles from './styles';
-import { ValueFormat } from '../../../../components/FormatCurrency';
+import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
-const Card = ({ id, data, saldo }) => (
-	<TouchableOpacity onPress={() => Navigation.navigate('BalanceDetails')}>
-		<View key={id} style={styles.container}>
+const DetailsItem = ({ onPress, item }) => (
+	<TouchableOpacity onPress={onPress}>
+		<View key={item.id} style={styles.container}>
 			<View style={styles.bodyLeft}>
-				<Text style={styles.date}>{data}</Text>
+				<Text style={styles.date}>{item.data}</Text>
 				<View style={styles.saldo}>
 					<Text style={Pallete.paragraph}>Saldo: </Text>
-					<ValueFormat style={Pallete.paragraph} value={saldo} />
+					<ValueFormat style={Pallete.paragraph} value={item.saldo} />
 				</View>
 			</View>
 			<View style={styles.bodyRight}>
@@ -28,16 +27,13 @@ const Card = ({ id, data, saldo }) => (
 	</TouchableOpacity>
 );
 
-export default Card;
+export default DetailsItem;
 
-Card.propTypes = {
-	id: PropTypes.number,
-	data: PropTypes.string,
-	saldo: PropTypes.number,
-};
-
-Card.defaultProps = {
-	id: '',
-	data: '',
-	saldo: 0,
+DetailsItem.propTypes = {
+	onPress: PropTypes.func.isRequired,
+	item: PropTypes.shape({
+		id: PropTypes.number,
+		data: PropTypes.string,
+		saldo: PropTypes.number,
+	}).isRequired,
 };

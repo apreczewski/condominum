@@ -4,7 +4,7 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import Toast from 'react-native-toast-message';
 
-import configureStore from './src/store/index';
+import configureStore from './src/store';
 
 import MainStackNavigator from './src/navigation/AppNavigator';
 

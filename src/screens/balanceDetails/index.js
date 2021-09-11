@@ -7,7 +7,7 @@ import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 import styles from './styles';
 
 import balancetes from '../balance/data.json';
-import { ValueFormat } from '../../components/FormatCurrency';
+import { ValueFormat } from '../../lib/utils/formatCurrency';
 
 export default function BalanceDetailsScreen() {
 	return (

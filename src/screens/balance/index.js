@@ -1,18 +1,34 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	ScrollView,
+	FlatList,
+	RefreshControl,
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 
-import * as Navigation from '../../lib/utils/navigation';
+import * as RootNavigator from '../../lib/utils/navigation';
 import styles from './styles';
-import Card from './components/Card';
+import Item from './components/DetailsItem';
+import { balanceActions } from '../../store/actions';
 
-import balancetes from './data.json';
-import { ValueFormat } from '../../components/FormatCurrency';
+// import data from './data.json';
+import { ValueFormat } from '../../lib/utils/formatCurrency';
 
-export default function BalanceScreen() {
+function BalanceScreen({ loading = false, list, onRead }) {
 	// const formatCurrency = new Intl.NumberFormat('pt-BR');
+
+	// useFocusEffect(
+	// 	React.useCallback(() => {
+	// 		onGet();
+	// 	}, []),
+	// );
 
 	return (
 		<ScrollView style={styles.scrollView}>
@@ -23,7 +39,9 @@ export default function BalanceScreen() {
 						subTitle={Strings.balanceteDescription}
 					/>
 					<TouchableOpacity
-						onPress={() => Navigation.navigate('BalanceDetails')}>
+						onPress={() =>
+							RootNavigator.navigate('BalanceDetails')
+						}>
 						<MaterialIcons
 							name="description"
 							size={50}
@@ -33,7 +51,7 @@ export default function BalanceScreen() {
 				</View>
 				<View style={styles.row}>
 					<View style={styles.col}>
-						<Text style={styles.h1}>{balancetes[0].data}</Text>
+						<Text style={styles.h1}>{list[0].data}</Text>
 
 						<View style={styles.row_balance}>
 							<Text style={Pallete.paragraph}>
@@ -41,7 +59,7 @@ export default function BalanceScreen() {
 							</Text>
 							<ValueFormat
 								style={Pallete.paragraph}
-								value={balancetes[0].saldo_anterior}
+								value={list[0].saldo_anterior}
 							/>
 						</View>
 
@@ -49,7 +67,7 @@ export default function BalanceScreen() {
 							<Text style={Pallete.paragraph}>Pagamentos:</Text>
 							<ValueFormat
 								style={Pallete.paragraph}
-								value={balancetes[0].pagamentos}
+								value={list[0].pagamentos}
 							/>
 						</View>
 
@@ -57,7 +75,7 @@ export default function BalanceScreen() {
 							<Text style={Pallete.paragraph}>Recebimentos:</Text>
 							<ValueFormat
 								style={Pallete.paragraph}
-								value={balancetes[0].rebimentos}
+								value={list[0].rebimentos}
 							/>
 						</View>
 
@@ -66,28 +84,56 @@ export default function BalanceScreen() {
 
 							<ValueFormat
 								style={Pallete.paragraph}
-								value={balancetes[0].saldo}
+								value={list[0].saldo}
 							/>
 						</View>
 					</View>
 				</View>
-				<View style={styles.row}>
-					<View style={styles.col}>
-						<Text style={styles.h2}>
-							{Strings.balanceteDetails}
-						</Text>
-						{balancetes &&
-							balancetes.map((item) => (
-								<Card
-									key={item.id}
-									id={item.id}
-									data={item?.data}
-									saldo={item?.saldo}
-								/>
-							))}
-					</View>
-				</View>
+				<FlatList
+					refreshControl={<RefreshControl refreshing={loading} />}
+					style={styles.container}
+					data={list}
+					keyExtractor={(item) => item.id.toString()}
+					renderItem={({ item, index }) =>
+						index > 0 && (
+							<Item
+								item={item}
+								onPress={() => {
+									onRead(item);
+									RootNavigator.navigate('BalanceDetails', {
+										item,
+									});
+								}}
+							/>
+						)
+					}
+				/>
 			</View>
 		</ScrollView>
 	);
 }
+
+BalanceScreen.propTypes = {
+	loading: PropTypes.bool.isRequired,
+	onRead: PropTypes.func.isRequired,
+	list: PropTypes.arrayOf(
+		PropTypes.shape({
+			data: PropTypes.string,
+			saldo_anterior: PropTypes.number,
+			pagamentos: PropTypes.number,
+			rebimentos: PropTypes.number,
+			saldo: PropTypes.number,
+		}),
+	).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	list: state.balance.list,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onRead: (detailsbalance) =>
+		dispatch(balanceActions.setDetailsBalance(detailsbalance)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BalanceScreen);
