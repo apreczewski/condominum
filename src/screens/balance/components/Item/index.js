@@ -6,7 +6,7 @@ import { Colors, Pallete } from '../../../../lib/constants';
 import styles from './styles';
 import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
-const DetailsItem = ({ onPress, item }) => (
+const Item = ({ onPress, item }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View key={item.id} style={styles.container}>
 			<View style={styles.bodyLeft}>
@@ -27,9 +27,9 @@ const DetailsItem = ({ onPress, item }) => (
 	</TouchableOpacity>
 );
 
-export default DetailsItem;
+export default Item;
 
-DetailsItem.propTypes = {
+Item.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		id: PropTypes.number,

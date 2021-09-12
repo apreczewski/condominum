@@ -15,21 +15,11 @@ import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 
 import * as RootNavigator from '../../lib/utils/navigation';
 import styles from './styles';
-import Item from './components/DetailsItem';
+import Item from './components/Item';
 import { balanceActions } from '../../store/actions';
-
-// import data from './data.json';
 import { ValueFormat } from '../../lib/utils/formatCurrency';
 
-function BalanceScreen({ loading = false, list, onRead }) {
-	// const formatCurrency = new Intl.NumberFormat('pt-BR');
-
-	// useFocusEffect(
-	// 	React.useCallback(() => {
-	// 		onGet();
-	// 	}, []),
-	// );
-
+function BalanceScreen({ list, onRead }) {
 	return (
 		<ScrollView style={styles.scrollView}>
 			<View style={Pallete.screen}>
@@ -90,7 +80,7 @@ function BalanceScreen({ loading = false, list, onRead }) {
 					</View>
 				</View>
 				<FlatList
-					refreshControl={<RefreshControl refreshing={loading} />}
+					refreshControl={<RefreshControl />}
 					style={styles.container}
 					data={list}
 					keyExtractor={(item) => item.id.toString()}
@@ -114,7 +104,6 @@ function BalanceScreen({ loading = false, list, onRead }) {
 }
 
 BalanceScreen.propTypes = {
-	loading: PropTypes.bool.isRequired,
 	onRead: PropTypes.func.isRequired,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({

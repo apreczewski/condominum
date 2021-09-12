@@ -5,7 +5,7 @@ import { Colors, Pallete, Strings } from '../../../../lib/constants';
 import styles from './styles';
 import { ValueFormat } from '../../../../components/ValueFormat';
 
-const CardDetails = ({
+const DetailsItem = ({
 	data,
 	despesasDiversas,
 	honorariosSindico,
@@ -36,16 +36,16 @@ const CardDetails = ({
 	</View>
 );
 
-export default CardDetails;
+export default DetailsItem;
 
-CardDetails.propTypes = {
+DetailsItem.propTypes = {
 	data: PropTypes.string,
 	despesasDiversas: PropTypes.number,
 	honorariosSindico: PropTypes.number,
 	luzForca: PropTypes.number,
 };
 
-CardDetails.defaultProps = {
+DetailsItem.defaultProps = {
 	data: '',
 	despesasDiversas: 0,
 	honorariosSindico: 0,

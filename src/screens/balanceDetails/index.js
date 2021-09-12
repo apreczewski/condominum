@@ -1,16 +1,20 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import TitleWithSubTitle from '../../components/TitleWithSubTitle';
-
 import styles from './styles';
 
-import balancetes from '../balance/data.json';
 import { ValueFormat } from '../../lib/utils/formatCurrency';
-import CardDetails from './components/CardDetails';
+import DetailsItem from './components/DetailsItem';
 
-export default function BalanceDetailsScreen() {
+function BalanceDetailsScreen({ route }) {
+	const { item } = route.params;
+
 	return (
 		<ScrollView style={styles.scrollView}>
 			<View style={Pallete.screen}>
@@ -28,7 +32,7 @@ export default function BalanceDetailsScreen() {
 				<View style={styles.row}>
 					<View style={styles.col1}>
 						<Text key="data" style={styles.h1}>
-							{balancetes[0].data}
+							{item.data}
 						</Text>
 
 						<View style={styles.row_balance}>
@@ -38,7 +42,7 @@ export default function BalanceDetailsScreen() {
 							<ValueFormat
 								key="saldo_anterior"
 								style={Pallete.paragraph}
-								value={balancetes[0].saldo_anterior}
+								value={item.saldo_anterior}
 							/>
 						</View>
 
@@ -47,7 +51,7 @@ export default function BalanceDetailsScreen() {
 							<ValueFormat
 								key="pagamentos"
 								style={Pallete.paragraph}
-								value={balancetes[0].pagamentos}
+								value={item.pagamentos}
 							/>
 						</View>
 
@@ -56,7 +60,7 @@ export default function BalanceDetailsScreen() {
 							<ValueFormat
 								key="recebimentos"
 								style={Pallete.paragraph}
-								value={balancetes[0].rebimentos}
+								value={item.rebimentos}
 							/>
 						</View>
 						<View style={styles.label}>
@@ -65,7 +69,7 @@ export default function BalanceDetailsScreen() {
 							<ValueFormat
 								key="saldo"
 								style={Pallete.paragraph}
-								value={balancetes[0].saldo}
+								value={item.saldo}
 							/>
 						</View>
 					</View>
@@ -82,18 +86,48 @@ export default function BalanceDetailsScreen() {
 				</View>
 
 				<View style={styles.col}>
-					{balancetes[0].detalhes.map((item) => (
-						<CardDetails
-							key={item?.id}
-							id={item.id}
-							data={item.data}
-							despesasDiversas={item.despesas_diversas}
-							honorariosSindico={item.honorarios_sindico}
-							luzForca={item.luz_forca}
-						/>
-					))}
+					{item &&
+						item.detalhes.map((i) => (
+							<DetailsItem
+								key={i?.id}
+								id={i.id}
+								data={i.data}
+								despesasDiversas={i.despesas_diversas}
+								honorariosSindico={i.honorarios_sindico}
+								luzForca={i.luz_forca}
+							/>
+						))}
 				</View>
 			</View>
 		</ScrollView>
 	);
 }
+
+BalanceDetailsScreen.propTypes = {
+	route: PropTypes.shape({
+		params: PropTypes.shape({
+			item: PropTypes.shape({
+				data: PropTypes.string,
+				saldo_anterior: PropTypes.number,
+				pagamentos: PropTypes.number,
+				rebimentos: PropTypes.number,
+				saldo: PropTypes.number,
+				detalhes: PropTypes.arrayOf(
+					PropTypes.shape({
+						id: PropTypes.number,
+						data: PropTypes.string,
+						despesas_diversas: PropTypes.number,
+						honorarios_sindico: PropTypes.number,
+						luz_forca: PropTypes.number,
+					}),
+				),
+			}),
+		}),
+	}).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	balanceActions: state.balance.balanceActions,
+});
+
+export default connect(mapStateToProps)(BalanceDetailsScreen);
