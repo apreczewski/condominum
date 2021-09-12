@@ -10,6 +10,8 @@ const Strings = {
 	honorariosSindico: 'Honorários de síndico',
 	luzForca: 'Luz e Força',
 	balanceteDetails: 'Ver detalhes',
+	publication: 'Publicações',
+	publicationDescription: 'Confira a lista de publicações',
 };
 
 export default Strings;
