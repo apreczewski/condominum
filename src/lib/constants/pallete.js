@@ -11,6 +11,11 @@ const Pallete = {
 		fontFamily: 'Roboto-Bold',
 		fontSize: 30,
 	},
+	h5Primary: {
+		color: Colors.primary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 16,
+	},
 	paragraph: {
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Regular',

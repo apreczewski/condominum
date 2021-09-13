@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto-Bold',
 		fontSize: 12,
 	},
+	list: {
+		marginTop: 15,
+	},
 	row: {
 		alignItems: 'center',
 		flexDirection: 'row',
