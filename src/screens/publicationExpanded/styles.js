@@ -2,44 +2,96 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '../../lib/constants';
 
 const styles = StyleSheet.create({
+	baseboard: {
+		color: Colors.secondary_470,
+		flexDirection: 'row',
+		fontFamily: 'Roboto-Bold',
+		fontSize: 18,
+		marginHorizontal: 15,
+	},
+
 	body: {
 		alignItems: 'flex-start',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		width: '100%',
-	},
-	col: {
-		alignItems: 'flex-start',
+		backgroundColor: Colors.white,
+		borderRadius: 5,
 		flexDirection: 'column',
-		width: '80%',
+		paddingBottom: 23,
+		paddingHorizontal: 25,
+		width: '100%',
 	},
 
 	container: {
-		alignItems: 'center',
 		backgroundColor: Colors.white,
-		borderRadius: 5,
-		flexDirection: 'row',
-		height: 110,
-		justifyContent: 'space-between',
-		marginBottom: 15,
-		padding: 6,
-		paddingHorizontal: 18,
 		width: '100%',
 	},
 
-	header: {
-		color: Colors.secondary,
-		fontFamily: 'Roboto-Bold',
-		fontSize: 20,
-		marginBottom: 10,
-		marginLeft: 28,
+	containerBaseboard: {
+		flexDirection: 'row',
+		width: '100%',
 	},
 
-	row: {
+	containerLike: {
 		alignItems: 'center',
+		borderTopColor: Colors.secondary_470,
+		borderTopWidth: 1,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		marginBottom: 38,
+		justifyContent: 'center',
+		paddingVertical: 16,
+		width: '100%',
+	},
+
+	h3: {
+		color: Colors.tertiary,
+		flexDirection: 'row',
+		fontFamily: 'Roboto-Regular',
+		fontSize: 18,
+		marginBottom: 40,
+		width: '100%',
+	},
+
+	iconClose: {
+		alignItems: 'flex-start',
+		flexDirection: 'column',
+		left: 350,
+		position: 'absolute',
+		width: '80%',
+		zIndex: 2,
+	},
+
+	image: {
+		borderRadius: 5,
+		marginBottom: 29,
+		width: '100%',
+	},
+
+	imageBaseboard: {
+		height: 40,
+		width: 40,
+	},
+
+	imageContainerBaseboard: {
+		width: '11%',
+	},
+
+	like: {
+		color: Colors.primary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 20,
+		marginLeft: 14,
+	},
+
+	textContainerBaseboard: {
+		justifyContent: 'center',
+		width: '89%',
+	},
+
+	title: {
+		color: Colors.primary,
+		flexDirection: 'row',
+		fontFamily: 'Roboto-Regular',
+		fontSize: 25,
+		marginBottom: 10,
+		width: '100%',
 	},
 });
 

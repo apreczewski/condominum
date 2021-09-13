@@ -3,7 +3,7 @@ import { Colors } from '../../../../lib/constants';
 
 const styles = StyleSheet.create({
 	baseboard: {
-		color: Colors.tertiary,
+		color: Colors.secondary_470,
 		flexDirection: 'row',
 		fontFamily: 'Roboto-Bold',
 		fontSize: 15,
@@ -21,13 +21,10 @@ const styles = StyleSheet.create({
 		paddingVertical: 16,
 		width: '100%',
 	},
-	containerImage: {
-		justifyContent: 'space-between',
-		width: '100%',
-	},
 
 	image: {
 		borderRadius: 5,
+		height: 120,
 		marginBottom: 15,
 		width: '100%',
 	},
