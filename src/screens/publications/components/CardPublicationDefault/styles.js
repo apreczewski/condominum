@@ -3,7 +3,7 @@ import { Colors } from '../../../../lib/constants';
 
 const styles = StyleSheet.create({
 	baseboard: {
-		color: Colors.tertiary,
+		color: Colors.secondary_470,
 		flexDirection: 'row',
 		fontFamily: 'Roboto-Bold',
 		fontSize: 15,
@@ -19,10 +19,6 @@ const styles = StyleSheet.create({
 		padding: 6,
 		paddingHorizontal: 19,
 		paddingVertical: 16,
-		width: '100%',
-	},
-
-	navigation: {
 		width: '100%',
 	},
 

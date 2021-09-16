@@ -1,20 +1,21 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import * as Navigation from '../../../../lib/utils/navigation';
 import styles from './styles';
+import * as RootNavigator from '../../../../lib/utils/navigation';
+// import {  } from '../../store/actions';
 
 const CardPublicationDefault = ({ title, subTitle, seeMore, baseboard }) => (
-	<View style={styles.container}>
-		<Text style={styles.title}>{title}</Text>
-		<Text style={styles.subTitle}>{subTitle}</Text>
-		<TouchableOpacity
-			style={styles.navigation}
-			onPress={() => Navigation.navigate('PublicationExpandedScreen')}>
+	<TouchableOpacity
+		onPress={() => RootNavigator.navigate('PublicationExpanded')}>
+		<View style={styles.container}>
+			<Text style={styles.title}>{title}</Text>
+			<Text style={styles.subTitle}>{subTitle}</Text>
+
 			<Text style={styles.seeMore}>{seeMore}</Text>
-		</TouchableOpacity>
-		<Text style={styles.baseboard}>{baseboard}</Text>
-	</View>
+			<Text style={styles.baseboard}>{baseboard}</Text>
+		</View>
+	</TouchableOpacity>
 );
 
 export default CardPublicationDefault;

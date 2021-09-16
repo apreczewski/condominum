@@ -6,11 +6,11 @@ import styles from './styles';
 import Images from '../../../../lib/constants/images';
 
 const CardPublicationEmphasis = ({ /* url */ title, baseboard }) => (
-	<TouchableOpacity onPress={() => Navigation.navigate('')}>
+	<TouchableOpacity
+		onPress={() => Navigation.navigate('PublicationExpanded')}>
 		<View style={styles.container}>
-			<View style={styles.containerImage}>
-				<Image source={Images.publication} style={styles.image} />
-			</View>
+			<Image source={Images.publication} style={styles.image} />
+
 			<Text style={styles.title}>{title}</Text>
 
 			<Text style={styles.baseboard}>{baseboard}</Text>

@@ -11,6 +11,7 @@ import { navigationRef } from '../lib/utils/navigation';
 import MainDrawerNavigator from './DrawerNavigator';
 import TicketDetailsScreen from '../screens/ticketDetails';
 import BalanceDetailsScreen from '../screens/balanceDetails';
+import PublicationExpandedScreen from '../screens/publicationExpanded';
 
 import { Colors, Images } from '../lib/constants';
 
@@ -58,6 +59,25 @@ function MainStackNavigator() {
 					<Stack.Screen
 						name="BalanceDetails"
 						component={BalanceDetailsScreen}
+						options={({ navigation }) => ({
+							headerTitle: () => (
+								<Image source={Images.logoSmall} />
+							),
+							headerTitleAlign: 'center',
+							headerLeft: () => (
+								<Entypo
+									name="chevron-thin-left"
+									size={24}
+									color={Colors.secondary}
+									onPress={() => navigation.goBack()}
+								/>
+							),
+							headerLeftContainerStyle: { marginLeft: 5 },
+						})}
+					/>
+					<Stack.Screen
+						name="PublicationExpanded"
+						component={PublicationExpandedScreen}
 						options={({ navigation }) => ({
 							headerTitle: () => (
 								<Image source={Images.logoSmall} />
