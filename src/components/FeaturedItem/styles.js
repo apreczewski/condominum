@@ -1,21 +1,22 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../../../lib/constants';
+import { Colors } from '../../lib/constants';
 
 const styles = StyleSheet.create({
 	bodyLeft: {
 		alignItems: 'flex-start',
 		flexDirection: 'column',
-		height: 110,
+		height: '100%',
 		justifyContent: 'center',
-		width: '85%',
+		width: '80%',
 	},
 
 	bodyRight: {
-		alignItems: 'center',
-		flexDirection: 'row',
-		height: 110,
-		justifyContent: 'flex-end',
-		width: '15%',
+		alignItems: 'flex-end',
+		flex: 1,
+		height: '100%',
+		justifyContent: 'center',
+		padding: 0,
+		width: '20%',
 	},
 
 	container: {
@@ -24,25 +25,15 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		flexDirection: 'row',
 		flex: 1,
-		height: 100,
-		justifyContent: 'center',
+		justifyContent: 'flex-end',
 		marginTop: 10,
 		paddingHorizontal: 10,
 		paddingVertical: 10,
 		width: '100%',
 	},
 
-	date: {
-		color: Colors.secondary,
-		fontFamily: 'Roboto-Bold',
-		fontSize: 20,
-		marginBottom: 10,
-		// marginLeft: 6,
-	},
-
-	saldo: {
-		alignContent: 'space-between',
-		backgroundColor: Colors.white,
+	label: {
+		backgroundColor: Colors.backgroundLabel,
 		borderRadius: 25,
 		borderStyle: 'solid',
 		borderWidth: 1,
@@ -51,9 +42,25 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto-Regular',
 		fontSize: 15,
 		justifyContent: 'space-between',
-		paddingHorizontal: 25,
+		marginTop: 10,
+		paddingHorizontal: 30,
 		paddingVertical: 10,
 		width: 200,
+	},
+
+	text: {
+		color: Colors.primary,
+		flexDirection: 'row',
+		fontSize: 30,
+		fontWeight: 'bold',
+		width: '100%',
+	},
+
+	textInfo: {
+		alignItems: 'center',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		width: '100%',
 	},
 });
 

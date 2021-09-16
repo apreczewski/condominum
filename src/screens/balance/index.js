@@ -1,87 +1,39 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import {
-	View,
-	Text,
-	TouchableOpacity,
-	ScrollView,
-	FlatList,
-	RefreshControl,
-} from 'react-native';
+import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Colors, Pallete, Strings } from '../../lib/constants';
-import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 
 import * as RootNavigator from '../../lib/utils/navigation';
-import styles from './styles';
 import Item from './components/Item';
 import { balanceActions } from '../../store/actions';
-import { ValueFormat } from '../../lib/utils/formatCurrency';
+import FeaturedItem from '../../components/FeaturedItem';
+import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
 
 function BalanceScreen({ list, onRead }) {
 	return (
-		<ScrollView style={styles.scrollView}>
+		<ScrollView>
 			<View style={Pallete.screen}>
-				<View style={styles.row}>
-					<TitleWithSubTitle
-						title={Strings.balancete}
-						subTitle={Strings.balanceteDescription}
-					/>
-					<TouchableOpacity
-						onPress={() =>
-							RootNavigator.navigate('BalanceDetails')
-						}>
-						<MaterialIcons
-							name="description"
-							size={50}
-							color={Colors.primary}
-						/>
-					</TouchableOpacity>
-				</View>
-				<View style={styles.row}>
-					<View style={styles.col}>
-						<Text style={styles.h1}>{list[0].data}</Text>
+				<TitleSubTitleWithIcon
+					title={Strings.balancete}
+					subTitle={Strings.balanceteDescription}
+					iconName="description"
+				/>
 
-						<View style={styles.row_balance}>
-							<Text style={Pallete.paragraph}>
-								Saldo Anterior:
-							</Text>
-							<ValueFormat
-								style={Pallete.paragraph}
-								value={list[0].saldo_anterior}
-							/>
-						</View>
+				<FeaturedItem
+					onPress={() => {
+						RootNavigator.navigate('BalanceDetails', {
+							item: list[0],
+						});
+					}}
+					item={list[0]}
+					iconName="arrow-forward-ios"
+					iconColor={Colors.secondary}
+					iconSize={30}
+				/>
 
-						<View style={styles.row_balance}>
-							<Text style={Pallete.paragraph}>Pagamentos:</Text>
-							<ValueFormat
-								style={Pallete.paragraph}
-								value={list[0].pagamentos}
-							/>
-						</View>
-
-						<View style={styles.row_balance}>
-							<Text style={Pallete.paragraph}>Recebimentos:</Text>
-							<ValueFormat
-								style={Pallete.paragraph}
-								value={list[0].rebimentos}
-							/>
-						</View>
-
-						<View style={styles.label}>
-							<Text style={Pallete.paragraph}>Saldo:</Text>
-
-							<ValueFormat
-								style={Pallete.paragraph}
-								value={list[0].saldo}
-							/>
-						</View>
-					</View>
-				</View>
 				<FlatList
 					refreshControl={<RefreshControl />}
-					style={styles.container}
 					data={list}
 					keyExtractor={(item) => item.id.toString()}
 					renderItem={({ item, index }) =>

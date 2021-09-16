@@ -1,89 +1,69 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system';
 import { Colors, Pallete, Strings } from '../../lib/constants';
-import TitleWithSubTitle from '../../components/TitleWithSubTitle';
 import styles from './styles';
+// import sample from '../../assets/pdf/sample.pdf';
 
-import { ValueFormat } from '../../lib/utils/formatCurrency';
 import DetailsItem from './components/DetailsItem';
+import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
+import FeaturedItem from '../../components/FeaturedItem';
 
 function BalanceDetailsScreen({ route }) {
 	const { item } = route.params;
 
+	const fileUri = `${FileSystem.cacheDirectory}test.pdf`;
+
+	const openShareAsync = () => {
+		Sharing.isAvailableAsync()
+			.then(() => {
+				FileSystem.writeAsStringAsync(fileUri)
+					.then(() => {
+						// console.log('File', data);
+						// setState('Wrote vcard file');
+					})
+					.catch(() => {
+						// setState('Error writing vcard file');
+						// console.log(JSON.stringify(err));
+					});
+
+				Sharing.shareAsync(fileUri)
+					.then(() => {
+						// console.log('Sharing', data);
+						// setState('Shared');
+					})
+					.catch(() => {
+						// setState('Error sharing vcard');
+						// console.log(JSON.stringify(err));
+					});
+			})
+			.catch(() => {
+				// alert(`Uh oh, sharing isn't available on your platform`);
+				// console.log(JSON.stringify(err));
+			});
+	};
+
 	return (
-		<ScrollView style={styles.scrollView}>
+		<ScrollView>
 			<View style={Pallete.screen}>
-				<View style={styles.row}>
-					<TitleWithSubTitle
-						title={Strings.balanceteDetalhe}
-						subTitle={Strings.balanceteDetalheDescription}
-					/>
-					<MaterialIcons
-						name="description"
-						size={50}
-						color={Colors.primary}
-					/>
-				</View>
-				<View style={styles.row}>
-					<View style={styles.col1}>
-						<Text key="data" style={styles.h1}>
-							{item.data}
-						</Text>
+				<TitleSubTitleWithIcon
+					title={Strings.balanceteDetalhe}
+					subTitle={Strings.balanceteDetalheDescription}
+					iconName="description"
+				/>
 
-						<View style={styles.row_balance}>
-							<Text style={Pallete.paragraph}>
-								Saldo Anterior:
-							</Text>
-							<ValueFormat
-								key="saldo_anterior"
-								style={Pallete.paragraph}
-								value={item.saldo_anterior}
-							/>
-						</View>
-
-						<View style={styles.row_balance}>
-							<Text style={Pallete.paragraph}>Pagamentos:</Text>
-							<ValueFormat
-								key="pagamentos"
-								style={Pallete.paragraph}
-								value={item.pagamentos}
-							/>
-						</View>
-
-						<View style={styles.row_balance}>
-							<Text style={Pallete.paragraph}>Recebimentos:</Text>
-							<ValueFormat
-								key="recebimentos"
-								style={Pallete.paragraph}
-								value={item.rebimentos}
-							/>
-						</View>
-						<View style={styles.label}>
-							<Text style={Pallete.paragraph}>Saldo:</Text>
-
-							<ValueFormat
-								key="saldo"
-								style={Pallete.paragraph}
-								value={item.saldo}
-							/>
-						</View>
-					</View>
-
-					<View style={styles.col2}>
-						<TouchableOpacity>
-							<MaterialIcons
-								name="share"
-								size={50}
-								color={Colors.primary}
-							/>
-						</TouchableOpacity>
-					</View>
-				</View>
+				<FeaturedItem
+					onPress={openShareAsync}
+					item={item}
+					iconName="share"
+					iconSize={40}
+					iconColor={Colors.primary}
+				/>
 
 				<View style={styles.col}>
 					{item &&
