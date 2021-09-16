@@ -7,7 +7,6 @@ import * as RootNavigator from '../../../../lib/utils/navigation';
 
 const CardPublicationDefault = ({ title, subTitle, seeMore, baseboard }) => (
 	<TouchableOpacity
-		style={styles.navigation}
 		onPress={() => RootNavigator.navigate('PublicationExpanded')}>
 		<View style={styles.container}>
 			<Text style={styles.title}>{title}</Text>

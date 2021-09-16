@@ -8,6 +8,7 @@ const Colors = {
 	tertiary: '#868284',
 	white: '#FFF',
 	black: '#000',
+	green: '#6FCA67',
 };
 
 export default Colors;

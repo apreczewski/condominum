@@ -2,7 +2,12 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '../../lib/constants';
 
 const styles = StyleSheet.create({
-	baseboard: {
+	baseboardImage: {
+		height: 40,
+		width: 40,
+	},
+
+	baseboardText: {
 		color: Colors.secondary_470,
 		flexDirection: 'row',
 		fontFamily: 'Roboto-Bold',
@@ -40,6 +45,15 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 
+	h1: {
+		color: Colors.primary,
+		flexDirection: 'row',
+		fontFamily: 'Roboto-Regular',
+		fontSize: 25,
+		marginBottom: 10,
+		width: '100%',
+	},
+
 	h3: {
 		color: Colors.tertiary,
 		flexDirection: 'row',
@@ -64,11 +78,6 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 
-	imageBaseboard: {
-		height: 40,
-		width: 40,
-	},
-
 	imageContainerBaseboard: {
 		width: '11%',
 	},
@@ -83,15 +92,6 @@ const styles = StyleSheet.create({
 	textContainerBaseboard: {
 		justifyContent: 'center',
 		width: '89%',
-	},
-
-	title: {
-		color: Colors.primary,
-		flexDirection: 'row',
-		fontFamily: 'Roboto-Regular',
-		fontSize: 25,
-		marginBottom: 10,
-		width: '100%',
 	},
 });
 

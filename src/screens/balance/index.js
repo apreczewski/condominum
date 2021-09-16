@@ -21,7 +21,7 @@ import { ValueFormat } from '../../lib/utils/formatCurrency';
 
 function BalanceScreen({ list, onRead }) {
 	return (
-		<ScrollView style={styles.scrollView}>
+		<ScrollView>
 			<View style={Pallete.screen}>
 				<View style={styles.row}>
 					<TitleWithSubTitle

@@ -10,14 +10,13 @@ import publication from './data.json';
 
 export default function PublicationsScreen() {
 	return (
-		<ScrollView style={styles.scrollView}>
+		<ScrollView>
 			<View style={Pallete.screen}>
 				<View style={styles.row}>
 					<TitleWithSubTitle
 						title={Strings.publication}
 						subTitle={Strings.publicationDescription}
 					/>
-
 					<MaterialCommunityIcons
 						name="message-text-outline"
 						size={50}

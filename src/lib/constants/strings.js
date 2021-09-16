@@ -12,6 +12,10 @@ const Strings = {
 	balanceteDetails: 'Ver detalhes',
 	publication: 'Publicações',
 	publicationDescription: 'Confira a lista de publicações',
+	tickets: 'Boletos',
+	ticketsDescription: 'Confira sua lista de boletos',
+	ticketDetails: 'Boleto',
+	ticketDetailsDescription: 'Confira os detalhes do boleto',
 };
 
 export default Strings;

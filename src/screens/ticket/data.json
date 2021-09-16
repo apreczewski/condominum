@@ -1,0 +1,44 @@
+[
+	{
+		"id": 1,
+		"value": "500,04",
+		"dueDate": "05/06/2021",
+		"name": "Aguardando pagamento",
+		"state": "0"
+	},
+	{
+		"id": 2,
+		"value": "500,04",
+		"dueDate": "05/05/2021",
+		"name": "Pago",
+		"state": "2"
+	},
+	{
+		"id": 3,
+		"value": "500,04",
+		"dueDate": "05/04/2021",
+		"name": "Atrasado",
+		"state": "1"
+	},
+	{
+		"id": 4,
+		"value": "500,04",
+		"dueDate": "05/03/2021",
+		"name": "Pago",
+		"state": "2"
+	},
+	{
+		"id": 5,
+		"value": "500,04",
+		"dueDate": "05/02/2021",
+		"name": "Pago",
+		"state": "2"
+	},
+	{
+		"id": 6,
+		"value": "500,04",
+		"dueDate": "05/01/2021",
+		"name": "Pago",
+		"state": "2"
+	}
+]

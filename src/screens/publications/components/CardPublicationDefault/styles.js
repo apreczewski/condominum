@@ -22,10 +22,6 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 
-	navigation: {
-		width: '100%',
-	},
-
 	seeMore: {
 		color: Colors.primary,
 		flexDirection: 'row',

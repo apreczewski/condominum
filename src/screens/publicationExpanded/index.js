@@ -25,7 +25,7 @@ function PublicationExpandedScreen() {
 			</View>
 
 			<View style={styles.body}>
-				<Text style={styles.title}>{publication[0].title}</Text>
+				<Text style={styles.h1}>{publication[0].title}</Text>
 
 				<Text style={styles.h3}>{publication[0].subTitle}</Text>
 
@@ -33,12 +33,12 @@ function PublicationExpandedScreen() {
 					<View style={styles.imageContainerBaseboard}>
 						<Image
 							source={Images.user}
-							style={styles.imageBaseboard}
+							style={styles.baseboardImage}
 						/>
 					</View>
 
 					<View style={styles.textContainerBaseboard}>
-						<Text style={styles.baseboard}>
+						<Text style={styles.baseboardText}>
 							{publication[0].baseboard}
 						</Text>
 					</View>
