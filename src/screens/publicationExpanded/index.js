@@ -1,71 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { AntDesign } from '@expo/vector-icons';
 
-import { Feather, AntDesign } from '@expo/vector-icons';
-import styles from './styles';
-import Images from '../../lib/constants/images';
-import publication from '../publications/data.json';
 import { Colors } from '../../lib/constants';
 import * as Navigation from '../../lib/utils/navigation';
+import publication from '../../assets/images/publication.png';
+import styles from './styles';
 
-function PublicationExpandedScreen() {
-	/* {
-		 url title, baseboard 
-	} */
+function PublicationExpandedScreen({ route }) {
+	const { item } = route.params;
+	const [isLike, setIsLike] = useState(false);
+
+	const hangleIsLike = (status) => {
+		if (status) {
+			setIsLike(true);
+			return;
+		}
+		setIsLike(false);
+	};
+
 	return (
 		<View style={styles.container}>
 			<View>
 				<TouchableOpacity
 					style={styles.iconClose}
-					onPress={() => Navigation.navigate('')}>
+					onPress={() => Navigation.navigate('Publications')}>
 					<AntDesign name="close" size={50} color={Colors.white} />
 				</TouchableOpacity>
-				<Image source={Images.publication} style={styles.image} />
+				{item?.id === '1' && (
+					<Image source={publication} style={styles.image} />
+				)}
 			</View>
 
 			<View style={styles.body}>
-				<Text style={styles.h1}>{publication[0].title}</Text>
-
-				<Text style={styles.h3}>{publication[0].subTitle}</Text>
+				<Text style={styles.h1}>{item?.title}</Text>
+				<Text style={styles.h3}>{item?.subTitle}</Text>
 
 				<View style={styles.containerBaseboard}>
 					<View style={styles.imageContainerBaseboard}>
 						<Image
-							source={Images.user}
+							source={item.user}
 							style={styles.baseboardImage}
 						/>
 					</View>
 
 					<View style={styles.textContainerBaseboard}>
 						<Text style={styles.baseboardText}>
-							{publication[0].baseboard}
+							{item?.baseboard}
 						</Text>
 					</View>
 				</View>
 			</View>
 
-			<TouchableOpacity onPress={() => Navigation.navigate('')}>
+			<TouchableOpacity onPress={() => hangleIsLike(!isLike)}>
 				<View style={styles.containerLike}>
-					<Feather name="heart" size={30} color={Colors.primary} />
-					<Text style={styles.like}>{publication[0].like}</Text>
+					<AntDesign
+						name={isLike ? 'heart' : 'hearto'}
+						size={30}
+						color={Colors.primary}
+					/>
 				</View>
 			</TouchableOpacity>
 		</View>
 	);
 }
 
+PublicationExpandedScreen.propTypes = {
+	route: PropTypes.shape({
+		params: PropTypes.shape({
+			item: PropTypes.shape({
+				id: PropTypes.string,
+				url: PropTypes.string,
+				title: PropTypes.string,
+				subTitle: PropTypes.string,
+				seeMore: PropTypes.string,
+				baseboard: PropTypes.string,
+				like: PropTypes.string,
+				user: PropTypes.string,
+			}),
+		}),
+	}).isRequired,
+};
+
 export default PublicationExpandedScreen;
-
-/* PublicationExpandedScreen.propTypes = {
-	// url: PropTypes.string,
-	title: PropTypes.string,
-	baseboard: PropTypes.string,
-};
-
-PublicationExpandedScreen.defaultProps = {
-	// url: '',
-	title: '',
-	baseboard: '',
-};
-*/

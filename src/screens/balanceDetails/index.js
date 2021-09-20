@@ -1,18 +1,15 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
-import { Colors, Pallete, Strings } from '../../lib/constants';
-import styles from './styles';
-// import sample from '../../assets/pdf/sample.pdf';
 
-import DetailsItem from './components/DetailsItem';
+import { Colors, Pallete, Strings } from '../../lib/constants';
 import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
 import FeaturedItem from '../../components/FeaturedItem';
+
+import styles from './styles';
+import DetailsItem from './components/DetailsItem';
 
 function BalanceDetailsScreen({ route }) {
 	const { item } = route.params;
@@ -106,8 +103,4 @@ BalanceDetailsScreen.propTypes = {
 	}).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-	balanceActions: state.balance.balanceActions,
-});
-
-export default connect(mapStateToProps)(BalanceDetailsScreen);
+export default BalanceDetailsScreen;

@@ -9,13 +9,7 @@ export const setList = (data) => ({
 	data,
 });
 
-export const setDetailsBalance = (detailsBalance) => ({
-	type: types.SET_DETAILS_BALANCE,
-	detailsBalance,
-});
-
 export default {
 	getList,
 	setList,
-	setDetailsBalance,
 };

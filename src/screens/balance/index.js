@@ -1,62 +1,70 @@
 import React from 'react';
-import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Colors, Pallete, Strings } from '../../lib/constants';
+import { MaterialIcons } from '@expo/vector-icons';
+import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 
 import * as RootNavigator from '../../lib/utils/navigation';
-import Item from './components/Item';
-import { balanceActions } from '../../store/actions';
+import { Colors, Pallete, Strings } from '../../lib/constants';
 import FeaturedItem from '../../components/FeaturedItem';
 import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
 
-function BalanceScreen({ list, onRead }) {
+import Item from './components/Item';
+import styles from './styles';
+
+function BalanceScreen({ list }) {
 	return (
 		<ScrollView>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balancete}
-					subTitle={Strings.balanceteDescription}
-					iconName="description"
-				/>
+					subTitle={Strings.balanceteDescription}>
+					<MaterialIcons
+						name="description"
+						size={50}
+						color={Colors.primary}
+					/>
+				</TitleSubTitleWithIcon>
+				<View style={styles.body}>
+					<FeaturedItem
+						onPress={() => {
+							RootNavigator.navigate('BalanceDetails', {
+								item: list[0],
+							});
+						}}
+						item={list[0]}
+						iconName="arrow-forward-ios"
+						iconColor={Colors.secondary}
+						iconSize={30}
+					/>
 
-				<FeaturedItem
-					onPress={() => {
-						RootNavigator.navigate('BalanceDetails', {
-							item: list[0],
-						});
-					}}
-					item={list[0]}
-					iconName="arrow-forward-ios"
-					iconColor={Colors.secondary}
-					iconSize={30}
-				/>
-
-				<FlatList
-					refreshControl={<RefreshControl />}
-					data={list}
-					keyExtractor={(item) => item.id.toString()}
-					renderItem={({ item, index }) =>
-						index > 0 && (
-							<Item
-								item={item}
-								onPress={() => {
-									onRead(item);
-									RootNavigator.navigate('BalanceDetails', {
-										item,
-									});
-								}}
-							/>
-						)
-					}
-				/>
+					<FlatList
+						refreshControl={<RefreshControl />}
+						data={list}
+						keyExtractor={(item) => item?.id.toString()}
+						renderItem={({ item, index }) =>
+							index > 0 && (
+								<Item
+									item={item}
+									onPress={() => {
+										RootNavigator.navigate(
+											'BalanceDetails',
+											{
+												item,
+											},
+										);
+									}}
+								/>
+							)
+						}
+					/>
+				</View>
 			</View>
 		</ScrollView>
 	);
 }
 
 BalanceScreen.propTypes = {
-	onRead: PropTypes.func.isRequired,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
 			data: PropTypes.string,
@@ -72,9 +80,4 @@ const mapStateToProps = (state) => ({
 	list: state.balance.list,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-	onRead: (detailsbalance) =>
-		dispatch(balanceActions.setDetailsBalance(detailsbalance)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceScreen);
+export default connect(mapStateToProps)(BalanceScreen);

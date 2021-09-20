@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.white,
 		borderRadius: 5,
 		justifyContent: 'space-between',
-		marginBottom: 20,
+		marginBottom: 15,
 		padding: 6,
 		paddingHorizontal: 19,
 		paddingVertical: 16,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 	title: {
 		color: Colors.primary,
 		flexDirection: 'row',
-		fontFamily: 'Roboto-Regular',
+		fontFamily: 'Roboto-Bold',
 		fontSize: 20,
 		marginBottom: 10,
 		width: '100%',

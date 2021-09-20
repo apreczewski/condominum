@@ -1,52 +1,99 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import TitleWithSubTitle from '../../components/TitleWithSubTitle';
-import { Colors, Pallete, Strings } from '../../lib/constants';
-import styles from './styles';
-import CardPublicationEmphasis from './components/CardPublicationEmphasis';
-import CardPublicationDefault from './components/CardPublicationDefault';
-import publication from './data.json';
+import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 
-export default function PublicationsScreen() {
+import { useFocusEffect } from '@react-navigation/native';
+import * as RootNavigator from '../../lib/utils/navigation';
+import { Colors, Pallete, Strings } from '../../lib/constants';
+import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
+
+import { PublicationEmphasis } from './components/PublicationEmphasis';
+import { publicationsActions } from '../../store/actions';
+
+import Item from './components/Item';
+import styles from './styles';
+
+function PublicationsScreen({ onGet, loading, list }) {
+	useFocusEffect(
+		React.useCallback(() => {
+			onGet();
+		}, []),
+	);
+
 	return (
 		<ScrollView>
 			<View style={Pallete.screen}>
-				<View style={styles.row}>
-					<TitleWithSubTitle
-						title={Strings.publication}
-						subTitle={Strings.publicationDescription}
-					/>
+				<TitleSubTitleWithIcon
+					title={Strings.publication}
+					subTitle={Strings.publicationDescription}>
 					<MaterialCommunityIcons
 						name="message-text-outline"
 						size={50}
 						color={Colors.secondary}
 					/>
-				</View>
+				</TitleSubTitleWithIcon>
+				<View style={styles.body} />
 
 				<View>
-					<CardPublicationEmphasis
-						id={publication[0].id}
-						title={publication[0].title}
-						baseboard={publication[0].baseboard}
+					<PublicationEmphasis
+						item={list[0]}
+						onPress={() => {
+							RootNavigator.navigate('PublicationExpanded', {
+								item: list[0],
+							});
+						}}
 					/>
 
-					{publication &&
-						publication.map(
-							(item, index) =>
-								index > 0 && (
-									<CardPublicationDefault
-										key={item.id}
-										id={item?.id}
-										title={item.title}
-										subTitle={item.subTitle}
-										seeMore={item.seeMore}
-										baseboard={item.baseboard}
-									/>
-								),
-						)}
+					<FlatList
+						refreshControl={<RefreshControl refreshing={loading} />}
+						data={list}
+						keyExtractor={(item) => item?.id.toString()}
+						renderItem={({ item, index }) =>
+							index > 0 && (
+								<Item
+									item={item}
+									onPress={() => {
+										RootNavigator.navigate(
+											'PublicationExpanded',
+											{
+												item,
+											},
+										);
+									}}
+								/>
+							)
+						}
+					/>
 				</View>
 			</View>
 		</ScrollView>
 	);
 }
+
+PublicationsScreen.propTypes = {
+	onGet: PropTypes.func.isRequired,
+	loading: PropTypes.bool.isRequired,
+	list: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			url: PropTypes.string,
+			title: PropTypes.string,
+			subTitle: PropTypes.string,
+			date: PropTypes.string,
+			like: PropTypes.string,
+		}),
+	).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	list: state.publication.list,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onGet: () => dispatch(publicationsActions.getList()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PublicationsScreen);
