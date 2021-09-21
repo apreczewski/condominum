@@ -7,7 +7,7 @@ import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import * as RootNavigator from '../../lib/utils/navigation';
 import { Colors, Pallete, Strings } from '../../lib/constants';
-import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
+import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
 import { PublicationEmphasis } from './components/PublicationEmphasis';
 import { publicationsActions } from '../../store/actions';

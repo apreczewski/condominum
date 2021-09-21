@@ -15,7 +15,12 @@ const Pallete = {
 	h3: {
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
-		fontSize: 15,
+		fontSize: 24,
+	},
+	h5Primary: {
+		color: Colors.primary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 16,
 	},
 	paragraph: {
 		color: Colors.secondary,
