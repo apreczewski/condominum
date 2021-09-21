@@ -26,4 +26,8 @@ export const styles = StyleSheet.create({
 	stepIndicator: {
 		marginBottom: 15,
 	},
+	view: {
+		flexGrow: 1,
+		marginBottom: 15,
+	},
 });

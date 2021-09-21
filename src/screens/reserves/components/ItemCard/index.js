@@ -12,7 +12,7 @@ const ItemCard = ({ item, onDelete }) => (
 		<View style={styles.viewContent}>
 			<Image
 				source={{ uri: item.image }}
-				resizeMode="contain"
+				resizeMode="cover"
 				style={styles.img}
 			/>
 			<View style={styles.viewText}>

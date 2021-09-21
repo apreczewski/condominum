@@ -1,19 +1,45 @@
 import { StyleSheet } from 'react-native';
 import { Colors, Metrics } from '../../../../lib/constants';
 
+const size = Metrics.screenWidth - 100;
+
 const styles = StyleSheet.create({
+	close: {
+		position: 'absolute',
+		right: 5,
+		top: 5,
+		zIndex: 100,
+	},
 	container: {
-		flex: 1,
+		alignItems: 'center',
+		backgroundColor: Colors.transparent,
+		justifyContent: 'center',
 	},
 	content: {
 		backgroundColor: Colors.white,
 		borderRadius: 5,
-		height: Metrics.screenHeight - 50,
-		width: Metrics.screenWidth - 50,
+		width: Metrics.screenWidth - 40,
+	},
+	image: {
+		height: size,
+		width: Metrics.screenWidth - 40,
+	},
+	marginBottom: {
+		marginBottom: 15,
+	},
+	maxSize: {
+		maxHeight: Metrics.screenHeight - (size + 100),
+	},
+	row: {
+		alignItems: 'center',
+		flexDirection: 'row',
 	},
 	styleModal: {
 		marginBottom: 0,
 		marginHorizontal: 0,
+	},
+	viewText: {
+		padding: 20,
 	},
 });
 
