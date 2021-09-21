@@ -29,7 +29,7 @@ function PublicationsScreen({ onGet, loading, list }) {
 					title={Strings.publication}
 					subTitle={Strings.publicationDescription}>
 					<MaterialCommunityIcons
-						name="message-text-outline"
+						name="tooltip-text-outline"
 						size={50}
 						color={Colors.secondary}
 					/>
