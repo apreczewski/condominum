@@ -76,13 +76,13 @@ TicketsScreen.propTypes = {
 	).isRequired, */
 };
 
-/* const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
 	list: state.balance.list,
-}); */
+});
 
 /* const mapDispatchToProps = (dispatch) => ({
 	onRead: (detailsbalance) =>
 		dispatch(balanceActions.setDetailsBalance(detailsbalance)),
 }); */
 
-export default connect(TicketsScreen);
+export default connect(mapStateToProps)(TicketsScreen);
