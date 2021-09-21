@@ -1,16 +1,20 @@
 import React from 'react';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome, EvilIcons, Feather } from '@expo/vector-icons';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import TitleWithSubTitle from '../../components/TitleWithSubTitle';
-import { ValueFormat } from '../../lib/utils/formatCurrency';
-import ticket from '../ticket/data.json';
+import ticket from '../tickets/data.json';
 import * as RootNavigator from '../../lib/utils/navigation';
 
 import styles from './styles';
-import Item from './components/Item';
+import DetailsItem from './components/Item';
+import TicketFeaturedItem from '../../components/TicketFeaturedItem';
 
-export default function TicketDetailsScreen() {
+function TicketDetailsScreen() {
+	const item = 2; /* route.params */
+
 	return (
 		<ScrollView>
 			<View style={Pallete.screen}>
@@ -26,25 +30,15 @@ export default function TicketDetailsScreen() {
 						color={Colors.secondary}
 					/>
 				</View>
-				<View style={styles.col}>
-					<ValueFormat style={styles.h1} value={ticket[0].value} />
-
-					<View style={styles.row_ticket}>
-						<Text style={styles.h3}>Vencimento:</Text>
-						<Text style={Pallete.h3}>{ticket[0].dueDate}</Text>
-					</View>
-
-					<View style={styles.label}>
-						<EvilIcons
-							name="clock"
-							size={30}
-							color={Colors.secondary}
-						/>
-						<Text style={Pallete.paragraph}>{ticket[0].name}</Text>
-					</View>
-				</View>
-
-				<View style={styles.lineOfSquares}>
+				<TicketFeaturedItem
+					onPress={() => {
+						RootNavigator.navigate('TicketDetails', {
+							item: ticket[item],
+						});
+					}}
+					item={ticket[item]}
+				/>
+				<View style={styles.row}>
 					<TouchableOpacity
 						onPress={() => RootNavigator.navigate('')}>
 						<View style={styles.square}>
@@ -81,8 +75,34 @@ export default function TicketDetailsScreen() {
 						</View>
 					</TouchableOpacity>
 				</View>
-				<Item />
+				<DetailsItem id={item} />
 			</View>
 		</ScrollView>
 	);
 }
+
+TicketDetailsScreen.propTypes = {
+	route: PropTypes.shape({
+		params: PropTypes.shape({
+			item: PropTypes.shape({
+				id: PropTypes.number,
+				value: PropTypes.number,
+				dueDate: PropTypes.string,
+				name: PropTypes.string,
+				state: PropTypes.number,
+				details: PropTypes.arrayOf(
+					PropTypes.shape({
+						text: PropTypes.string,
+						value: PropTypes.number,
+					}),
+				),
+			}),
+		}),
+	}).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	balanceActions: state.balance.balanceActions,
+});
+
+export default connect(mapStateToProps)(TicketDetailsScreen);

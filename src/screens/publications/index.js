@@ -18,7 +18,7 @@ export default function PublicationsScreen() {
 						subTitle={Strings.publicationDescription}
 					/>
 					<MaterialCommunityIcons
-						name="message-text-outline"
+						name="tooltip-text-outline"
 						size={50}
 						color={Colors.secondary}
 					/>

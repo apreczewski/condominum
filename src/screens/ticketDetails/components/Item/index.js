@@ -1,47 +1,32 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-// import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
-// import PropTypes from 'prop-types';
-// import { Colors, Pallete } from '../../../../lib/constants';
+import { View, Text, FlatList, RefreshControl } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from './styles';
-// import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 import { ValueFormat } from '../../../../lib/utils/formatCurrency';
+import Ticket from '../../../tickets/data.json';
 
-/* const icon = {
-	0: 'clock',
-	1: 'close-o',
-	2: 'check',
-};
-
-const colors = {
-	0: Colors.secondary,
-	1: Colors.primary,
-	2: Colors.green,
-}; */
-
-const Item = () => (
+const DetailsItem = ({ id }) => (
 	<View style={styles.container}>
 		<Text style={styles.details}>Valores detalhados </Text>
-		<View style={styles.row_ticket}>
-			<Text style={styles.h3}>Agua e esgoto:</Text>
-			<ValueFormat style={styles.h3} value={1.82} />
-		</View>
+		<FlatList
+			refreshControl={<RefreshControl />}
+			data={Ticket[id].details}
+			renderItem={({ item }) => (
+				<View style={styles.row_ticket}>
+					<Text style={styles.h3}>{item.text}</Text>
+					<ValueFormat style={styles.value} value={item.value} />
+				</View>
+			)}
+		/>
 	</View>
 );
 
-export default Item;
+export default DetailsItem;
 
-/* Item.propTypes = {
-	value: PropTypes.number,
-	dueDate: PropTypes.string,
-	state: PropTypes.string,
-	type: PropTypes.string,
+DetailsItem.propTypes = {
+	id: PropTypes.number,
 };
 
-Item.defaultProps = {
-	value: 0,
-	dueDate: '',
-	state: '',
-	type: '',
+DetailsItem.defaultProps = {
+	id: 0,
 };
-*/

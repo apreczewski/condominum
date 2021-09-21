@@ -14,7 +14,7 @@ import CustomDrawerContent from './CustomDrawerContent';
 
 import HomeScreen from '../screens/home';
 import PublicationsScreen from '../screens/publications';
-import TicketScreen from '../screens/ticket';
+import TicketScreen from '../screens/tickets';
 import BalanceScreen from '../screens/balance';
 import ReservesScreen from '../screens/reserves';
 import CondominiumScreen from '../screens/condominium';
