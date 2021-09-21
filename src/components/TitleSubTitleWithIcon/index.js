@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
-import TitleWithSubTitle from '../TitleWithSubTitle';
+import { TitleWithSubTitle } from '../TitleWithSubTitle';
 import styles from './styles';
 
 export const TitleSubTitleWithIcon = ({ title, subTitle, children }) => (

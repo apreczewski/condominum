@@ -8,7 +8,7 @@ import * as Navigation from '../../lib/utils/navigation';
 import publication from '../../assets/images/publication.png';
 import styles from './styles';
 
-function PublicationExpandedScreen({ route }) {
+function PublicationDetailsScreen({ route }) {
 	const { item } = route.params;
 	const [isLike, setIsLike] = useState(false);
 
@@ -66,7 +66,7 @@ function PublicationExpandedScreen({ route }) {
 	);
 }
 
-PublicationExpandedScreen.propTypes = {
+PublicationDetailsScreen.propTypes = {
 	route: PropTypes.shape({
 		params: PropTypes.shape({
 			item: PropTypes.shape({
@@ -83,4 +83,4 @@ PublicationExpandedScreen.propTypes = {
 	}).isRequired,
 };
 
-export default PublicationExpandedScreen;
+export default PublicationDetailsScreen;

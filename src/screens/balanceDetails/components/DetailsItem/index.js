@@ -21,7 +21,7 @@ const DetailsItem = ({
 		<View style={styles.colRight}>
 			<ValueFormat
 				style={{
-					...Pallete.h3,
+					...styles.h3,
 					color:
 						despesasDiversas >= 0
 							? Colors.secondary
@@ -30,8 +30,8 @@ const DetailsItem = ({
 				value={despesasDiversas}
 			/>
 
-			<ValueFormat style={Pallete.h3} value={honorariosSindico} />
-			<ValueFormat style={Pallete.h3} value={luzForca} />
+			<ValueFormat style={styles.h3} value={honorariosSindico} />
+			<ValueFormat style={styles.h3} value={luzForca} />
 		</View>
 	</View>
 );

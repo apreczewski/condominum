@@ -36,6 +36,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		width: '40%',
 	},
+	h3: {
+		color: Colors.secondary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 15,
+	},
 });
 
 export default styles;

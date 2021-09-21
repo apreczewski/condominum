@@ -4,15 +4,23 @@ import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 
+import { useFocusEffect } from '@react-navigation/native';
 import * as RootNavigator from '../../lib/utils/navigation';
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import FeaturedItem from '../../components/FeaturedItem';
-import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
+import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
 import Item from './components/Item';
 import styles from './styles';
+import { balancesActions } from '../../store/actions';
 
-function BalanceScreen({ list }) {
+function BalanceScreen({ onGet, loading, list }) {
+	useFocusEffect(
+		React.useCallback(() => {
+			onGet();
+		}, []),
+	);
+
 	return (
 		<ScrollView>
 			<View style={Pallete.screen}>
@@ -39,7 +47,7 @@ function BalanceScreen({ list }) {
 					/>
 
 					<FlatList
-						refreshControl={<RefreshControl />}
+						refreshControl={<RefreshControl refreshing={loading} />}
 						data={list}
 						keyExtractor={(item) => item?.id.toString()}
 						renderItem={({ item, index }) =>
@@ -65,6 +73,8 @@ function BalanceScreen({ list }) {
 }
 
 BalanceScreen.propTypes = {
+	onGet: PropTypes.func.isRequired,
+	loading: PropTypes.bool.isRequired,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
 			data: PropTypes.string,
@@ -77,7 +87,12 @@ BalanceScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	list: state.balance.list,
+	loading: state.api.loading,
+	list: state.balances.list,
 });
 
-export default connect(mapStateToProps)(BalanceScreen);
+const mapDispatchToProps = (dispatch) => ({
+	onGet: () => dispatch(balancesActions.getList()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BalanceScreen);

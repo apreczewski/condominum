@@ -40,7 +40,7 @@ function PublicationsScreen({ onGet, loading, list }) {
 					<PublicationEmphasis
 						item={list[0]}
 						onPress={() => {
-							RootNavigator.navigate('PublicationExpanded', {
+							RootNavigator.navigate('PublicationDetails', {
 								item: list[0],
 							});
 						}}
@@ -89,7 +89,7 @@ PublicationsScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
 	loading: state.api.loading,
-	list: state.publication.list,
+	list: state.publications.list,
 });
 
 const mapDispatchToProps = (dispatch) => ({

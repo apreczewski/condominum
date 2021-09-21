@@ -1,287 +1,287 @@
 [
 	{
 		"id": 1,
-		"value": "500,04",
+		"value": 500.04,
 		"dueDate": "05/06/2021",
 		"name": "Aguardando pagamento",
 		"state": "0",
-		"details": [
+		"expenses": [
 			{
 				"text": "Água e esgoto",
-				"value": "R$ 1,82"
+				"value": 1.82
 			},
 			{
 				"text": "Despesas administrativas e financeiras",
-				"value": "R$ 100008,88"
+				"value": 100008.88
 			},
 			{
 				"text": "Despesas diversas",
-				"value": "R$ 17,66"
+				"value": 17.66
 			},
 			{
 				"text": "Honorários de síndico",
-				"value": "R$ 7,38"
+				"value": 7.38
 			},
 			{
 				"text": "Luz e força",
-				"value": "R$ 20,87"
+				"value": 20.87
 			},
 			{
 				"text": "Manutenção de elevadores",
-				"value": "R$ 10,92"
+				"value": 10.92
 			},
 			{
 				"text": "Manutenções diversas",
-				"value": "R$ 25,40"
+				"value": 25.4
 			},
 			{
 				"text": "Salários",
-				"value": "R$ 65,23"
+				"value": 65.23
 			},
 			{
 				"text": "Seguros",
-				"value": "R$ 7,70"
+				"value": 7.7
 			},
 			{
 				"text": "Serviços terceirizados",
-				"value": "R$ 9,94"
+				"value": 9.94
 			},
 			{
 				"text": "002/002 Troca registros do Gás",
-				"value": "R$ 42,50"
+				"value": 42.5
 			},
 			{
 				"text": "007/012 Pintura",
-				"value": "R$ 105,00"
+				"value": 105.0
 			},
 			{
 				"text": "Água lan 523 lat 534 cons 11M3",
-				"value": "R$ 96,74"
+				"value": 96.74
 			},
 			{
 				"text": "Fundo de reserva cfe ata 10",
-				"value": "R$ 70,00"
+				"value": 70.0
 			}
 		]
 	},
 	{
 		"id": 2,
-		"value": "500,04",
+		"value": 500.04,
 		"dueDate": "05/05/2021",
 		"name": "Pago",
 		"state": "2",
-		"details": [
+		"expenses": [
 			{
 				"text": "Água e esgoto",
-				"value": "R$ 1,82"
+				"value": 1.82
 			},
 			{
 				"text": "Despesas administrativas e financeiras",
-				"value": "R$ 100008,88"
+				"value": 100008.88
 			},
 			{
 				"text": "Despesas diversas",
-				"value": "R$ 17,66"
+				"value": 17.66
 			},
 			{
 				"text": "Honorários de síndico",
-				"value": "R$ 7,38"
+				"value": 7.38
 			},
 			{
 				"text": "Luz e força",
-				"value": "R$ 20,87"
+				"value": 20.87
 			},
 			{
 				"text": "Manutenção de elevadores",
-				"value": "R$ 10,92"
+				"value": 10.92
 			},
 			{
 				"text": "Manutenções diversas",
-				"value": "R$ 25,40"
+				"value": 25.4
 			},
 			{
 				"text": "Salários",
-				"value": "R$ 65,23"
+				"value": 65.23
 			},
 			{
 				"text": "Seguros",
-				"value": "R$ 7,70"
+				"value": 7.7
 			},
 			{
 				"text": "Serviços terceirizados",
-				"value": "R$ 9,94"
+				"value": 9.94
 			},
 			{
 				"text": "002/002 Troca registros do Gás",
-				"value": "R$ 42,50"
+				"value": 42.5
 			},
 			{
 				"text": "007/012 Pintura",
-				"value": "R$ 105,00"
+				"value": 105.0
 			}
 		]
 	},
 	{
 		"id": 3,
-		"value": "500,04",
+		"value": 500.04,
 		"dueDate": "05/04/2021",
 		"name": "Atrasado",
 		"state": "1",
-		"details": [
+		"expenses": [
 			{
 				"text": "Água e esgoto",
-				"value": "R$ 1,82"
+				"value": 1.82
 			},
 			{
 				"text": "Despesas administrativas e financeiras",
-				"value": "R$ 100008,88"
+				"value": 100008.88
 			},
 			{
 				"text": "Despesas diversas",
-				"value": "R$ 17,66"
+				"value": 17.66
 			},
 			{
 				"text": "Honorários de síndico",
-				"value": "R$ 7,38"
+				"value": 7.38
 			},
 			{
 				"text": "Luz e força",
-				"value": "R$ 20,87"
+				"value": 20.87
 			},
 			{
 				"text": "Manutenção de elevadores",
-				"value": "R$ 10,92"
+				"value": 10.92
 			},
 			{
 				"text": "Manutenções diversas",
-				"value": "R$ 25,40"
+				"value": 25.4
 			},
 			{
 				"text": "Salários",
-				"value": "R$ 65,23"
+				"value": 65.23
 			},
 			{
 				"text": "Seguros",
-				"value": "R$ 7,70"
+				"value": 7.7
 			},
 			{
 				"text": "Serviços terceirizados",
-				"value": "R$ 9,94"
+				"value": 9.94
 			},
 			{
 				"text": "002/002 Troca registros do Gás",
-				"value": "R$ 42,50"
+				"value": 42.5
 			}
 		]
 	},
 	{
 		"id": 4,
-		"value": "500,04",
+		"value": 500.04,
 		"dueDate": "05/03/2021",
 		"name": "Pago",
 		"state": "2",
-		"details": [
+		"expenses": [
 			{
 				"text": "Água e esgoto",
-				"value": "R$ 1,82"
+				"value": 1.82
 			},
 			{
 				"text": "Despesas administrativas e financeiras",
-				"value": "R$ 100008,88"
+				"value": 100008.88
 			},
 			{
 				"text": "Despesas diversas",
-				"value": "R$ 17,66"
+				"value": 17.66
 			},
 			{
 				"text": "Honorários de síndico",
-				"value": "R$ 7,38"
+				"value": 7.38
 			},
 			{
 				"text": "Luz e força",
-				"value": "R$ 20,87"
+				"value": 20.87
 			},
 			{
 				"text": "Manutenção de elevadores",
-				"value": "R$ 10,92"
+				"value": 10.92
 			},
 			{
 				"text": "Manutenções diversas",
-				"value": "R$ 25,40"
+				"value": 25.4
 			},
 			{
 				"text": "Salários",
-				"value": "R$ 65,23"
+				"value": 65.23
 			},
 			{
 				"text": "Seguros",
-				"value": "R$ 7,70"
+				"value": 7.7
 			}
 		]
 	},
 	{
 		"id": 5,
-		"value": "500,04",
+		"value": 500.04,
 		"dueDate": "05/02/2021",
 		"name": "Pago",
 		"state": "2",
-		"details": [
+		"expenses": [
 			{
 				"text": "Água e esgoto",
-				"value": "R$ 1,82"
+				"value": 1.82
 			},
 			{
 				"text": "Despesas diversas",
-				"value": "R$ 17,66"
+				"value": 17.66
 			},
 			{
 				"text": "Honorários de síndico",
-				"value": "R$ 7,38"
+				"value": 7.38
 			},
 			{
 				"text": "Luz e força",
-				"value": "R$ 20,87"
+				"value": 20.87
 			},
 			{
 				"text": "Manutenção de elevadores",
-				"value": "R$ 10,92"
+				"value": 10.92
 			},
 			{
 				"text": "Manutenções diversas",
-				"value": "R$ 25,40"
+				"value": 25.4
 			},
 			{
 				"text": "Salários",
-				"value": "R$ 65,23"
+				"value": 65.23
 			}
 		]
 	},
 	{
 		"id": 6,
-		"value": "500,04",
+		"value": 500.04,
 		"dueDate": "05/01/2021",
 		"name": "Pago",
 		"state": "2",
-		"details": [
+		"expenses": [
 			{
 				"text": "Água e esgoto",
-				"value": "R$ 1,82"
+				"value": 1.82
 			},
 			{
 				"text": "Despesas administrativas e financeiras",
-				"value": "R$ 100008,88"
+				"value": 100008.88
 			},
 			{
 				"text": "Despesas diversas",
-				"value": "R$ 17,66"
+				"value": 17.66
 			},
 			{
 				"text": "Honorários de síndico",
-				"value": "R$ 7,38"
+				"value": 7.38
 			},
 			{
 				"text": "Luz e força",
-				"value": "R$ 20,87"
+				"value": 20.87
 			}
 		]
 	}

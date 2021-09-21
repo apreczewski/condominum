@@ -3,9 +3,10 @@ import { View, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import { Colors, Pallete, Strings } from '../../lib/constants';
-import TitleSubTitleWithIcon from '../../components/TitleSubTitleWithIcon';
+import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 import FeaturedItem from '../../components/FeaturedItem';
 
 import styles from './styles';
@@ -50,9 +51,13 @@ function BalanceDetailsScreen({ route }) {
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balanceteDetalhe}
-					subTitle={Strings.balanceteDetalheDescription}
-					iconName="description"
-				/>
+					subTitle={Strings.balanceteDetalheDescription}>
+					<MaterialIcons
+						name="description"
+						size={50}
+						color={Colors.primary}
+					/>
+				</TitleSubTitleWithIcon>
 
 				<FeaturedItem
 					onPress={openShareAsync}

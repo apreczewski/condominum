@@ -62,10 +62,3 @@ Item.propTypes = {
 		dueDate: PropTypes.string,
 	}).isRequired,
 };
-
-/* Item.defaultProps = {
-	value: 0,
-	dueDate: '',
-	state: '',
-	name: '',
-}; */
