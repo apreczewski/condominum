@@ -7,11 +7,12 @@ import publication from '../../../../assets/images/publication.png';
 export const PublicationEmphasis = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
-			{/* <Image source={item.url} style={styles.image} /> */}
-			<Image source={publication} style={styles.image} />
+			<View style={styles.content}>
+				<Image style={styles.image} source={publication} />
+				<Text style={styles.seeMore}>Ver mais...</Text>
+			</View>
 
 			<Text style={styles.title}>{item.title}</Text>
-
 			<Text style={styles.baseboard}>{item.baseboard}</Text>
 		</View>
 	</TouchableOpacity>

@@ -22,11 +22,27 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 
+	content: {
+		position: 'relative',
+
+		width: '100%',
+	},
 	image: {
 		borderRadius: 5,
 		height: 120,
 		marginBottom: 15,
 		width: '100%',
+	},
+	seeMore: {
+		backgroundColor: Colors.white,
+		borderRadius: 25,
+		color: Colors.primary,
+		fontFamily: 'Roboto-Bold',
+		position: 'absolute',
+		right: 5,
+		textAlign: 'center',
+		top: 5,
+		width: 100,
 	},
 	title: {
 		color: Colors.primary,

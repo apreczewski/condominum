@@ -7,7 +7,7 @@ import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import * as RootNavigator from '../../lib/utils/navigation';
 import { Colors, Pallete, Strings } from '../../lib/constants';
-import FeaturedItem from '../../components/FeaturedItem';
+import { ItemEmphasis } from './components/ItemEmphasis';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
 import Item from './components/Item';
@@ -34,7 +34,7 @@ function BalanceScreen({ onGet, loading, list }) {
 					/>
 				</TitleSubTitleWithIcon>
 				<View style={styles.body}>
-					<FeaturedItem
+					<ItemEmphasis
 						onPress={() => {
 							RootNavigator.navigate('BalanceDetails', {
 								item: list[0],

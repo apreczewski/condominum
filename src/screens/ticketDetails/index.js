@@ -9,18 +9,50 @@ import {
 } from 'react-native';
 import { FontAwesome, EvilIcons, Feather } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
+import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system';
 import { Colors, Pallete, Strings } from '../../lib/constants';
 
 import * as RootNavigator from '../../lib/utils/navigation';
 
 import styles from './styles';
-// import DetailsItem from './components/Item';
-// import TicketFeaturedItem from '../../components/TicketFeaturedItem';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 import { ValueFormat } from '../../lib/utils/formatCurrency';
+import { ItemEmphasis } from './components/ItemEmphasis';
 
 function TicketDetailsScreen({ route }) {
 	const { item, loading } = route.params;
+
+	const fileUri = `${FileSystem.cacheDirectory}test.pdf`;
+
+	const openShareAsync = () => {
+		Sharing.isAvailableAsync()
+			.then(() => {
+				FileSystem.writeAsStringAsync(fileUri)
+					.then(() => {
+						// console.log('File', data);
+						// setState('Wrote vcard file');
+					})
+					.catch(() => {
+						// setState('Error writing vcard file');
+						// console.log(JSON.stringify(err));
+					});
+
+				Sharing.shareAsync(fileUri)
+					.then(() => {
+						// console.log('Sharing', data);
+						// setState('Shared');
+					})
+					.catch(() => {
+						// setState('Error sharing vcard');
+						// console.log(JSON.stringify(err));
+					});
+			})
+			.catch(() => {
+				// alert(`Uh oh, sharing isn't available on your platform`);
+				// console.log(JSON.stringify(err));
+			});
+	};
 
 	return (
 		<ScrollView>
@@ -35,6 +67,8 @@ function TicketDetailsScreen({ route }) {
 					/>
 				</TitleSubTitleWithIcon>
 
+				<ItemEmphasis item={item} />
+
 				<View style={styles.row}>
 					<TouchableOpacity
 						onPress={() => RootNavigator.navigate('')}>
@@ -48,8 +82,7 @@ function TicketDetailsScreen({ route }) {
 						</View>
 					</TouchableOpacity>
 
-					<TouchableOpacity
-						onPress={() => RootNavigator.navigate('')}>
+					<TouchableOpacity onPress={openShareAsync}>
 						<View style={styles.square}>
 							<EvilIcons
 								name="share-google"
@@ -102,7 +135,7 @@ TicketDetailsScreen.propTypes = {
 				value: PropTypes.string,
 				dueDate: PropTypes.string,
 				name: PropTypes.string,
-				state: PropTypes.string,
+				state: PropTypes.number,
 				expenses: PropTypes.arrayOf(
 					PropTypes.shape({
 						text: PropTypes.string,

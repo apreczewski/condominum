@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
-import FeaturedItem from '../../components/FeaturedItem';
+import { ItemEmphasis } from './components/ItemEmphasis';
 
 import styles from './styles';
 import DetailsItem from './components/DetailsItem';
@@ -59,7 +59,7 @@ function BalanceDetailsScreen({ route }) {
 					/>
 				</TitleSubTitleWithIcon>
 
-				<FeaturedItem
+				<ItemEmphasis
 					onPress={openShareAsync}
 					item={item}
 					iconName="share"

@@ -23,7 +23,7 @@ const Item = ({ onPress, item }) => (
 		<View style={styles({}).container}>
 			<View style={styles({}).bodyLeft}>
 				<ValueFormat style={styles({}).value} value={item.value} />
-				<View style={styles({}).row_ticket}>
+				<View style={styles({}).rowTicket}>
 					<Text style={styles({}).h3}>Vencimento:</Text>
 					<Text style={Pallete.h3}>{item.dueDate}</Text>
 				</View>

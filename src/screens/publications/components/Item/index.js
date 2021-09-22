@@ -10,7 +10,7 @@ const Item = ({ onPress, item }) => (
 			<Text style={styles.subTitle}>{item.subTitle}</Text>
 
 			<Text style={styles.seeMore}>{item.seeMore}</Text>
-			<Text style={styles.baseboard}>{item.date}</Text>
+			<Text style={styles.baseboard}>{item.baseboard}</Text>
 		</View>
 	</TouchableOpacity>
 );
@@ -23,6 +23,6 @@ Item.propTypes = {
 		title: PropTypes.string,
 		subTitle: PropTypes.string,
 		seeMore: PropTypes.string,
-		date: PropTypes.string,
+		baseboard: PropTypes.string,
 	}).isRequired,
 };

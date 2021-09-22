@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-import { Pallete } from '../../lib/constants';
-import styles from './styles';
-import { ValueFormat } from '../../lib/utils/formatCurrency';
 
-const FeaturedItem = ({ onPress, item, iconName, iconColor, iconSize }) => (
+import { Colors, Pallete } from '../../../../lib/constants';
+import { ValueFormat } from '../../../../lib/utils/formatCurrency';
+
+import styles from './styles';
+
+export const ItemEmphasis = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
 		<View style={styles.container}>
 			<View style={styles.bodyLeft}>
@@ -43,19 +45,20 @@ const FeaturedItem = ({ onPress, item, iconName, iconColor, iconSize }) => (
 				</View>
 			</View>
 			<View style={styles.bodyRight}>
-				<MaterialIcons
-					name={iconName}
-					size={iconSize}
-					color={iconColor}
-				/>
+				<View style={styles.anchorShare}>
+					<MaterialIcons
+						name="share"
+						size={30}
+						color={Colors.primary}
+					/>
+					<Text style={styles.textShare}>Compartilhar</Text>
+				</View>
 			</View>
 		</View>
 	</Pressable>
 );
 
-export default FeaturedItem;
-
-FeaturedItem.propTypes = {
+ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		data: PropTypes.string,
@@ -64,7 +67,4 @@ FeaturedItem.propTypes = {
 		rebimentos: PropTypes.number,
 		saldo: PropTypes.number,
 	}).isRequired,
-	iconName: PropTypes.string.isRequired,
-	iconColor: PropTypes.string.isRequired,
-	iconSize: PropTypes.string.isRequired,
 };

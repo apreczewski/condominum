@@ -1,34 +1,24 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../lib/constants';
+import { Colors } from '../../../../lib/constants';
 
 const styles = StyleSheet.create({
-	bodyLeft: {
-		alignItems: 'flex-start',
-		flexDirection: 'column',
-		height: '100%',
-		justifyContent: 'center',
-		width: '80%',
-	},
-
-	bodyRight: {
+	anchorSeeMore: {
 		alignItems: 'flex-end',
-		flex: 1,
-		height: '100%',
-		justifyContent: 'center',
-		padding: 0,
-		width: '20%',
+		flexDirection: 'row',
+		marginTop: 15,
+		width: '100%',
 	},
 
 	container: {
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
-		flexDirection: 'row',
+		flexDirection: 'column',
 		flex: 1,
 		justifyContent: 'flex-end',
 		marginTop: 10,
-		paddingHorizontal: 10,
-		paddingVertical: 10,
+		paddingHorizontal: 15,
+		paddingVertical: 15,
 		width: '100%',
 	},
 
@@ -61,6 +51,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		width: '100%',
+	},
+
+	textSeeMore: {
+		color: Colors.secondary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 18,
+		height: '100%',
 	},
 });
 

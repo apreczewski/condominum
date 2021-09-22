@@ -3,40 +3,29 @@ import { Colors } from '../../../../lib/constants';
 
 const styles = (p) =>
 	StyleSheet.create({
-		bodyLeft: {
-			alignItems: 'flex-start',
-			flexDirection: 'column',
-			height: 110,
-			justifyContent: 'center',
-			width: '80%',
-		},
-
-		bodyRight: {
-			alignItems: 'center',
+		anchorSeeMore: {
+			alignItems: 'flex-end',
 			flexDirection: 'row',
-			height: 110,
-			justifyContent: 'flex-end',
-			width: '20%',
-		},
-
-		container: {
-			alignItems: 'center',
-			backgroundColor: Colors.white,
-			borderRadius: 5,
-			flexDirection: 'row',
-			flex: 1,
-			justifyContent: 'center',
-			marginTop: 10,
-			paddingHorizontal: 10,
-			paddingVertical: 10,
+			marginTop: 15,
 			width: '100%',
 		},
 
-		h3: {
+		container: {
+			alignItems: 'flex-start',
+			backgroundColor: Colors.white,
+			borderRadius: 5,
+			flexDirection: 'column',
+			flex: 1,
+			justifyContent: 'flex-end',
+			marginTop: 10,
+			paddingHorizontal: 15,
+			paddingVertical: 15,
+			width: '100%',
+		},
+		date: {
 			color: Colors.secondary,
-			fontFamily: 'Roboto-Regular',
 			fontSize: 15,
-			marginRight: 5,
+			fontWeight: 'bold',
 		},
 
 		label: {
@@ -49,8 +38,11 @@ const styles = (p) =>
 			paddingVertical: 10,
 			width: 220,
 		},
+		pay: {
+			marginRight: 10,
+		},
 
-		rowTicket: {
+		row: {
 			alignItems: 'center',
 			flexDirection: 'row',
 			marginBottom: 10,
@@ -58,16 +50,30 @@ const styles = (p) =>
 		},
 
 		text: {
+			color: Colors.primary,
+			flexDirection: 'row',
+			fontSize: 30,
+			fontWeight: 'bold',
+			width: '100%',
+		},
+
+		textInfo: {
+			alignItems: 'center',
+			flexDirection: 'row',
+			width: '100%',
+		},
+
+		textSeeMore: {
+			color: Colors.secondary,
+			fontFamily: 'Roboto-Bold',
+			fontSize: 18,
+			height: '100%',
+		},
+
+		textStatus: {
 			color: p.color,
 			fontFamily: 'Roboto-Regular',
 			fontSize: 14,
-		},
-
-		value: {
-			color: Colors.secondary,
-			fontFamily: 'Roboto-Bold',
-			fontSize: 20,
-			marginBottom: 5,
 		},
 	});
 
