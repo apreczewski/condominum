@@ -37,6 +37,9 @@ const Strings = {
 	readAndAgree: 'Li e Concordo',
 	confirmReservation: 'Confirmar a Reserva',
 	cancelReservation: 'Cancelar a Reserva',
+	home: 'Bom dia',
+	homeUser: 'Natan',
+	homeDescription: 'Condomínio Vila Real ',
 };
 
 export default Strings;
