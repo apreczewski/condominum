@@ -40,6 +40,7 @@ const Strings = {
 	home: 'Bom dia',
 	homeUser: 'Natan',
 	homeDescription: 'Condomínio Vila Real ',
+	condominiumExchange: 'Trocar Condomínio Preferencial',
 };
 
 export default Strings;

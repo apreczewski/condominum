@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
-import { RadioButton, Text } from 'react-native-paper';
 import { Pallete } from '../../lib/constants';
 import Item from './components/Item';
-import styles from './styles';
 
 export default function CondominiumScreen() {
-	const [value, setValue] = React.useState('Condomínio Vila Real');
+	const condominium = [
+		{
+			id: '1',
+			name: 'Condomínio Las Palmas',
+		},
+		{
+			id: '2',
+			name: 'Condomínio Cruzeiro',
+		},
+		{
+			id: '3',
+			name: 'Condomínio Vila Real',
+		},
+		{
+			id: '4',
+			name: 'Condomínio Verdes',
+		},
+	];
+	const [selectCondominium, setSelectCondominium] = useState(false);
+
+	/* const handleSelectCondominium = (data) => {
+		setSelectCondominium(data);
+	}; */
 
 	return (
 		<View style={Pallete.screen}>
-			<Item item={value} />
-			<RadioButton.Group
-				onValueChange={(newValue) => setValue(newValue)}
-				value={value}>
-				<View style={styles.container}>
-					<Text style={styles.text}>Condomínio Las Palmas</Text>
-					<RadioButton value="Condomínio Las Palmas" />
-				</View>
-				<View style={styles.container}>
-					<Text style={styles.text}>Condomínio Cruzeiro</Text>
-					<RadioButton value="Condomínio Cruzeiro" />
-				</View>
-				<View style={styles.container}>
-					<Text style={styles.text}>Condomínio Vila Real</Text>
-					<RadioButton value="Condomínio Vila Real" />
-				</View>
-				<View style={styles.container}>
-					<Text style={styles.text}>Condomínio Verdes</Text>
-					<RadioButton value="Condomínio Verdes" />
-				</View>
-			</RadioButton.Group>
+			<Item
+				current={selectCondominium}
+				condominium={condominium}
+				select={selectCondominium}
+				onSelect={setSelectCondominium}
+			/>
 		</View>
 	);
 }
