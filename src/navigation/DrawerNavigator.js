@@ -17,6 +17,7 @@ import PublicationsScreen from '../screens/publications';
 import TicketScreen from '../screens/ticket';
 import BalanceScreen from '../screens/balance';
 import ReservesScreen from '../screens/reserves';
+import ReservesManagementScreen from '../screens/reservesManagement';
 import CondominiumScreen from '../screens/condominium';
 import ProfileScreen from '../screens/profile';
 import ChangePasswordScreen from '../screens/changePassword';
@@ -120,6 +121,20 @@ function MainDrawerNavigator() {
 					drawerIcon: ({ focused, size }) => (
 						<MaterialCommunityIcons
 							name="calendar-month-outline"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
+			<Drawer.Screen
+				name="ReservesManagement"
+				component={ReservesManagementScreen}
+				options={{
+					title: 'Gestão das Reservas',
+					drawerIcon: ({ focused, size }) => (
+						<MaterialCommunityIcons
+							name="calendar-edit"
 							size={size}
 							color={focused ? Colors.primary : Colors.secondary}
 						/>

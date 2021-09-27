@@ -21,8 +21,19 @@ const Strings = {
 	to: 'às',
 	rulesOfUse: 'Regras de Uso',
 	readAndAgree: 'Li e Concordo',
-	confirmReservation: 'Confirmar a Reserva',
-	cancelReservation: 'Cancelar a Reserva',
+	confirmReservation: 'Confirmar a reserva',
+	cancelReservation: 'Cancelar a reserva',
+	cancellationReserve: 'Cancelamento da reserva',
+	confirmCancellation: 'Confirme o cancelamento',
+	confirm: 'Confirmar',
+	close: 'Fechar',
+	reason: 'Motivo',
+	reservesManagement: 'Gestão das Reservas',
+	confirmDeleteReserve: 'Você confirma a exclusão da reserva?',
+	yes: 'Sim',
+	no: 'Não',
+	confirmationReserve: 'Confirmação da reserva',
+	pendencies: 'Pendências',
 };
 
 export default Strings;
