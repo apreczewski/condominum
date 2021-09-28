@@ -1,7 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 
-// import PropTypes from 'prop-types';
 import {
 	ScrollView,
 	Text,
@@ -13,6 +12,7 @@ import {
 	Alert,
 } from 'react-native';
 import { Form } from '@unform/mobile';
+import * as Navigation from '../../lib/utils/navigation';
 
 import { Images, Strings, Pallete } from '../../lib/constants';
 import styles from './styles';
@@ -98,10 +98,15 @@ export default function AuthScreen() {
 					</Form>
 
 					<View style={styles.viewButton}>
-						<Button text={Strings.noAcont} onPress={() => {}} />
+						<Button
+							text={Strings.noAcont}
+							onPress={() => Navigation.navigate('RegisterUser')}
+						/>
 					</View>
 
-					<TouchableOpacity style={styles.labelNewPassword}>
+					<TouchableOpacity
+						style={styles.labelNewPassword}
+						onPress={() => Navigation.navigate('ForgotPassword')}>
 						<Text style={styles.newPassword}>
 							Esqueci minha senha
 						</Text>
