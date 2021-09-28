@@ -12,8 +12,8 @@ import {
 	Alert,
 } from 'react-native';
 import { Form } from '@unform/mobile';
-import * as Navigation from '../../lib/utils/navigation';
 
+import * as Navigation from '../../lib/utils/navigation';
 import { Images, Strings, Pallete } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
@@ -65,9 +65,9 @@ export default function AuthScreen() {
 			behavior={Platform.OS === 'ios' ? 'padding' : null}>
 			<ScrollView>
 				<View style={Pallete.screen}>
-					<Form ref={formRef} onSubmit={handleSubmit}>
-						<Image style={styles.logo} source={Images.logo} />
+					<Image style={styles.logo} source={Images.logo} />
 
+					<Form ref={formRef} onSubmit={handleSubmit}>
 						<Input
 							name="email"
 							label="E-mail"

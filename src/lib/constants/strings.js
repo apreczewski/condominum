@@ -43,6 +43,7 @@ const Strings = {
 	condominiumExchange: 'Trocar Condomínio Preferencial',
 	enter: 'Entrar',
 	noAcont: 'Não tenho uma conta',
+	recover: 'Recuperar',
 };
 
 export default Strings;
