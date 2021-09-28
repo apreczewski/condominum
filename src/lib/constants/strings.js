@@ -41,6 +41,8 @@ const Strings = {
 	homeUser: 'Natan',
 	homeDescription: 'Condomínio Vila Real ',
 	condominiumExchange: 'Trocar Condomínio Preferencial',
+	enter: 'Entrar',
+	noAcont: 'Não tenho uma conta',
 };
 
 export default Strings;

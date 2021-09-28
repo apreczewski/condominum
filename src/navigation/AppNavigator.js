@@ -13,6 +13,7 @@ import TicketDetailsScreen from '../screens/ticketDetails';
 import BalanceDetailsScreen from '../screens/balanceDetails';
 import PublicationDetailsScreen from '../screens/publicationDetails';
 import ReserveAddScreen from '../screens/reserveAdd';
+import AuthScreen from '../screens/auth';
 
 import { Colors, Images } from '../lib/constants';
 
@@ -98,6 +99,26 @@ function MainStackNavigator() {
 					<Stack.Screen
 						name="ReserveAdd"
 						component={ReserveAddScreen}
+						options={({ navigation }) => ({
+							headerTitle: () => (
+								<Image source={Images.logoSmall} />
+							),
+							headerTitleAlign: 'center',
+							headerLeft: () => (
+								<Entypo
+									name="chevron-thin-left"
+									size={24}
+									color={Colors.secondary}
+									onPress={() => navigation.goBack()}
+								/>
+							),
+							headerLeftContainerStyle: { marginLeft: 5 },
+						})}
+					/>
+
+					<Stack.Screen
+						name="Auth"
+						component={AuthScreen}
 						options={({ navigation }) => ({
 							headerTitle: () => (
 								<Image source={Images.logoSmall} />
