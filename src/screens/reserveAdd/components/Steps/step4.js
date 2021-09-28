@@ -87,13 +87,13 @@ export default function Step4({
 			</View>
 			<View style={styles.viewButtons}>
 				<Button
-					text={Strings.confirm}
+					text={Strings.confirmReservation}
 					disabled={!accept}
 					color="green"
 					onPress={() => submit()}
 				/>
 				<Button
-					text={Strings.cancel}
+					text={Strings.cancelReservation}
 					containerStyle={styles.marginBtn}
 					onPress={() => cancel()}
 				/>
