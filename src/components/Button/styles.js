@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		minHeight: 56,
 		paddingHorizontal: 15,
+		width: '100%',
 	},
 	text: {
 		fontFamily: 'Roboto-Bold',

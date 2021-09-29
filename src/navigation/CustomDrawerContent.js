@@ -8,6 +8,7 @@ import {
 } from '@react-navigation/drawer';
 
 import { Images, Colors } from '../lib/constants';
+import * as Navigation from '../lib/utils/navigation';
 
 const styles = StyleSheet.create({
 	condoTxt: {
@@ -88,7 +89,9 @@ const CustomDrawerContent = (props) => (
 			showsVerticalScrollIndicator={false}>
 			<DrawerItemList {...props} />
 		</DrawerContentScrollView>
-		<TouchableOpacity style={styles.footer}>
+		<TouchableOpacity
+			style={styles.footer}
+			onPress={() => Navigation.navigate('Auth')}>
 			<MaterialCommunityIcons
 				name="logout-variant"
 				size={24}
