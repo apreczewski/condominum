@@ -44,6 +44,8 @@ const Strings = {
 	enter: 'Entrar',
 	noAcont: 'Não tenho uma conta',
 	recover: 'Recuperar',
+	createAcont: 'Criar Conta',
+	access: 'Acessar',
 };
 
 export default Strings;

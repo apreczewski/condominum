@@ -13,6 +13,7 @@ import TicketDetailsScreen from '../screens/ticketDetails';
 import ReserveAddScreen from '../screens/reserveAdd';
 import AuthScreen from '../screens/auth';
 import RegisterUserScreen from '../screens/registerUser';
+import UnlinkedAccountScreen from '../screens/unlinkedAccount';
 
 import ForgotPasswordScreen from '../screens/forgotPassword';
 
@@ -186,6 +187,26 @@ function MainStackNavigator() {
 					<Stack.Screen
 						name="RegisterUser"
 						component={RegisterUserScreen}
+						options={({ navigation }) => ({
+							headerTitle: () => (
+								<Image source={Images.logoSmall} />
+							),
+							headerTitleAlign: 'center',
+							headerLeft: () => (
+								<Entypo
+									name="chevron-thin-left"
+									size={24}
+									color={Colors.secondary}
+									onPress={() => navigation.goBack()}
+								/>
+							),
+							headerLeftContainerStyle: { marginLeft: 5 },
+						})}
+					/>
+
+					<Stack.Screen
+						name="UnlinkedAccount"
+						component={UnlinkedAccountScreen}
 						options={({ navigation }) => ({
 							headerTitle: () => (
 								<Image source={Images.logoSmall} />
