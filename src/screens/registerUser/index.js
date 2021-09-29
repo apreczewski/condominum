@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { View, Text, Alert, ScrollView } from 'react-native';
 import { Form } from '@unform/mobile';
 
+import * as Navigation from '../../lib/utils/navigation';
 import { Pallete, Strings } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
@@ -12,23 +13,35 @@ import getValidationErrors from '../../lib/utils/getValidationErrors';
 export default function RegisterUserScreen() {
 	const formRef = useRef(null);
 
+	const schema = Yup.object().shape({
+		email: Yup.string()
+			.required('E-mail obrigatório')
+			.email('Digite um e-mail válido'),
+
+		name: Yup.string().required('Nome obrigatório'),
+
+		nameSocial: Yup.string().required('Nome social obrigatório'),
+
+		phone: Yup.string()
+			.min(8, 'Muito curto!')
+			.max(14, 'Muito longo!')
+			.required('Digite um telefone'),
+
+		cpfCnpj: Yup.string()
+			.max(20, 'Muito longo!')
+			.required('Digite CPF/CNPJ'),
+
+		password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+		passwordConfirmation: Yup.string().oneOf(
+			[Yup.ref('password'), null],
+			'As senhas devem corresponder',
+		),
+	});
+
 	const handleSubmit = useCallback(async (data) => {
+		//	console.log(data);
 		try {
 			formRef.current?.setErrors({});
-
-			const schema = Yup.object().shape({
-				email: Yup.string()
-					.required('E-mail obrigatório')
-					.email('Digite um e-mail válido'),
-				name: Yup.string()
-					.required('Nome obrigatório')
-					.name('Digite nome completo'),
-				nameSocial: Yup.string().required('Nome social obrigatório'),
-				phone: Yup.string().required('Digite um telefone'),
-				cpfCnpj: Yup.string().required('Digite CPF/CNPJ'),
-				newPassword: Yup.string().min(6, 'No mínimo 6 dígitos'),
-				confirmNewPassword: Yup.string().min(6, 'No mínimo 6 dígitos'),
-			});
 
 			await schema.validate(data, {
 				abortEarly: false,
@@ -38,6 +51,8 @@ export default function RegisterUserScreen() {
 				const errors = getValidationErrors(err);
 
 				formRef.current?.setErrors(errors);
+
+				// console.log(errors);
 
 				return;
 			}
@@ -89,7 +104,7 @@ export default function RegisterUserScreen() {
 						name="phone"
 						label="Telefone"
 						autoCorrect={false}
-						labelError="Digite um e-mail válido!"
+						labelError="Digite um telefone"
 						keyboardType="phone-pad"
 						placeholder="(   ) ___________"
 					/>
@@ -98,22 +113,22 @@ export default function RegisterUserScreen() {
 						name="cpfCnpj"
 						label="CPF/CNPJ"
 						autoCorrect={false}
-						labelError="Digite um e-mail válido!"
+						labelError="Digite CPF/CNPJ"
 						autoCapitalize="none"
 						keyboardType="number-pad"
 						placeholder="CPF/CNPJ"
 					/>
 
 					<Input
-						name="newPassword"
+						name="password"
 						label="Nova Senha"
-						labelError="Digite um e-mail válido!"
+						labelError="Senha não atende critérios minimos"
 						placeholder="Nova Senha - mínimo 6 caracteres"
 						secureTextEntry
 					/>
 
 					<Input
-						name="confirmNewPassword"
+						name="passwordConfirmation"
 						label="Confirme a nova senha"
 						labelError="Senha não confere com a nova senha"
 						secureTextEntry
@@ -125,7 +140,10 @@ export default function RegisterUserScreen() {
 					<View style={styles.viewButton}>
 						<Button
 							text={Strings.createAcont}
-							onPress={() => formRef.current?.submitForm()}
+							onPress={
+								() => Navigation.navigate('UnlinkedAccount')
+								// formRef.current?.submitForm()
+							}
 						/>
 					</View>
 				</Form>
