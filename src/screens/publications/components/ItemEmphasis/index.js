@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import publication from '../../../../assets/images/publication.png';
 
-export const PublicationEmphasis = ({ item, onPress }) => (
+export const ItemEmphasis = ({ item, onPress }) => (
 	<TouchableOpacity onPress={onPress}>
 		<View style={styles.container}>
 			<View style={styles.content}>
@@ -18,7 +18,7 @@ export const PublicationEmphasis = ({ item, onPress }) => (
 	</TouchableOpacity>
 );
 
-PublicationEmphasis.propTypes = {
+ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		id: PropTypes.string,

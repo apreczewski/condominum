@@ -10,8 +10,6 @@ import { navigationRef } from '../lib/utils/navigation';
 
 import MainDrawerNavigator from './DrawerNavigator';
 import TicketDetailsScreen from '../screens/ticketDetails';
-import BalanceDetailsScreen from '../screens/balanceDetails';
-import PublicationDetailsScreen from '../screens/publicationDetails';
 import ReserveAddScreen from '../screens/reserveAdd';
 
 import { Colors, Images } from '../lib/constants';
@@ -30,91 +28,49 @@ function MainStackNavigator() {
 					},
 					headerBackTitleVisible: false,
 				}}>
-				<>
-					<Stack.Screen
-						name="Main"
-						component={MainDrawerNavigator}
-						options={{
-							headerShown: false,
-						}}
-					/>
-					<Stack.Screen
-						name="PublicationDetails"
-						component={PublicationDetailsScreen}
-						options={({ navigation }) => ({
-							headerTitle: () => (
-								<Image source={Images.logoSmall} />
-							),
-							headerTitleAlign: 'center',
-							headerLeft: () => (
-								<Entypo
-									name="chevron-thin-left"
-									size={24}
-									color={Colors.secondary}
-									onPress={() => navigation.goBack()}
-								/>
-							),
-							headerLeftContainerStyle: { marginLeft: 5 },
-						})}
-					/>
-					<Stack.Screen
-						name="TicketDetails"
-						component={TicketDetailsScreen}
-						options={({ navigation }) => ({
-							headerTitle: () => (
-								<Image source={Images.logoSmall} />
-							),
-							headerTitleAlign: 'center',
-							headerLeft: () => (
-								<Entypo
-									name="chevron-thin-left"
-									size={24}
-									color={Colors.secondary}
-									onPress={() => navigation.goBack()}
-								/>
-							),
-							headerLeftContainerStyle: { marginLeft: 5 },
-						})}
-					/>
-					<Stack.Screen
-						name="BalanceDetails"
-						component={BalanceDetailsScreen}
-						options={({ navigation }) => ({
-							headerTitle: () => (
-								<Image source={Images.logoSmall} />
-							),
-							headerTitleAlign: 'center',
-							headerLeft: () => (
-								<Entypo
-									name="chevron-thin-left"
-									size={24}
-									color={Colors.secondary}
-									onPress={() => navigation.goBack()}
-								/>
-							),
-							headerLeftContainerStyle: { marginLeft: 5 },
-						})}
-					/>
-					<Stack.Screen
-						name="ReserveAdd"
-						component={ReserveAddScreen}
-						options={({ navigation }) => ({
-							headerTitle: () => (
-								<Image source={Images.logoSmall} />
-							),
-							headerTitleAlign: 'center',
-							headerLeft: () => (
-								<Entypo
-									name="chevron-thin-left"
-									size={24}
-									color={Colors.secondary}
-									onPress={() => navigation.goBack()}
-								/>
-							),
-							headerLeftContainerStyle: { marginLeft: 5 },
-						})}
-					/>
-				</>
+				<Stack.Screen
+					name="Main"
+					component={MainDrawerNavigator}
+					options={{
+						headerShown: false,
+					}}
+				/>
+
+				<Stack.Screen
+					name="TicketDetails"
+					component={TicketDetailsScreen}
+					options={({ navigation }) => ({
+						headerTitle: () => <Image source={Images.logoSmall} />,
+						headerTitleAlign: 'center',
+						headerLeft: () => (
+							<Entypo
+								name="chevron-thin-left"
+								size={24}
+								color={Colors.secondary}
+								onPress={() => navigation.goBack()}
+							/>
+						),
+						headerLeftContainerStyle: { marginLeft: 5 },
+					})}
+				/>
+
+				<Stack.Screen
+					name="ReserveAdd"
+					component={ReserveAddScreen}
+					options={({ navigation }) => ({
+						headerTitle: () => <Image source={Images.logoSmall} />,
+						headerTitleAlign: 'center',
+						headerLeft: () => (
+							<Entypo
+								name="chevron-thin-left"
+								size={24}
+								color={Colors.secondary}
+								onPress={() => navigation.goBack()}
+							/>
+						),
+						headerLeftContainerStyle: { marginLeft: 5 },
+					})}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
