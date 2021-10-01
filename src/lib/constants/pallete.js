@@ -37,6 +37,22 @@ const Pallete = {
 		fontFamily: 'Roboto-Regular',
 		fontSize: 14,
 	},
+
+	inputRegular: {
+		fontSize: 16,
+		fontFamily: 'Roboto-Regular',
+	},
+
+	regularLight: {
+		fontSize: 14,
+		fontFamily: 'Roboto-Regular',
+	},
+
+	tabBold: {
+		// fontSize: FontsSize.tab,
+		fontSize: 14,
+		fontFamily: 'Roboto-Bold',
+	},
 };
 
 export default Pallete;

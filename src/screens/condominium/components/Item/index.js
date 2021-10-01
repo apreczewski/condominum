@@ -12,7 +12,7 @@ export default function Item({ current, select, condominium, onSelect }) {
 			<View style={styles.container}>
 				<View style={styles.row1}>
 					<Text style={styles.title}>
-						Condomínio atual selecionado
+						{Strings.currentCondominiumSelected}
 					</Text>
 				</View>
 				<View style={styles.row2}>

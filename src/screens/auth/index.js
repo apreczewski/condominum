@@ -100,7 +100,11 @@ export default function AuthScreen() {
 					<View style={styles.viewButton}>
 						<Button
 							text={Strings.noAcont}
-							onPress={() => Navigation.navigate('RegisterUser')}
+							onPress={() =>
+								Navigation.navigate(
+									'UnlinkedAccount' /* 'RegisterUser' */,
+								)
+							}
 						/>
 					</View>
 

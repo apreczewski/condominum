@@ -16,6 +16,7 @@ import ReserveAddScreen from '../screens/reserveAdd';
 import AuthScreen from '../screens/auth';
 import RegisterUserScreen from '../screens/registerUser';
 import UnlinkedAccountScreen from '../screens/unlinkedAccount';
+import HelpDetailsScreen from '../screens/helpDetails';
 
 import ForgotPasswordScreen from '../screens/forgotPassword';
 
@@ -123,41 +124,13 @@ function MainStackNavigator() {
 					<Stack.Screen
 						name="Auth"
 						component={AuthScreen}
-						options={({ navigation }) => ({
-							headerTitle: () => (
-								<Image source={Images.logoSmall} />
-							),
-							headerTitleAlign: 'center',
-							headerLeft: () => (
-								<Entypo
-									name="chevron-thin-left"
-									size={24}
-									color={Colors.secondary}
-									onPress={() => navigation.goBack()}
-								/>
-							),
-							headerLeftContainerStyle: { marginLeft: 5 },
-						})}
+						options={{ headerShown: false }}
 					/>
 
 					<Stack.Screen
 						name="ForgotPassword"
 						component={ForgotPasswordScreen}
-						options={({ navigation }) => ({
-							headerTitle: () => (
-								<Image source={Images.logoSmall} />
-							),
-							headerTitleAlign: 'center',
-							headerLeft: () => (
-								<Entypo
-									name="chevron-thin-left"
-									size={24}
-									color={Colors.secondary}
-									onPress={() => navigation.goBack()}
-								/>
-							),
-							headerLeftContainerStyle: { marginLeft: 5 },
-						})}
+						options={{ headerShown: false }}
 					/>
 
 					<Stack.Screen
@@ -183,6 +156,26 @@ function MainStackNavigator() {
 					<Stack.Screen
 						name="UnlinkedAccount"
 						component={UnlinkedAccountScreen}
+						options={({ navigation }) => ({
+							headerTitle: () => (
+								<Image source={Images.logoSmall} />
+							),
+							headerTitleAlign: 'center',
+							headerLeft: () => (
+								<Entypo
+									name="chevron-thin-left"
+									size={24}
+									color={Colors.secondary}
+									onPress={() => navigation.goBack()}
+								/>
+							),
+							headerLeftContainerStyle: { marginLeft: 5 },
+						})}
+					/>
+
+					<Stack.Screen
+						name="HelpDetails"
+						component={HelpDetailsScreen}
 						options={({ navigation }) => ({
 							headerTitle: () => (
 								<Image source={Images.logoSmall} />

@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
 	logo: {
 		alignSelf: 'center',
 		height: 150,
+		marginTop: 80,
 		resizeMode: 'contain',
 		width: 250,
 	},

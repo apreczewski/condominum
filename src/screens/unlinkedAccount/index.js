@@ -16,31 +16,8 @@ export default function UnlinkedAccountScreen() {
 				</View>
 
 				<View style={styles.viewText}>
-					{/* <Text style={styles.text}>
-						Olá! Seu cadastro foi realizado com sucesso:) Para que
-						seu acesso seja liberado, informe o e-mail cadastrado
-						(xyz@.gmai.com) ao seu síndico ou administradora e
-						solicite que o vincule a sua unidade. Após o vínculo ter
-						sido realizado, clique abaixo para acesar o sistema.
-						Desfrute das facilidades que o aplicativo proporciona.
-					</Text> */}
-
-					<Text style={styles.text}>Olá!</Text>
-
 					<Text style={styles.text}>
-						Seu cadastro foi realizado com sucesso:) Para que seu
-						acesso seja liberado, informe o e-mail cadastrado
-						(xyz@.gmai.com) ao seu síndico ou administradora e
-						solicite que o vincule a sua unidade.
-					</Text>
-
-					<Text style={styles.text}>
-						Após o vínculo ter sido realizado, clique abaixo para
-						acesar o sistema.
-					</Text>
-
-					<Text style={styles.text}>
-						Desfrute das facilidades que o aplicativo proporciona.
+						{Strings.unlinkedAccountText}
 					</Text>
 				</View>
 

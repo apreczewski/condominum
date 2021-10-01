@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import { Colors } from '../../lib/constants';
 
-function Input({ name, label, labelError, ...rest }) {
+function Input({ name, valueCurrent, label, labelError, ...rest }) {
 	const inputElementRef = useRef(null);
 
 	const {
@@ -42,7 +42,7 @@ function Input({ name, label, labelError, ...rest }) {
 			<View style={styles.container}>
 				<TextInput
 					style={styles.input}
-					defaultValue={defaultValue}
+					defaultValue={valueCurrent || defaultValue}
 					ref={inputElementRef}
 					onChangeText={(value) => {
 						inputValueRef.current.value = value;
@@ -69,10 +69,12 @@ Input.propTypes = {
 	name: PropTypes.string,
 	label: PropTypes.string,
 	labelError: PropTypes.string,
+	valueCurrent: PropTypes.string,
 };
 
 Input.defaultProps = {
 	name: '',
 	label: '',
 	labelError: '',
+	valueCurrent: '',
 };

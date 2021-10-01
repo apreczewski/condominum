@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { MaterialIcons, EvilIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-import { Colors, Pallete } from '../../../../lib/constants';
+import { Colors, Pallete, Strings } from '../../../../lib/constants';
 import styles from './styles';
 import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
@@ -24,7 +24,7 @@ const Item = ({ onPress, item }) => (
 			<View style={styles({}).bodyLeft}>
 				<ValueFormat style={styles({}).value} value={item.value} />
 				<View style={styles({}).row_ticket}>
-					<Text style={styles({}).h3}>Vencimento:</Text>
+					<Text style={styles({}).h3}>{Strings.dueDate}</Text>
 					<Text style={Pallete.h3}>{item.dueDate}</Text>
 				</View>
 

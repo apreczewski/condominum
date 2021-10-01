@@ -42,10 +42,7 @@ export default function ForgotPasswordScreen() {
 		<ScrollView>
 			<View style={Pallete.screen}>
 				<Image style={styles.logo} source={Images.logo} />
-				<Text style={styles.text}>
-					Informe o e-mail cadastrado! Você receberá neste e-mail
-					orientações para trocar sua senha.
-				</Text>
+				<Text style={styles.text}>{Strings.forgotPasswordText}</Text>
 
 				<Form ref={formRef} onSubmit={handleSubmit}>
 					<Input
