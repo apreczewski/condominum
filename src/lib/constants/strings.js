@@ -38,7 +38,7 @@ const Strings = {
 	confirmReservation: 'Confirmar a Reserva',
 	cancelReservation: 'Cancelar a Reserva',
 	home: 'Bom dia',
-	homeUser: 'Natan',
+	homeUser: 'João',
 	homeDescription: 'Condomínio Vila Real ',
 	condominiumExchange: 'Trocar Condomínio Preferencial',
 	enter: 'Entrar',
