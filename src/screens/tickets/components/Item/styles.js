@@ -20,16 +20,19 @@ const styles = (p) =>
 		},
 
 		container: {
-			alignItems: 'center',
 			backgroundColor: Colors.white,
 			borderRadius: 5,
 			flexDirection: 'row',
-			flex: 1,
-			justifyContent: 'center',
-			marginTop: 10,
-			paddingHorizontal: 10,
-			paddingVertical: 10,
-			width: '100%',
+			justifyContent: 'space-between',
+			marginTop: 20,
+			padding: 13,
+			shadowColor: Colors.black,
+			shadowOffset: {
+				width: 0,
+				height: 1,
+			},
+			shadowOpacity: 0.22,
+			shadowRadius: 2.22,
 		},
 
 		h3: {

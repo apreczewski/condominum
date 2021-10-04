@@ -38,7 +38,7 @@ const Strings = {
 	confirmReservation: 'Confirmar a Reserva',
 	cancelReservation: 'Cancelar a Reserva',
 	home: 'Bom dia',
-	homeUser: 'Natan',
+	homeUser: 'João',
 	homeDescription: 'Condomínio Vila Real ',
 	condominiumExchange: 'Trocar Condomínio Preferencial',
 	enter: 'Entrar',
@@ -46,6 +46,20 @@ const Strings = {
 	recover: 'Recuperar',
 	createAcont: 'Criar Conta',
 	access: 'Acessar',
+	profile: 'Alterar perfil',
+	changePassword: 'Trocar de senha',
+	currentCondominiumSelected: 'Condomínio atual selecionado',
+	forgotPasswordText:
+		'Informe o e-mail cadastrado! Você receberá neste e-mail orientações para trocar sua senha.',
+	createUserText:
+		'Informe seus dados para criarmos sua conta no app! Alguns dados são obrigatórios para que ocorra a identificação dos seus condomínios.',
+	copy: 'copiar',
+	toShare: 'Compartilhar',
+	download: 'Baixar',
+	valuesDetails: 'Valores detalhados',
+	dueDate: 'Vencimento:',
+	unlinkedAccountText:
+		'Olá! Seu cadastro foi realizado com sucesso:) Para que seu acesso seja liberado, informe o e-mail cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que o vincule a sua unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das facilidades que o aplicativo proporciona.',
 };
 
 export default Strings;

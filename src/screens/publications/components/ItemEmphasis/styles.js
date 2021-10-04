@@ -14,12 +14,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
-		justifyContent: 'space-between',
-		marginBottom: 20,
-		padding: 6,
-		paddingHorizontal: 19,
-		paddingVertical: 16,
-		width: '100%',
+		elevation: 3,
+		padding: 13,
+		shadowColor: Colors.black,
+		shadowOffset: {
+			width: 0,
+			height: 1,
+		},
+		shadowOpacity: 0.22,
+		shadowRadius: 2.22,
 	},
 
 	content: {

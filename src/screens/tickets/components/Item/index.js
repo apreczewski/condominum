@@ -18,13 +18,13 @@ const colors = {
 	2: Colors.green,
 };
 
-const Item = ({ onPress, item }) => (
+export const Item = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
 		<View style={styles({}).container}>
 			<View style={styles({}).bodyLeft}>
 				<ValueFormat style={styles({}).value} value={item.value} />
 				<View style={styles({}).rowTicket}>
-					<Text style={styles({}).h3}>Vencimento:</Text>
+					{/* <Text style={styles({}).h3}>{Strings.dueDate}</Text> */}
 					<Text style={Pallete.h3}>{item.dueDate}</Text>
 				</View>
 
@@ -51,14 +51,12 @@ const Item = ({ onPress, item }) => (
 	</Pressable>
 );
 
-export default Item;
-
 Item.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		value: PropTypes.number,
 		name: PropTypes.string,
-		state: PropTypes.string,
+		state: PropTypes.number,
 		dueDate: PropTypes.string,
 	}).isRequired,
 };

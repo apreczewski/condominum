@@ -14,6 +14,8 @@ import ReserveAddScreen from '../screens/reserveAdd';
 import AuthScreen from '../screens/auth';
 import RegisterUserScreen from '../screens/registerUser';
 import UnlinkedAccountScreen from '../screens/unlinkedAccount';
+import { HelpDetailsScreen } from '../screens/helpDetails';
+
 import ForgotPasswordScreen from '../screens/forgotPassword';
 import BalanceDetailsScreen from '../screens/balanceDetails';
 
@@ -134,6 +136,24 @@ function MainStackNavigator() {
 				<Stack.Screen
 					name="RegisterUser"
 					component={RegisterUserScreen}
+					options={({ navigation }) => ({
+						headerTitle: () => <Image source={Images.logoSmall} />,
+						headerTitleAlign: 'center',
+						headerLeft: () => (
+							<Entypo
+								name="chevron-thin-left"
+								size={24}
+								color={Colors.secondary}
+								onPress={() => navigation.goBack()}
+							/>
+						),
+						headerLeftContainerStyle: { marginLeft: 5 },
+					})}
+				/>
+
+				<Stack.Screen
+					name="HelpDetails"
+					component={HelpDetailsScreen}
 					options={({ navigation }) => ({
 						headerTitle: () => <Image source={Images.logoSmall} />,
 						headerTitleAlign: 'center',

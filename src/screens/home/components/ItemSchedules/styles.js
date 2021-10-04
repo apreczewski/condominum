@@ -19,9 +19,17 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
+		elevation: 3,
 		justifyContent: 'space-between',
-		marginTop: 30,
-		width: '100%',
+
+		marginTop: 20,
+		shadowColor: Colors.black,
+		shadowOffset: {
+			width: 0,
+			height: 1,
+		},
+		shadowOpacity: 0.22,
+		shadowRadius: 2.22,
 	},
 
 	containerSeeAll: {

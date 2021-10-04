@@ -47,16 +47,15 @@ function PublicationsScreen({ onGet, loading, list }) {
 					subTitle={Strings.publicationDescription}>
 					<MaterialCommunityIcons
 						name="tooltip-text-outline"
-						size={50}
-						color={Colors.secondary}
+						size={42}
+						color={Colors.primary}
 					/>
 				</TitleSubTitleWithIcon>
-				<View style={styles.body} />
 
-				<View>
+				<View style={styles.list}>
 					<ItemEmphasis
-						item={list[0]}
-						onPress={() => handlePublication(list[0])}
+						item={list[2]}
+						onPress={() => handlePublication(list[2])}
 					/>
 
 					<FlatList
@@ -67,6 +66,7 @@ function PublicationsScreen({ onGet, loading, list }) {
 							index > 0 && (
 								<Item
 									item={item}
+									isLast={index === list.length - 1}
 									onPress={() => handlePublication(item)}
 								/>
 							)
@@ -101,7 +101,7 @@ PublicationsScreen.propTypes = {
 			title: PropTypes.string,
 			subTitle: PropTypes.string,
 			date: PropTypes.string,
-			like: PropTypes.string,
+			like: PropTypes.bool,
 		}),
 	).isRequired,
 };

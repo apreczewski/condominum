@@ -62,8 +62,8 @@ function TicketDetailsScreen({ route }) {
 					subTitle={Strings.ticketDetailsDescription}>
 					<FontAwesome
 						name="barcode"
-						size={50}
-						color={Colors.secondary}
+						size={45}
+						color={Colors.primary}
 					/>
 				</TitleSubTitleWithIcon>
 
@@ -78,7 +78,9 @@ function TicketDetailsScreen({ route }) {
 								size={40}
 								color={Colors.primary}
 							/>
-							<Text style={styles.textSquare}>Copiar</Text>
+							<Text style={styles.textSquare}>
+								{Strings.copy}
+							</Text>
 						</View>
 					</TouchableOpacity>
 
@@ -89,7 +91,9 @@ function TicketDetailsScreen({ route }) {
 								size={50}
 								color={Colors.primary}
 							/>
-							<Text style={styles.textSquare}>Compartilhar</Text>
+							<Text style={styles.textSquare}>
+								{Strings.toShare}
+							</Text>
 						</View>
 					</TouchableOpacity>
 
@@ -101,13 +105,15 @@ function TicketDetailsScreen({ route }) {
 								size={40}
 								color={Colors.primary}
 							/>
-							<Text style={styles.textSquare}>Baixar</Text>
+							<Text style={styles.textSquare}>
+								{Strings.download}
+							</Text>
 						</View>
 					</TouchableOpacity>
 				</View>
 
 				<View style={styles.container}>
-					<Text style={styles.expenses}>Valores detalhados</Text>
+					<Text style={styles.expenses}>{Strings.valuesDetails}</Text>
 					<FlatList
 						refreshControl={<RefreshControl refreshing={loading} />}
 						data={item?.expenses}
@@ -132,7 +138,7 @@ TicketDetailsScreen.propTypes = {
 		params: PropTypes.shape({
 			item: PropTypes.shape({
 				id: PropTypes.number,
-				value: PropTypes.string,
+				value: PropTypes.number,
 				dueDate: PropTypes.string,
 				name: PropTypes.string,
 				state: PropTypes.number,

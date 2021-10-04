@@ -4,16 +4,25 @@ import { Colors } from '../../../../lib/constants';
 const styles = StyleSheet.create({
 	body: {
 		marginBottom: 24,
-		paddingHorizontal: 19,
-		paddingTop: 16,
+		padding: 13,
 		width: '100%',
 	},
 
 	container: {
+		alignItems: 'center',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
-		marginTop: 30,
-		width: '100%',
+		elevation: 3,
+		justifyContent: 'space-between',
+
+		marginTop: 20,
+		shadowColor: Colors.black,
+		shadowOffset: {
+			width: 0,
+			height: 1,
+		},
+		shadowOpacity: 0.22,
+		shadowRadius: 2.22,
 	},
 
 	containerSeeAll: {

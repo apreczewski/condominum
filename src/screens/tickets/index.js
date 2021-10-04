@@ -9,9 +9,10 @@ import { Colors, Pallete, Strings } from '../../lib/constants';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
 import * as RootNavigator from '../../lib/utils/navigation';
-import Item from './components/Item';
-import TicketFeaturedItem from '../../components/TicketFeaturedItem';
+import { Item } from './components/Item';
+import { ItemEmphasis } from './components/ItemEmphasis';
 import { tickesActions } from '../../store/actions';
+import styles from './styles';
 
 function TicketsScreen({ onGet, loading, list }) {
 	useFocusEffect(
@@ -28,41 +29,43 @@ function TicketsScreen({ onGet, loading, list }) {
 					subTitle={Strings.ticketsDescription}>
 					<FontAwesome
 						name="barcode"
-						size={50}
-						color={Colors.secondary}
+						size={45}
+						color={Colors.primary}
 					/>
 				</TitleSubTitleWithIcon>
 
-				<TicketFeaturedItem
-					onPress={() => {
-						RootNavigator.navigate('TicketDetails', {
-							item: list[0],
-						});
-					}}
-					item={list[0]}
-					iconName="arrow-forward-ios"
-					iconColor={Colors.secondary}
-					iconSize={30}
-				/>
+				<View style={styles.list}>
+					<ItemEmphasis
+						onPress={() => {
+							RootNavigator.navigate('TicketDetails', {
+								item: list[0],
+							});
+						}}
+						item={list[0]}
+					/>
 
-				<FlatList
-					refreshControl={<RefreshControl refreshing={loading} />}
-					data={list}
-					keyExtractor={(item) => item.id.toString()}
-					renderItem={({ item, index }) =>
-						index > 0 && (
-							<Item
-								item={item}
-								onPress={() => {
-									RootNavigator.navigate('TicketDetails', {
-										item,
-										loading,
-									});
-								}}
-							/>
-						)
-					}
-				/>
+					<FlatList
+						refreshControl={<RefreshControl refreshing={loading} />}
+						data={list}
+						keyExtractor={(item) => item.id.toString()}
+						renderItem={({ item, index }) =>
+							index > 0 && (
+								<Item
+									item={item}
+									onPress={() => {
+										RootNavigator.navigate(
+											'TicketDetails',
+											{
+												item,
+												loading,
+											},
+										);
+									}}
+								/>
+							)
+						}
+					/>
+				</View>
 			</View>
 		</ScrollView>
 	);
@@ -75,7 +78,7 @@ TicketsScreen.propTypes = {
 		PropTypes.shape({
 			value: PropTypes.number,
 			dueDate: PropTypes.string,
-			state: PropTypes.string,
+			state: PropTypes.number,
 			name: PropTypes.string,
 		}),
 	).isRequired,

@@ -5,7 +5,7 @@ import styles from './styles';
 import publication from '../../../../assets/images/publication.png';
 
 export const ItemEmphasis = ({ item, onPress }) => (
-	<TouchableOpacity onPress={onPress}>
+	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles.container}>
 			<View style={styles.content}>
 				<Image style={styles.image} source={publication} />

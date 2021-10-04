@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../lib/constants';
+import { Colors } from '../../../../lib/constants';
 
 const styles = (p) =>
 	StyleSheet.create({
@@ -19,10 +19,15 @@ const styles = (p) =>
 			borderRadius: 5,
 			flexDirection: 'row',
 			justifyContent: 'space-between',
-			marginTop: 10,
-			paddingHorizontal: 10,
-			paddingVertical: 10,
-			width: '100%',
+			marginTop: 20,
+			padding: 13,
+			shadowColor: Colors.black,
+			shadowOffset: {
+				width: 0,
+				height: 1,
+			},
+			shadowOpacity: 0.22,
+			shadowRadius: 2.22,
 		},
 
 		details: {

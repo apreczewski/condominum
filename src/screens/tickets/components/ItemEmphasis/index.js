@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
-import { Pallete, Colors } from '../../lib/constants';
+import { Pallete, Colors } from '../../../../lib/constants';
 import styles from './styles';
-import { ValueFormat } from '../../lib/utils/formatCurrency';
+import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
 const icon = {
 	0: 'clock',
@@ -18,14 +18,8 @@ const colors = {
 	2: Colors.green,
 };
 
-const TicketFeaturedItem = ({
-	onPress,
-	item,
-	iconName,
-	iconColor,
-	iconSize,
-}) => (
-	<Pressable onPress={onPress}>
+export const ItemEmphasis = ({ onPress, item }) => (
+	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles({}).container}>
 			<View style={styles({}).bodyLeft}>
 				<ValueFormat style={styles({}).h1} value={item.value} />
@@ -49,18 +43,16 @@ const TicketFeaturedItem = ({
 
 			<View style={styles({}).bodyRight}>
 				<MaterialIcons
-					name={iconName}
-					size={iconSize}
-					color={iconColor}
+					name="arrow-forward-ios"
+					color={Colors.secondary}
+					size={30}
 				/>
 			</View>
 		</View>
-	</Pressable>
+	</TouchableOpacity>
 );
 
-export default TicketFeaturedItem;
-
-TicketFeaturedItem.propTypes = {
+ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		value: PropTypes.number,
@@ -68,7 +60,4 @@ TicketFeaturedItem.propTypes = {
 		state: PropTypes.string,
 		dueDate: PropTypes.string,
 	}).isRequired,
-	iconName: PropTypes.string.isRequired,
-	iconColor: PropTypes.string.isRequired,
-	iconSize: PropTypes.string.isRequired,
 };
