@@ -1,8 +1,8 @@
-import { View, Alert } from 'react-native';
+import { View, Alert, ScrollView } from 'react-native';
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 import CreateUser from '../../components/CreateUser';
-import { Strings } from '../../lib/constants';
+import { Pallete, Strings } from '../../lib/constants';
 
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
@@ -59,20 +59,22 @@ export default function ProfileScreen() {
 	}, []);
 
 	return (
-		<View>
-			<CreateUser
-				formRef={formRef}
-				nameButton={Strings.profile}
-				onSubmit={handleSubmit}
-				onPress={() => formRef.current?.submitForm()}
-				data={{
-					email: 'joao@gmail.com',
-					name: 'João Paulo',
-					nameSocial: 'JP',
-					phone: '51 985455260',
-					cpfcnpj: '012.451.545-55',
-				}}
-			/>
-		</View>
+		<ScrollView vertical>
+			<View style={Pallete.screen}>
+				<CreateUser
+					formRef={formRef}
+					nameButton={Strings.profile}
+					onSubmit={handleSubmit}
+					onPress={() => formRef.current?.submitForm()}
+					data={{
+						email: 'joao@gmail.com',
+						name: 'João Paulo',
+						nameSocial: 'JP',
+						phone: '51 985455260',
+						cpfcnpj: '012.451.545-55',
+					}}
+				/>
+			</View>
+		</ScrollView>
 	);
 }

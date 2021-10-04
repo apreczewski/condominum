@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
-import { View, Alert } from 'react-native';
+import { View, Alert, ScrollView } from 'react-native';
 
 import CreateUser from '../../components/CreateUser';
-import { Strings } from '../../lib/constants';
+import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
 export default function RegisterUserScreen() {
@@ -58,13 +58,15 @@ export default function RegisterUserScreen() {
 	}, []);
 
 	return (
-		<View>
-			<CreateUser
-				formRef={formRef}
-				nameButton={Strings.createAcont}
-				onSubmit={handleSubmit}
-				onPress={() => formRef.current?.submitForm()}
-			/>
-		</View>
+		<ScrollView vertical>
+			<View style={Pallete.screen}>
+				<CreateUser
+					formRef={formRef}
+					nameButton={Strings.createAcont}
+					onSubmit={handleSubmit}
+					onPress={() => formRef.current?.submitForm()}
+				/>
+			</View>
+		</ScrollView>
 	);
 }

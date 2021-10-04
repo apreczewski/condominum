@@ -102,7 +102,7 @@ export default function AuthScreen() {
 							text={Strings.noAcont}
 							onPress={() =>
 								Navigation.navigate(
-									'UnlinkedAccount' /* 'RegisterUser' */,
+									/* 'UnlinkedAccount' */ 'RegisterUser',
 								)
 							}
 						/>
