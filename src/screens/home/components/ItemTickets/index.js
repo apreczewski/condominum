@@ -32,7 +32,7 @@ export const ItemTickets = () => {
 					/>
 				</View>
 
-				<ValueFormat style={styles.h1} value="500,04" />
+				<ValueFormat style={styles.h1} value={500.04} />
 
 				<View style={styles.rowForLeft}>
 					<Text style={styles.h3}>Vencimento:</Text>

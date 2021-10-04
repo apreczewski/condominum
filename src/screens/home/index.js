@@ -8,7 +8,7 @@ import { HeaderHome } from '../../components/HeaderHome';
 
 export default function HomeScreen() {
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<HeaderHome
 					title={Strings.home}

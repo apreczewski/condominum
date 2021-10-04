@@ -63,7 +63,7 @@ export default function AuthScreen() {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : null}>
-			<ScrollView>
+			<ScrollView vertical>
 				<View style={Pallete.screen}>
 					<Image style={styles.logo} source={Images.logo} />
 

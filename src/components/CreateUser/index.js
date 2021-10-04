@@ -16,7 +16,7 @@ export default function CreateUser({
 	data,
 }) {
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<Text style={styles.text}>{Strings.createUserText}</Text>
 
@@ -39,6 +39,7 @@ export default function CreateUser({
 						autoCorrect={false}
 						labelError="Digite nome completo!"
 						autoCapitalize="none"
+						keyboardType="text"
 						placeholder="Nome Completo"
 					/>
 
@@ -49,7 +50,7 @@ export default function CreateUser({
 						autoCorrect={false}
 						labelError="Digite nome social!"
 						autoCapitalize="none"
-						keyboardType=""
+						keyboardType="text"
 						placeholder="Nome com o qual deseja ser tratado"
 					/>
 
@@ -86,8 +87,8 @@ export default function CreateUser({
 						name="passwordConfirmation"
 						label="Confirme a nova senha"
 						labelError="Senha não confere com a nova senha"
-						secureTextEntry
 						placeholder="Confirme a nova senha"
+						secureTextEntry
 						returnKeyType="send"
 						onSubmitEditing={onPress}
 					/>

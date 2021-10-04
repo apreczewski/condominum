@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../../../lib/constants';
+import { Colors } from '../../lib/constants';
 
 const styles = StyleSheet.create({
 	cardAmbient: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		elevation: 3,
 		justifyContent: 'center',
-		marginBottom: 73,
+		marginBottom: 20,
 		shadowColor: Colors.black,
 		shadowOffset: {
 			width: 0,
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.22,
 		shadowRadius: 2.22,
-		width: '100%',
 	},
 
 	row1: {
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
 
 	viewButtons: {
 		flex: 1,
-		marginTop: 53,
 	},
 });
+
 export default styles;

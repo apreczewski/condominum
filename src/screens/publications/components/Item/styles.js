@@ -12,14 +12,12 @@ const styles = (p) =>
 		},
 
 		container: {
-			alignItems: 'center',
 			backgroundColor: Colors.white,
 			borderRadius: 5,
 			elevation: 3,
 			justifyContent: 'space-between',
-
 			marginBottom: p.isLast ? 5 : 0,
-			// marginBottom: 30,
+
 			marginTop: 20,
 			padding: 13,
 			shadowColor: Colors.black,

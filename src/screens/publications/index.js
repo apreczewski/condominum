@@ -9,10 +9,10 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
+import { Item } from './components/Item';
 import { ItemEmphasis } from './components/ItemEmphasis';
 import { publicationsActions } from '../../store/actions';
 
-import Item from './components/Item';
 import styles from './styles';
 import PublicationDetailsScreen from './components/publicationDetails';
 
@@ -40,7 +40,7 @@ function PublicationsScreen({ onGet, loading, list }) {
 	}, []);
 
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.publication}

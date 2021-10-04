@@ -39,7 +39,7 @@ export default function ForgotPasswordScreen() {
 	}, []);
 
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<Image style={styles.logo} source={Images.logo} />
 				<Text style={styles.text}>{Strings.forgotPasswordText}</Text>

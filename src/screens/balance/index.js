@@ -22,7 +22,7 @@ function BalanceScreen({ onGet, loading, list }) {
 	);
 
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balancete}

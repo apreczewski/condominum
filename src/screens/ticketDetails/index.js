@@ -55,7 +55,7 @@ function TicketDetailsScreen({ route }) {
 	};
 
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.ticketDetails}

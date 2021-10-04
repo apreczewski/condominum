@@ -57,7 +57,7 @@ ItemEmphasis.propTypes = {
 	item: PropTypes.shape({
 		value: PropTypes.number,
 		name: PropTypes.string,
-		state: PropTypes.string,
+		state: PropTypes.number,
 		dueDate: PropTypes.string,
 	}).isRequired,
 };

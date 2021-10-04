@@ -13,10 +13,12 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
+		elevation: 3,
 		flexDirection: 'column',
+
 		flex: 1,
 		justifyContent: 'flex-end',
-		marginTop: 10,
+		padding: 13,
 		paddingHorizontal: 15,
 		paddingVertical: 15,
 		width: '100%',

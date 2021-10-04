@@ -23,7 +23,7 @@ export function HelpDetailsScreen({ route }) {
 	const { item } = route.params;
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScrollView>
+			<ScrollView vertical>
 				<Text style={styles.title}>{item.titulo}</Text>
 				<Text style={styles.description}>{item.texto}</Text>
 			</ScrollView>

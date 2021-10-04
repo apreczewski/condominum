@@ -1,7 +1,7 @@
 import { SET_USER_AUTH } from './types';
 
 const initialState = {
-	user: false,
+	user: {},
 };
 
 const authReducer = (state = initialState, action) => {

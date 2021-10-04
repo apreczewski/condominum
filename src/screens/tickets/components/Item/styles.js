@@ -22,8 +22,11 @@ const styles = (p) =>
 		container: {
 			backgroundColor: Colors.white,
 			borderRadius: 5,
+			elevation: 3,
 			flexDirection: 'row',
 			justifyContent: 'space-between',
+
+			marginBottom: p.isLast ? 5 : 0,
 			marginTop: 20,
 			padding: 13,
 			shadowColor: Colors.black,

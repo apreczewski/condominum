@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 
-const Item = ({ onPress, item, isLast }) => (
+export const Item = ({ onPress, item, isLast }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles({ isLast }).container}>
 			<Text style={styles({}).title}>{item.title}</Text>
@@ -14,8 +14,6 @@ const Item = ({ onPress, item, isLast }) => (
 		</View>
 	</TouchableOpacity>
 );
-
-export default Item;
 
 Item.propTypes = {
 	onPress: PropTypes.func.isRequired,

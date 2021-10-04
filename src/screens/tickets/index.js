@@ -22,7 +22,7 @@ function TicketsScreen({ onGet, loading, list }) {
 	);
 
 	return (
-		<ScrollView>
+		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.tickets}
@@ -36,12 +36,12 @@ function TicketsScreen({ onGet, loading, list }) {
 
 				<View style={styles.list}>
 					<ItemEmphasis
+						item={list[0]}
 						onPress={() => {
 							RootNavigator.navigate('TicketDetails', {
 								item: list[0],
 							});
 						}}
-						item={list[0]}
 					/>
 
 					<FlatList
@@ -52,6 +52,7 @@ function TicketsScreen({ onGet, loading, list }) {
 							index > 0 && (
 								<Item
 									item={item}
+									isLast={index === list.length - 1}
 									onPress={() => {
 										RootNavigator.navigate(
 											'TicketDetails',
@@ -73,7 +74,7 @@ function TicketsScreen({ onGet, loading, list }) {
 
 TicketsScreen.propTypes = {
 	onGet: PropTypes.func.isRequired,
-	loading: PropTypes.bool.isRequired,
+	loading: PropTypes.bool,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
 			value: PropTypes.number,
@@ -82,6 +83,10 @@ TicketsScreen.propTypes = {
 			name: PropTypes.string,
 		}),
 	).isRequired,
+};
+
+TicketsScreen.defaultProps = {
+	loading: false,
 };
 
 const mapStateToProps = (state) => ({
