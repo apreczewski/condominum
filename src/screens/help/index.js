@@ -3,12 +3,12 @@ import { FlatList, StyleSheet, View, RefreshControl } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { moreActions } from '../../../store/actions';
+import { helpActions } from '../../store/actions';
 
 import { General, Colors } from '../../lib/constants';
 import * as RootNavigator from '../../lib/utils/navigation';
 
-import Item from './components';
+import Item from './components/Item';
 
 const styles = StyleSheet.create({
 	border: {
@@ -56,12 +56,11 @@ function HelpScreen({ loading, onGet, help }) {
 
 const mapStateToProps = (state) => ({
 	loading: state.api.loading,
-	help: [] /* state.more.help, */,
+	help: state.help.help,
 });
 
-const mapDispatchToProps = (/* dispatch */) => ({
-	// onGet: () => dispatch(moreActions.getHelp()),
-	onGet: () => {},
+const mapDispatchToProps = (dispatch) => ({
+	onGet: () => dispatch(helpActions.getHelp()),
 });
 
 HelpScreen.propTypes = {

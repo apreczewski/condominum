@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Pallete, Colors } from '../../../lib/constants';
+import { Pallete, Colors } from '../../../../lib/constants';
 
 const styles = StyleSheet.create({
 	container: {
