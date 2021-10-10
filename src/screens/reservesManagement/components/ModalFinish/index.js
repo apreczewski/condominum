@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
 
 import Button from '../../../../components/Button';
-import Input from '../../../../components/Input';
+import Input from '../../../../components/TextInput';
 
 import { Colors, Pallete, Strings } from '../../../../lib/constants';
 
