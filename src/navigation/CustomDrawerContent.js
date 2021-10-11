@@ -7,8 +7,12 @@ import {
 	DrawerItemList,
 } from '@react-navigation/drawer';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Images, Colors } from '../lib/constants';
-import * as Navigation from '../lib/utils/navigation';
+
+import { authSelectors } from '../store/selectors';
+import { authActions } from '../store/actions';
 
 const styles = StyleSheet.create({
 	condoTxt: {
@@ -46,15 +50,6 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.drawerBackground,
 		flex: 1,
 	},
-	// profileTxt: {
-	// 	color: Colors.secondary,
-	// 	fontFamily: 'Roboto-Bold',
-	// 	fontSize: 15,
-	// },
-	// row: {
-	// 	alignItems: 'center',
-	// 	flexDirection: 'row',
-	// },
 	sideMenuProfileIcon: {
 		alignSelf: 'center',
 		height: 80,
@@ -69,37 +64,38 @@ const styles = StyleSheet.create({
 	},
 });
 
-const CustomDrawerContent = (props) => (
-	<View style={styles.menu}>
-		<View style={styles.header}>
-			<Image source={Images.user} style={styles.sideMenuProfileIcon} />
-			<Text style={styles.userTxt}>João Paulo</Text>
-			<Text style={styles.condoTxt}>Condomínio Vila Real - Apto 402</Text>
-			{/* <TouchableOpacity style={styles.row}>
-				<Text style={styles.profileTxt}>Ver perfil</Text>
-				<MaterialCommunityIcons
-					name="chevron-right"
-					size={24}
-					color={Colors.secondary}
-				/>
-			</TouchableOpacity> */}
-		</View>
-		<DrawerContentScrollView
-			{...props}
-			showsVerticalScrollIndicator={false}>
-			<DrawerItemList {...props} />
-		</DrawerContentScrollView>
-		<TouchableOpacity
-			style={styles.footer}
-			onPress={() => Navigation.navigate('Auth')}>
-			<MaterialCommunityIcons
-				name="logout-variant"
-				size={24}
-				color={Colors.tertiary}
-			/>
-			<Text style={styles.logoutTxt}>Sair</Text>
-		</TouchableOpacity>
-	</View>
-);
+const CustomDrawerContent = (props) => {
+	const dispatch = useDispatch();
+	const user = useSelector(authSelectors.getUser);
 
+	return (
+		<View style={styles.menu}>
+			<View style={styles.header}>
+				<Image
+					source={Images.user}
+					style={styles.sideMenuProfileIcon}
+				/>
+				<Text style={styles.userTxt}>{user?.name}</Text>
+				<Text style={styles.condoTxt}>
+					Condomínio Vila Real - Apto 402
+				</Text>
+			</View>
+			<DrawerContentScrollView
+				{...props}
+				showsVerticalScrollIndicator={false}>
+				<DrawerItemList {...props} />
+			</DrawerContentScrollView>
+			<TouchableOpacity
+				style={styles.footer}
+				onPress={() => dispatch(authActions.logout())}>
+				<MaterialCommunityIcons
+					name="logout-variant"
+					size={24}
+					color={Colors.tertiary}
+				/>
+				<Text style={styles.logoutTxt}>Sair</Text>
+			</TouchableOpacity>
+		</View>
+	);
+};
 export default CustomDrawerContent;

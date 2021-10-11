@@ -5,7 +5,7 @@ const env = {
 };
 
 const API_URL = {
-	dev: 'http://ahomolmulti.classcode.com.br/v1/',
+	dev: 'http://adesenvprolar.classcode.com.br/v1/',
 	stg: 'http://homolmulti.classcode.com.br/v1/',
 	product: 'https://api.multimercados.com.br/v1/',
 };
@@ -23,7 +23,7 @@ const POLICES_URL = {
 		'https://repos.multimercados.com.br/html/politica-de-privacidade.html',
 };
 
-const currentEnv = env.product;
+const currentEnv = env.dev;
 
 export const BASE_API = API_URL[currentEnv];
 export const POLICES = POLICES_URL[currentEnv];

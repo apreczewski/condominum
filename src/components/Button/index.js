@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, ActiveIndicator } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Colors } from '../../lib/constants';
@@ -46,7 +46,7 @@ const Button = ({
 				containerStyle,
 			]}>
 			{loading ? (
-				<ActiveIndicator
+				<ActivityIndicator
 					color={disabled ? borderColorDisabled : fontColor}
 				/>
 			) : (

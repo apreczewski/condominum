@@ -1,9 +1,7 @@
 import axios from 'axios';
-// import Toast from 'react-native-root-toast';
+import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_API } from '../config/environment';
-
-// import Colors from '../lib/constants/colors';
 
 const api = axios.create({
 	baseURL: BASE_API,
@@ -11,7 +9,7 @@ const api = axios.create({
 		'Content-Type': 'application/json',
 		Accept: 'application/json',
 	},
-	timeout: 1500,
+	timeout: 3000,
 });
 
 const getToken = async () => {
@@ -28,16 +26,13 @@ getToken();
 api.interceptors.response.use(
 	(response) => {
 		if (
-			response.data.status &&
-			response.data.status.mensagem === 'Token invalido.'
+			response.data.mensagem &&
+			response.data.mensagem.mensagem === 'Token invalido.'
 		) {
-			// Toast.show('Token inválido faça logout do usuário!', {
-			// 	duration: Toast.durations.SHORT,
-			// 	position: Toast.positions.BOTTOM,
-			// 	animation: true,
-			// 	hideOnPress: true,
-			// 	backgroundColor: Colors.error,
-			// });
+			Toast.show({
+				text1: 'Token inválido faça logout do usuário!',
+				type: 'error',
+			});
 		}
 		return response;
 	},
@@ -45,13 +40,10 @@ api.interceptors.response.use(
 		const { response, code } = error;
 
 		if (response.status === 408 || code === 'ECONNABORTED') {
-			// Toast.show('Sem conexão!', {
-			// 	duration: Toast.durations.SHORT,
-			// 	position: Toast.positions.BOTTOM,
-			// 	animation: true,
-			// 	hideOnPress: true,
-			// 	backgroundColor: Colors.error,
-			// });
+			Toast.show({
+				text1: 'Sem conexão!',
+				type: 'error',
+			});
 		}
 
 		if (response.status !== 401) {
