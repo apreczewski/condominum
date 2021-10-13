@@ -1,0 +1,288 @@
+[
+	{
+		"id": 1,
+		"value": 500.04,
+		"dueDate": "05/06/2021",
+		"name": "Aguardando pagamento",
+		"state": 0,
+		"expenses": [
+			{
+				"text": "Água e esgoto",
+				"value": 1.82
+			},
+			{
+				"text": "Despesas administrativas e financeiras",
+				"value": 100008.88
+			},
+			{
+				"text": "Despesas diversas",
+				"value": 17.66
+			},
+			{
+				"text": "Honorários de síndico",
+				"value": 7.38
+			},
+			{
+				"text": "Luz e força",
+				"value": 20.87
+			},
+			{
+				"text": "Manutenção de elevadores",
+				"value": 10.92
+			},
+			{
+				"text": "Manutenções diversas",
+				"value": 25.4
+			},
+			{
+				"text": "Salários",
+				"value": 65.23
+			},
+			{
+				"text": "Seguros",
+				"value": 7.7
+			},
+			{
+				"text": "Serviços terceirizados",
+				"value": 9.94
+			},
+			{
+				"text": "002/002 Troca registros do Gás",
+				"value": 42.5
+			},
+			{
+				"text": "007/012 Pintura",
+				"value": 105.0
+			},
+			{
+				"text": "Água lan 523 lat 534 cons 11M3",
+				"value": 96.74
+			},
+			{
+				"text": "Fundo de reserva cfe ata 10",
+				"value": 70.0
+			}
+		]
+	},
+	{
+		"id": 2,
+		"value": 500.04,
+		"dueDate": "05/05/2021",
+		"name": "Pago",
+		"state": 2,
+		"expenses": [
+			{
+				"text": "Água e esgoto",
+				"value": 1.82
+			},
+			{
+				"text": "Despesas administrativas e financeiras",
+				"value": 100008.88
+			},
+			{
+				"text": "Despesas diversas",
+				"value": 17.66
+			},
+			{
+				"text": "Honorários de síndico",
+				"value": 7.38
+			},
+			{
+				"text": "Luz e força",
+				"value": 20.87
+			},
+			{
+				"text": "Manutenção de elevadores",
+				"value": 10.92
+			},
+			{
+				"text": "Manutenções diversas",
+				"value": 25.4
+			},
+			{
+				"text": "Salários",
+				"value": 65.23
+			},
+			{
+				"text": "Seguros",
+				"value": 7.7
+			},
+			{
+				"text": "Serviços terceirizados",
+				"value": 9.94
+			},
+			{
+				"text": "002/002 Troca registros do Gás",
+				"value": 42.5
+			},
+			{
+				"text": "007/012 Pintura",
+				"value": 105.0
+			}
+		]
+	},
+	{
+		"id": 3,
+		"value": 500.04,
+		"dueDate": "05/04/2021",
+		"name": "Atrasado",
+		"state": 1,
+		"expenses": [
+			{
+				"text": "Água e esgoto",
+				"value": 1.82
+			},
+			{
+				"text": "Despesas administrativas e financeiras",
+				"value": 100008.88
+			},
+			{
+				"text": "Despesas diversas",
+				"value": 17.66
+			},
+			{
+				"text": "Honorários de síndico",
+				"value": 7.38
+			},
+			{
+				"text": "Luz e força",
+				"value": 20.87
+			},
+			{
+				"text": "Manutenção de elevadores",
+				"value": 10.92
+			},
+			{
+				"text": "Manutenções diversas",
+				"value": 25.4
+			},
+			{
+				"text": "Salários",
+				"value": 65.23
+			},
+			{
+				"text": "Seguros",
+				"value": 7.7
+			},
+			{
+				"text": "Serviços terceirizados",
+				"value": 9.94
+			},
+			{
+				"text": "002/002 Troca registros do Gás",
+				"value": 42.5
+			}
+		]
+	},
+	{
+		"id": 4,
+		"value": 500.04,
+		"dueDate": "05/03/2021",
+		"name": "Pago",
+		"state": 2,
+		"expenses": [
+			{
+				"text": "Água e esgoto",
+				"value": 1.82
+			},
+			{
+				"text": "Despesas administrativas e financeiras",
+				"value": 100008.88
+			},
+			{
+				"text": "Despesas diversas",
+				"value": 17.66
+			},
+			{
+				"text": "Honorários de síndico",
+				"value": 7.38
+			},
+			{
+				"text": "Luz e força",
+				"value": 20.87
+			},
+			{
+				"text": "Manutenção de elevadores",
+				"value": 10.92
+			},
+			{
+				"text": "Manutenções diversas",
+				"value": 25.4
+			},
+			{
+				"text": "Salários",
+				"value": 65.23
+			},
+			{
+				"text": "Seguros",
+				"value": 7.7
+			}
+		]
+	},
+	{
+		"id": 5,
+		"value": 500.04,
+		"dueDate": "05/02/2021",
+		"name": "Pago",
+		"state": 2,
+		"expenses": [
+			{
+				"text": "Água e esgoto",
+				"value": 1.82
+			},
+			{
+				"text": "Despesas diversas",
+				"value": 17.66
+			},
+			{
+				"text": "Honorários de síndico",
+				"value": 7.38
+			},
+			{
+				"text": "Luz e força",
+				"value": 20.87
+			},
+			{
+				"text": "Manutenção de elevadores",
+				"value": 10.92
+			},
+			{
+				"text": "Manutenções diversas",
+				"value": 25.4
+			},
+			{
+				"text": "Salários",
+				"value": 65.23
+			}
+		]
+	},
+	{
+		"id": 6,
+		"value": 500.04,
+		"dueDate": "05/01/2021",
+		"name": "Pago",
+		"state": 2,
+		"expenses": [
+			{
+				"text": "Água e esgoto",
+				"value": 1.82
+			},
+			{
+				"text": "Despesas administrativas e financeiras",
+				"value": 100008.88
+			},
+			{
+				"text": "Despesas diversas",
+				"value": 17.66
+			},
+			{
+				"text": "Honorários de síndico",
+				"value": 7.38
+			},
+			{
+				"text": "Luz e força",
+				"value": 20.87
+			}
+		]
+	}
+]

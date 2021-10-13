@@ -1,10 +1,43 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import Constants from 'expo-constants';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default function AboutScreen() {
+import logoClass from '../../assets/images/logo_class.png';
+import { Pallete, General } from '../../lib/constants';
+import styles from './styles';
+
+const DESCRIPTION =
+	'Está na sua mão economizar. MultiMercados oferece descontos e ofertas exclusivas, entre outras facilidades para o seu dia a dia.';
+
+function AboutScreen() {
+	const { version } = Constants.manifest;
+	const textVersion = `Versão ${version}`;
 	return (
-		<View>
-			<Text>sobre</Text>
-		</View>
+		<ScrollView vertical>
+			<View style={Pallete.screen}>
+				<Text style={styles.description}>{DESCRIPTION}</Text>
+				<View style={styles.middle}>
+					<Image
+						source={logoClass}
+						style={styles.image}
+						resizeMode="contain"
+					/>
+					<View style={General.section}>
+						<Text style={styles.info}>Desenvolvido por</Text>
+						<Text style={styles.info}>Class Code Software</Text>
+					</View>
+					<View style={General.section}>
+						<Text style={styles.info}>
+							contato@classcode.com.br
+						</Text>
+						<Text style={styles.info}>www.classcode.com.br</Text>
+					</View>
+				</View>
+				<Text style={styles.version}>{textVersion}</Text>
+			</View>
+		</ScrollView>
 	);
 }
+
+export default AboutScreen;

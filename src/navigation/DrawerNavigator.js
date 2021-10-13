@@ -14,10 +14,11 @@ import CustomDrawerContent from './CustomDrawerContent';
 
 import HomeScreen from '../screens/home';
 import PublicationsScreen from '../screens/publications';
-import TicketScreen from '../screens/ticket';
+import TicketScreen from '../screens/tickets';
 import BalanceScreen from '../screens/balance';
 import ReservesScreen from '../screens/reserves';
-import CondominiumScreen from '../screens/condominium';
+import { CondominiumScreen } from '../screens/condominium';
+import ReservesManagementScreen from '../screens/reservesManagement';
 import ProfileScreen from '../screens/profile';
 import ChangePasswordScreen from '../screens/changePassword';
 import HelpScreen from '../screens/help';
@@ -120,6 +121,20 @@ function MainDrawerNavigator() {
 					drawerIcon: ({ focused, size }) => (
 						<MaterialCommunityIcons
 							name="calendar-month-outline"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
+			<Drawer.Screen
+				name="ReservesManagement"
+				component={ReservesManagementScreen}
+				options={{
+					title: 'Gestão das Reservas',
+					drawerIcon: ({ focused, size }) => (
+						<MaterialCommunityIcons
+							name="calendar-edit"
 							size={size}
 							color={focused ? Colors.primary : Colors.secondary}
 						/>

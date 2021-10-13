@@ -1,10 +1,80 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Alert, ScrollView } from 'react-native';
+import React, { useRef, useCallback } from 'react';
+import * as Yup from 'yup';
+import CreateUser from '../../components/CreateUser';
+import { Pallete, Strings } from '../../lib/constants';
+
+import getValidationErrors from '../../lib/utils/getValidationErrors';
 
 export default function ProfileScreen() {
+	const formRef = useRef(null);
+
+	const schema = Yup.object().shape({
+		email: Yup.string()
+			.required('E-mail obrigatório')
+			.email('Digite um e-mail válido'),
+
+		name: Yup.string().required('Nome obrigatório'),
+
+		nameSocial: Yup.string().required('Nome social obrigatório'),
+
+		phone: Yup.string()
+			.min(8, 'Muito curto!')
+			.max(14, 'Muito longo!')
+			.required('Digite um telefone'),
+
+		cpfCnpj: Yup.string()
+			.max(20, 'Muito longo!')
+			.required('Digite CPF/CNPJ'),
+
+		password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+		passwordConfirmation: Yup.string().oneOf(
+			[Yup.ref('password'), null],
+			'As senhas devem corresponder',
+		),
+	});
+
+	const handleSubmit = useCallback(async (data) => {
+		// console.log('formmm >> ', data);
+
+		try {
+			formRef.current?.setErrors({});
+
+			await schema.validate(data, {
+				abortEarly: false,
+			});
+		} catch (err) {
+			if (err instanceof Yup.ValidationError) {
+				const errors = getValidationErrors(err);
+
+				formRef.current?.setErrors(errors);
+
+				// console.log(errors);
+
+				return;
+			}
+
+			Alert.alert('Erro na autenticação');
+		}
+	}, []);
+
 	return (
-		<View>
-			<Text>minha conta</Text>
-		</View>
+		<ScrollView vertical>
+			<View style={Pallete.screen}>
+				<CreateUser
+					formRef={formRef}
+					nameButton={Strings.profile}
+					onSubmit={handleSubmit}
+					onPress={() => formRef.current?.submitForm()}
+					data={{
+						email: 'joao@gmail.com',
+						name: 'João Paulo',
+						nameSocial: 'JP',
+						phone: '51 985455260',
+						cpfcnpj: '012.451.545-55',
+					}}
+				/>
+			</View>
+		</ScrollView>
 	);
 }
