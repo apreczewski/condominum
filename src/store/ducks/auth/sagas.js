@@ -18,11 +18,14 @@ export function* login(payload) {
 
 		if (response.data.login) {
 			const dataUser = {
-				name: response.data.login.name,
-				social_name: response.data.login.social_name,
+				name: response.data.login.nome,
+				social_name: response.data.login.nome_social,
 			};
 
-			const dataCondo = response.data.login.condominium_id;
+			const dataCondo = {
+				name: response.data.login.condominio_nome,
+				id: response.data.login.condominio_id,
+			};
 
 			const dataToken = response.data.login.token;
 

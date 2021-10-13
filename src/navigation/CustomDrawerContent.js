@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
 const CustomDrawerContent = (props) => {
 	const dispatch = useDispatch();
 	const user = useSelector(authSelectors.getUser);
+	const condominium = useSelector(authSelectors.getCondominium);
 
 	return (
 		<View style={styles.menu}>
@@ -76,9 +77,7 @@ const CustomDrawerContent = (props) => {
 					style={styles.sideMenuProfileIcon}
 				/>
 				<Text style={styles.userTxt}>{user?.name}</Text>
-				<Text style={styles.condoTxt}>
-					Condomínio Vila Real - Apto 402
-				</Text>
+				<Text style={styles.condoTxt}>{condominium?.name}</Text>
 			</View>
 			<DrawerContentScrollView
 				{...props}
