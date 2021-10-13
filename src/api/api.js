@@ -1,9 +1,8 @@
 import axios from 'axios';
-// import Toast from 'react-native-root-toast';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-root-toast';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import Colors from '../lib/constants/colors';
 import { BASE_API } from '../config/environment';
-
-// import Colors from '../lib/constants/colors';
 
 const api = axios.create({
 	baseURL: BASE_API,
@@ -15,8 +14,10 @@ const api = axios.create({
 });
 
 const getToken = async () => {
-	let userToken = await AsyncStorage.getItem('userToken');
-	userToken = JSON.parse(userToken);
+	const userToken =
+		'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIwYTZmYTZkZi05MTUwLTQ3ZDMtYTQ0ZC00Njg3MzI4MWExMzgiLCJleHAiOjE2Njk5MTM0MDh9.HnQhal-wdj1nie9BCCuzqgkxc3Jf-ptt5jZ1NK3qQSQ';
+	// let userToken = await AsyncStorage.getItem('userToken');
+	// userToken = JSON.parse(userToken);
 
 	if (userToken) {
 		api.defaults.headers.common['x-access-token'] = `${userToken}`;
@@ -31,13 +32,13 @@ api.interceptors.response.use(
 			response.data.status &&
 			response.data.status.mensagem === 'Token invalido.'
 		) {
-			// Toast.show('Token inválido faça logout do usuário!', {
-			// 	duration: Toast.durations.SHORT,
-			// 	position: Toast.positions.BOTTOM,
-			// 	animation: true,
-			// 	hideOnPress: true,
-			// 	backgroundColor: Colors.error,
-			// });
+			Toast.show('Token inválido faça logout do usuário!', {
+				duration: Toast.durations.SHORT,
+				position: Toast.positions.BOTTOM,
+				animation: true,
+				hideOnPress: true,
+				backgroundColor: Colors.error,
+			});
 		}
 		return response;
 	},

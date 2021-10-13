@@ -5,10 +5,9 @@ import { AntDesign } from '@expo/vector-icons';
 
 import { ScrollView } from 'react-native-gesture-handler';
 import { Colors } from '../../../../lib/constants';
-import publication from '../../../../assets/images/publication.png';
 import styles from './styles';
 
-function PublicationDetailsScreen({ data = {} }) {
+function PublicationDetailsScreen({ data }) {
 	const [isLike, setIsLike] = useState(false);
 
 	const hangleIsLike = (status) => {
@@ -22,15 +21,15 @@ function PublicationDetailsScreen({ data = {} }) {
 	return (
 		<View style={styles.container}>
 			<View>
-				{data?.id === '1' && (
-					<Image source={publication} style={styles.image} />
+				{data?.id === 1 && (
+					<Image source={data?.imagem} style={styles.image} />
 				)}
 			</View>
 			<ScrollView>
 				<View style={styles.description}>
-					<Text style={styles.title}>{data?.title}</Text>
-					<Text style={styles.subTitle}>{data?.subTitle}</Text>
-					<Text style={styles.date}>{data?.baseboard}</Text>
+					<Text style={styles.title}>{data?.titulo}</Text>
+					<Text style={styles.subTitle}>{data?.texto_detalhado}</Text>
+					<Text style={styles.date}>{data?.dt_pub_fim}</Text>
 				</View>
 			</ScrollView>
 
@@ -49,12 +48,11 @@ function PublicationDetailsScreen({ data = {} }) {
 
 PublicationDetailsScreen.propTypes = {
 	data: PropTypes.shape({
-		id: PropTypes.string,
-		url: PropTypes.string,
-		title: PropTypes.string,
-		subTitle: PropTypes.string,
-		seeMore: PropTypes.string,
-		baseboard: PropTypes.string,
+		id: PropTypes.number,
+		imagem: PropTypes.string,
+		titulo: PropTypes.string,
+		texto_detalhado: PropTypes.string,
+		dt_pub_fim: PropTypes.string,
 		like: PropTypes.bool,
 		user: PropTypes.string,
 	}).isRequired,

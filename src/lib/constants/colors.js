@@ -12,6 +12,7 @@ const Colors = {
 	gray: '#C4C4C4',
 	transparent: 'transparent',
 	green: '#086606',
+	success: '#4B8B2D',
 	green_400: '#6ECC6C',
 	error: '#E78B8B',
 };

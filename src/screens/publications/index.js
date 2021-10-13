@@ -54,8 +54,8 @@ function PublicationsScreen({ onGet, loading, list }) {
 
 				<View style={styles.list}>
 					<ItemEmphasis
-						item={list[2]}
-						onPress={() => handlePublication(list[2])}
+						item={list[1]}
+						onPress={() => handlePublication(list[1])}
 					/>
 
 					<FlatList
@@ -96,7 +96,7 @@ PublicationsScreen.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
-			id: PropTypes.string,
+			id: PropTypes.number,
 			url: PropTypes.string,
 			title: PropTypes.string,
 			subTitle: PropTypes.string,
@@ -112,7 +112,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	onGet: async () => dispatch(publicationsActions.getList()),
+	onGet: () => dispatch(publicationsActions.getList()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicationsScreen);
