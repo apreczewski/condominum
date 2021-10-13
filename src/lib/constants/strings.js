@@ -60,6 +60,17 @@ const Strings = {
 	dueDate: 'Vencimento:',
 	unlinkedAccountText:
 		'Olá! Seu cadastro foi realizado com sucesso:) Para que seu acesso seja liberado, informe o e-mail cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que o vincule a sua unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das facilidades que o aplicativo proporciona.',
+	cancellationReserve: 'Cancelamento da reserva',
+	confirmCancellation: 'Confirme o cancelamento',
+	confirm: 'Confirmar',
+	close: 'Fechar',
+	reason: 'Motivo',
+	reservesManagement: 'Gestão das Reservas',
+	confirmDeleteReserve: 'Você confirma a exclusão da reserva?',
+	yes: 'Sim',
+	no: 'Não',
+	confirmationReserve: 'Confirmação da reserva',
+	pendencies: 'Pendências',
 };
 
 export default Strings;
