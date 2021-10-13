@@ -1,6 +1,8 @@
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
 	ScrollView,
 	Text,
@@ -9,7 +11,6 @@ import {
 	Platform,
 	View,
 	TouchableOpacity,
-	Alert,
 } from 'react-native';
 import { Form } from '@unform/mobile';
 
@@ -20,7 +21,12 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
+import { authSelectors } from '../../store/selectors';
+import { authActions } from '../../store/actions';
+
 export default function AuthScreen() {
+	const dispatch = useDispatch();
+	const loading = useSelector(authSelectors.getLoading);
 	const formRef = useRef(null);
 
 	const handleSubmit = useCallback(async (data) => {
@@ -28,7 +34,7 @@ export default function AuthScreen() {
 			formRef.current?.setErrors({});
 
 			const schema = Yup.object().shape({
-				email: Yup.string()
+				username: Yup.string()
 					.required('E-mail obrigatório')
 					.email('Digite um e-mail válido'),
 				password: Yup.string().required('Senha obrigatória'),
@@ -38,25 +44,13 @@ export default function AuthScreen() {
 				abortEarly: false,
 			});
 
-			/* await auth({
-					email: data.email,
-					password: data.password,
-				}); */
+			dispatch(authActions.loginUserAction(data));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
 
-				//	console.log(errors);
-
 				formRef.current?.setErrors(errors);
-
-				return;
 			}
-
-			Alert.alert(
-				'Erro na autenticação',
-				'Ocorreu um erro ao fazer login, cheque as credenciais.',
-			);
 		}
 	}, []);
 
@@ -69,7 +63,7 @@ export default function AuthScreen() {
 
 					<Form ref={formRef} onSubmit={handleSubmit}>
 						<Input
-							name="email"
+							name="username"
 							label="E-mail"
 							autoCorrect={false}
 							labelError="Digite um e-mail válido!"
@@ -93,6 +87,7 @@ export default function AuthScreen() {
 							<Button
 								text={Strings.enter}
 								onPress={() => formRef.current?.submitForm()}
+								loading={loading}
 							/>
 						</View>
 					</Form>

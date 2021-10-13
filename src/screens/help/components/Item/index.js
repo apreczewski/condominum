@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
-import { Colors } from '../../../lib/constants';
+import { Colors } from '../../../../lib/constants';
 
 import styles from './styles';
 
