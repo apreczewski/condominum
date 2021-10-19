@@ -1,3 +1,3 @@
 import api from './api';
 
-export const getBalances = () => api.get('balances');
+export const getBalances = () => api.get('get_balancetelista');

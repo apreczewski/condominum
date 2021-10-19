@@ -58,20 +58,24 @@ function PublicationsScreen({ onGet, loading, list }) {
 						onPress={() => handlePublication(list[1])}
 					/>
 
-					<FlatList
-						refreshControl={<RefreshControl refreshing={loading} />}
-						data={list}
-						keyExtractor={(item) => item?.id.toString()}
-						renderItem={({ item, index }) =>
-							index > 0 && (
-								<Item
-									item={item}
-									isLast={index === list.length - 1}
-									onPress={() => handlePublication(item)}
-								/>
-							)
-						}
-					/>
+					{list && (
+						<FlatList
+							refreshControl={
+								<RefreshControl refreshing={loading} />
+							}
+							data={list}
+							keyExtractor={(item) => item?.id.toString()}
+							renderItem={({ item, index }) =>
+								index > 0 && (
+									<Item
+										item={item}
+										isLast={index === list.length - 1}
+										onPress={() => handlePublication(item)}
+									/>
+								)
+							}
+						/>
+					)}
 				</View>
 			</View>
 			<Modal

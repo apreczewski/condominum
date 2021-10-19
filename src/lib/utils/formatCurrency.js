@@ -10,6 +10,8 @@ export function ValueFormat({ value, style }) {
 			displayType="text"
 			thousandSeparator="."
 			decimalSeparator=","
+			decimalScale={2}
+			fixedDecimalScale
 			prefix="R$ "
 			renderText={(formattedValue) => (
 				<Text style={style}>{formattedValue}</Text>

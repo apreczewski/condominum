@@ -1,8 +1,7 @@
 import { SET_LIST } from './types';
-import data from './data.json';
 
 const initialState = {
-	list: data || [],
+	list: [],
 };
 
 const balancesReducer = (state = initialState, action) => {

@@ -12,13 +12,13 @@ import styles from './styles';
 export const ItemEmphasis = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
 		<View style={styles.container}>
-			<Text style={styles.text}>{item.data}</Text>
+			<Text style={styles.text}>{`${item?.mes}/${item?.ano}`}</Text>
 
 			<View style={styles.textInfo}>
 				<Text style={Pallete.paragraph}>Saldo Anterior</Text>
 				<ValueFormat
 					style={Pallete.paragraph}
-					value={item.saldo_anterior}
+					value={parseFloat(item?.saldo_anterior)}
 				/>
 			</View>
 
@@ -26,7 +26,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 				<Text style={Pallete.paragraph}>Pagamentos</Text>
 				<ValueFormat
 					style={Pallete.paragraph}
-					value={item.pagamentos}
+					value={parseFloat(item?.total_pagamento)}
 				/>
 			</View>
 
@@ -34,14 +34,17 @@ export const ItemEmphasis = ({ onPress, item }) => (
 				<Text style={Pallete.paragraph}>Recebimentos</Text>
 				<ValueFormat
 					style={Pallete.paragraph}
-					value={item.rebimentos}
+					value={parseFloat(item?.total_recebimento)}
 				/>
 			</View>
 
 			<View style={styles.label}>
 				<Text style={Pallete.paragraph}>Saldo</Text>
 
-				<ValueFormat style={Pallete.paragraph} value={item.saldo} />
+				<ValueFormat
+					style={Pallete.paragraph}
+					value={parseFloat(item?.saldo_atual)}
+				/>
 			</View>
 
 			<View style={styles.anchorSeeMore}>
@@ -59,10 +62,11 @@ export const ItemEmphasis = ({ onPress, item }) => (
 ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
-		data: PropTypes.string,
-		saldo_anterior: PropTypes.number,
-		pagamentos: PropTypes.number,
-		rebimentos: PropTypes.number,
-		saldo: PropTypes.number,
+		mes: PropTypes.number,
+		ano: PropTypes.number,
+		total_pagamento: PropTypes.string,
+		total_recebimento: PropTypes.string,
+		saldo_anterior: PropTypes.string,
+		saldo_atual: PropTypes.string,
 	}).isRequired,
 };

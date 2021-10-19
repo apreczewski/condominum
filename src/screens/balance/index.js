@@ -46,26 +46,30 @@ function BalanceScreen({ onGet, loading, list }) {
 						iconSize={30}
 					/>
 
-					<FlatList
-						refreshControl={<RefreshControl refreshing={loading} />}
-						data={list}
-						keyExtractor={(item) => item?.id.toString()}
-						renderItem={({ item, index }) =>
-							index > 0 && (
-								<Item
-									item={item}
-									onPress={() => {
-										RootNavigator.navigate(
-											'BalanceDetails',
-											{
-												item,
-											},
-										);
-									}}
-								/>
-							)
-						}
-					/>
+					{list && (
+						<FlatList
+							refreshControl={
+								<RefreshControl refreshing={loading} />
+							}
+							data={list}
+							keyExtractor={(item) => item?.id.toString()}
+							renderItem={({ item, index }) =>
+								index > 0 && (
+									<Item
+										item={item}
+										onPress={() => {
+											RootNavigator.navigate(
+												'BalanceDetails',
+												{
+													item,
+												},
+											);
+										}}
+									/>
+								)
+							}
+						/>
+					)}
 				</View>
 			</View>
 		</ScrollView>

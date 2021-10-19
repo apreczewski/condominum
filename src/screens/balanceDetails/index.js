@@ -5,15 +5,22 @@ import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 import { MaterialIcons } from '@expo/vector-icons';
 
+import { useFocusEffect } from '@react-navigation/native';
+import { connect } from 'react-redux';
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 import { ItemEmphasis } from './components/ItemEmphasis';
 
 import styles from './styles';
 import DetailsItem from './components/DetailsItem';
+import { balancesActions } from '../../store/actions';
 
-function BalanceDetailsScreen({ route }) {
-	const { item } = route.params;
+function BalanceDetailsScreen({ onGet, /* loading, */ item }) {
+	useFocusEffect(
+		React.useCallback(() => {
+			onGet();
+		}, []),
+	);
 
 	const fileUri = `${FileSystem.cacheDirectory}test.pdf`;
 
@@ -86,26 +93,36 @@ function BalanceDetailsScreen({ route }) {
 }
 
 BalanceDetailsScreen.propTypes = {
-	route: PropTypes.shape({
-		params: PropTypes.shape({
-			item: PropTypes.shape({
+	onGet: PropTypes.func.isRequired,
+	// loading: PropTypes.bool.isRequired,
+	item: PropTypes.shape({
+		data: PropTypes.string,
+		saldo_anterior: PropTypes.number,
+		pagamentos: PropTypes.number,
+		rebimentos: PropTypes.number,
+		saldo: PropTypes.number,
+		detalhes: PropTypes.arrayOf(
+			PropTypes.shape({
+				id: PropTypes.number,
 				data: PropTypes.string,
-				saldo_anterior: PropTypes.number,
-				pagamentos: PropTypes.number,
-				rebimentos: PropTypes.number,
-				saldo: PropTypes.number,
-				detalhes: PropTypes.arrayOf(
-					PropTypes.shape({
-						id: PropTypes.number,
-						data: PropTypes.string,
-						despesas_diversas: PropTypes.number,
-						honorarios_sindico: PropTypes.number,
-						luz_forca: PropTypes.number,
-					}),
-				),
+				despesas_diversas: PropTypes.number,
+				honorarios_sindico: PropTypes.number,
+				luz_forca: PropTypes.number,
 			}),
-		}),
+		),
 	}).isRequired,
 };
 
-export default BalanceDetailsScreen;
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	list: state.balances.list,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onGet: (id) => dispatch(balancesActions.getList(id)),
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(BalanceDetailsScreen);
