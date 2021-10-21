@@ -4,6 +4,8 @@ import {
 	SET_USER_AUTH,
 	SET_LOADING,
 	SET_CONDO,
+	SET_ERROR,
+	SET_SUCCESS,
 } from './types';
 
 const initialState = {
@@ -11,6 +13,8 @@ const initialState = {
 	user: {},
 	loading: false,
 	condominium: false,
+	error: '',
+	success: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -20,27 +24,43 @@ const authReducer = (state = initialState, action) => {
 				...state,
 				user: action.user,
 			};
+
 		case SET_CONDO:
 			return {
 				...state,
 				condominium: action.condominium,
 			};
+
 		case SET_TOKEN:
 			return {
 				...state,
 				token: action.token,
 			};
+
 		case SET_LOADING:
 			return {
 				...state,
 				loading: !state.loading,
 			};
+
 		case RESET_USER:
 			return {
 				...state,
 				token: false,
 				user: false,
 				condominium: false,
+			};
+
+		case SET_ERROR:
+			return {
+				...state,
+				error: action.error,
+			};
+
+		case SET_SUCCESS:
+			return {
+				...state,
+				success: action.success,
 			};
 		default:
 			return state;

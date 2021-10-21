@@ -10,9 +10,9 @@ import Input from '../Input';
 
 export default function CreateUser({
 	formRef,
+	nameButton,
 	onSubmit,
 	onPress,
-	nameButton,
 	data,
 }) {
 	return (
@@ -104,7 +104,27 @@ export default function CreateUser({
 }
 
 CreateUser.propTypes = {
-	button: PropTypes.string,
-	onPress: PropTypes.func,
-	onSubmit: PropTypes.func,
-}.isRequired;
+	formRef: PropTypes.shape({
+		current: PropTypes.instanceOf(),
+	}).isRequired,
+	nameButton: PropTypes.string.isRequired,
+	onPress: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
+	data: PropTypes.shape({
+		email: PropTypes.string,
+		name: PropTypes.string,
+		nameSocial: PropTypes.string,
+		phone: PropTypes.string,
+		cpfcnpj: PropTypes.string,
+	}),
+};
+
+CreateUser.defaultProps = {
+	data: PropTypes.shape({
+		email: '',
+		name: '',
+		nameSocial: '',
+		phone: '',
+		cpfcnpj: '',
+	}),
+};

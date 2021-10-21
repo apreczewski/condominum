@@ -2,11 +2,18 @@ import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 import { View, Alert, ScrollView } from 'react-native';
 
+// import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { authActions } from '../../store/actions';
 import CreateUser from '../../components/CreateUser';
 import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
-export default function RegisterUserScreen() {
+function RegisterUserScreen({
+	/* onRegister */ onSetError /* onSetSuccess */,
+}) {
+	const dispatch = useDispatch();
 	const formRef = useRef(null);
 
 	const schema = Yup.object().shape({
@@ -35,21 +42,33 @@ export default function RegisterUserScreen() {
 	});
 
 	const handleSubmit = useCallback(async (data) => {
-		//	console.log(data);
+		// console.log('test >>> ', data);
+
 		try {
-			formRef.current?.setErrors({});
+			onSetError('');
 
 			await schema.validate(data, {
 				abortEarly: false,
 			});
+
+			// console.log('test > ', data);
+
+			dispatch(
+				authActions.registerUser({
+					email: 'tes88@gmail.com',
+					name: 'alex',
+					nameSocial: 'alex 88',
+					passwordConfirmation: 'alex1234',
+					cpfCnpj: '80482902000',
+					phone: '51985860599',
+					password: 'alex1234',
+					pessoa_tipo: 'fisica',
+				}),
+			);
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
-
-				formRef.current?.setErrors(errors);
-
-				// console.log(errors);
-
+				onSetError(errors);
 				return;
 			}
 
@@ -65,8 +84,28 @@ export default function RegisterUserScreen() {
 					nameButton={Strings.createAcont}
 					onSubmit={handleSubmit}
 					onPress={() => formRef.current?.submitForm()}
+					data={{}}
 				/>
 			</View>
 		</ScrollView>
 	);
 }
+
+RegisterUserScreen.propTypes = {
+	// onRegister: PropTypes.func.isRequired,
+	onSetError: PropTypes.func.isRequired,
+	// onSetSuccess: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	error: state.auth.error,
+	success: state.auth.success,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onRegister: (user) => dispatch(authActions.registerUser(user)),
+	onSetError: () => dispatch(authActions.setError('')),
+	onSetSuccess: () => dispatch(authActions.setSuccess('')),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterUserScreen);

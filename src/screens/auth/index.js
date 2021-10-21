@@ -29,16 +29,16 @@ export default function AuthScreen() {
 	const loading = useSelector(authSelectors.getLoading);
 	const formRef = useRef(null);
 
+	const schema = Yup.object().shape({
+		username: Yup.string()
+			.required('E-mail obrigatório')
+			.email('Digite um e-mail válido'),
+		password: Yup.string().required('Senha obrigatória'),
+	});
+
 	const handleSubmit = useCallback(async (data) => {
 		try {
 			formRef.current?.setErrors({});
-
-			const schema = Yup.object().shape({
-				username: Yup.string()
-					.required('E-mail obrigatório')
-					.email('Digite um e-mail válido'),
-				password: Yup.string().required('Senha obrigatória'),
-			});
 
 			await schema.validate(data, {
 				abortEarly: false,

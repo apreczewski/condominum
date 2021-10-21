@@ -7,6 +7,8 @@ import api from '../../../api/api';
 import * as types from './types';
 import * as selectors from './selectors';
 import * as RootNavigation from '../../../lib/utils/navigation';
+import { apiActions } from '../api';
+import { showToast } from '../../../lib/utils/funcitons';
 
 export function* login(payload) {
 	yield put(actions.setLoading());
@@ -56,6 +58,47 @@ export function* login(payload) {
 	}
 
 	yield put(actions.setLoading());
+}
+
+export function* registerUser(payload) {
+	// console.log('payload >> ', payload);
+
+	const { user } = payload;
+
+	const userData = {
+		email: user.email,
+		nome: user.name,
+		nome_social: user.nameSocial,
+		cpf_cnpj: user.cpfCnpj,
+		telefone: user.phone,
+		senha: user.password,
+		pessoa_tipo: user.pessoa_tipo,
+	};
+
+	yield put(apiActions.apiStart());
+
+	try {
+		const token = yield call(auth.loginApp, {
+			username: 'app1',
+			password: 'password',
+		});
+
+		api.defaults.headers.common['x-access-token'] = `${token.data.token}`;
+
+		const response = yield call(auth.registerUser, userData);
+
+		// console.log('response >> ', response.data);
+
+		if (response.data.status.status === '401') {
+			yield put(actions.setError(response.data.status.mensagem));
+		} else {
+			yield put(actions.setSuccess('Usuário cadastrado com sucesso!'));
+		}
+	} catch (error) {
+		showToast('error', 'Erro ao cadastrar o usuário.');
+	}
+
+	yield put(apiActions.apiEnd());
 }
 
 async function getToken() {
@@ -115,6 +158,7 @@ export function* logout() {
 
 export default function* watchUserAuthentication() {
 	yield takeLatest(types.LOGIN_USER, login);
+	yield takeLatest(types.REGISTER_USER, registerUser);
 	yield takeLatest(types.CHECK_USER, checkUser);
 	yield takeLatest(types.LOGOUT, logout);
 }
