@@ -2,7 +2,6 @@ import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 import { View, Alert, ScrollView } from 'react-native';
 
-// import { useDispatch } from 'react-redux';
 import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { authActions } from '../../store/actions';
@@ -42,8 +41,6 @@ function RegisterUserScreen({
 	});
 
 	const handleSubmit = useCallback(async (data) => {
-		// console.log('test >>> ', data);
-
 		try {
 			onSetError('');
 
@@ -51,17 +48,9 @@ function RegisterUserScreen({
 				abortEarly: false,
 			});
 
-			// console.log('test > ', data);
-
 			dispatch(
 				authActions.registerUser({
-					email: 'tes88@gmail.com',
-					name: 'alex',
-					nameSocial: 'alex 88',
-					passwordConfirmation: 'alex1234',
-					cpfCnpj: '80482902000',
-					phone: '51985860599',
-					password: 'alex1234',
+					...data,
 					pessoa_tipo: 'fisica',
 				}),
 			);
@@ -69,6 +58,7 @@ function RegisterUserScreen({
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
 				onSetError(errors);
+				// formRef.current?.setErrors(errors);
 				return;
 			}
 

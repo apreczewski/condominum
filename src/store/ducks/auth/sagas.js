@@ -61,8 +61,6 @@ export function* login(payload) {
 }
 
 export function* registerUser(payload) {
-	// console.log('payload >> ', payload);
-
 	const { user } = payload;
 
 	const userData = {
@@ -83,11 +81,11 @@ export function* registerUser(payload) {
 			password: 'password',
 		});
 
-		api.defaults.headers.common['x-access-token'] = `${token.data.token}`;
+		api.defaults.headers.common[
+			'x-access-token'
+		] = `${token.data.loginapp.token}`;
 
 		const response = yield call(auth.registerUser, userData);
-
-		// console.log('response >> ', response.data);
 
 		if (response.data.status.status === '401') {
 			yield put(actions.setError(response.data.status.mensagem));
