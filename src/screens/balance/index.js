@@ -38,6 +38,7 @@ function BalanceScreen({ onGet, loading, list }) {
 						onPress={() => {
 							RootNavigator.navigate('BalanceDetails', {
 								item: list[0],
+								id: list[0]?.id,
 							});
 						}}
 						item={list[0]}
@@ -61,7 +62,7 @@ function BalanceScreen({ onGet, loading, list }) {
 											RootNavigator.navigate(
 												'BalanceDetails',
 												{
-													item,
+													id: item?.id,
 												},
 											);
 										}}
@@ -81,7 +82,8 @@ BalanceScreen.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
-			data: PropTypes.string,
+			id: PropTypes.number,
+			data: PropTypes.number,
 			saldo_anterior: PropTypes.number,
 			pagamentos: PropTypes.number,
 			rebimentos: PropTypes.number,

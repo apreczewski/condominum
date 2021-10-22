@@ -3,7 +3,7 @@ import { Colors } from '../../../../lib/constants';
 
 const styles = StyleSheet.create({
 	card: {
-		alignItems: 'center',
+		alignItems: 'flex-end',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
 		flexDirection: 'row',
@@ -27,19 +27,20 @@ const styles = StyleSheet.create({
 	colLeft: {
 		alignItems: 'flex-start',
 		flexDirection: 'column',
-		width: '60%',
+		width: '40%',
 	},
+
 	colRight: {
 		alignItems: 'flex-end',
 		flexDirection: 'column',
-		height: 90,
 		justifyContent: 'flex-end',
-		width: '40%',
+		width: '60%',
 	},
+
 	h3: {
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
-		fontSize: 15,
+		fontSize: 14,
 	},
 });
 

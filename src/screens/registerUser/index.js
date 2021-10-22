@@ -30,6 +30,7 @@ function RegisterUserScreen({
 			.required('Digite um telefone'),
 
 		cpfCnpj: Yup.string()
+			.min(11, 'Muito curto!')
 			.max(20, 'Muito longo!')
 			.required('Digite CPF/CNPJ'),
 
@@ -58,7 +59,7 @@ function RegisterUserScreen({
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
 				onSetError(errors);
-				// formRef.current?.setErrors(errors);
+				formRef.current?.setErrors(errors);
 				return;
 			}
 

@@ -8,7 +8,6 @@ import * as types from './types';
 import * as selectors from './selectors';
 import * as RootNavigation from '../../../lib/utils/navigation';
 import { apiActions } from '../api';
-import { showToast } from '../../../lib/utils/funcitons';
 
 export function* login(payload) {
 	yield put(actions.setLoading());
@@ -70,6 +69,7 @@ export function* registerUser(payload) {
 		cpf_cnpj: user.cpfCnpj,
 		telefone: user.phone,
 		senha: user.password,
+		confirmacao_senha: user.passwordConfirmation,
 		pessoa_tipo: user.pessoa_tipo,
 	};
 
@@ -87,13 +87,24 @@ export function* registerUser(payload) {
 
 		const response = yield call(auth.registerUser, userData);
 
-		if (response.data.status.status === '401') {
-			yield put(actions.setError(response.data.status.mensagem));
-		} else {
-			yield put(actions.setSuccess('Usuário cadastrado com sucesso!'));
-		}
+		// console.log('>>>>', response.data.mensagem);
+
+		if (response.data?.usuario) {
+			Toast.show({
+				text1: 'Usuário criado com sucesso!',
+				type: 'success',
+			});
+			// redirecionar o usuário para tela de login
+		} else
+			Toast.show({
+				text1: response.data.mensagem.mensagem,
+				type: 'error',
+			});
 	} catch (error) {
-		showToast('error', 'Erro ao cadastrar o usuário.');
+		Toast.show({
+			text1: 'Erro ao realizar o login tente novamente!',
+			type: 'error',
+		});
 	}
 
 	yield put(apiActions.apiEnd());

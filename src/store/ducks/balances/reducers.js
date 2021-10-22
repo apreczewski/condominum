@@ -1,7 +1,8 @@
-import { SET_LIST } from './types';
+import { SET_LIST, SET_ITEM } from './types';
 
 const initialState = {
 	list: [],
+	item: {},
 };
 
 const balancesReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const balancesReducer = (state = initialState, action) => {
 			return {
 				...state,
 				list: action.data,
+			};
+
+		case SET_ITEM:
+			return {
+				...state,
+				item: action.data,
 			};
 
 		default:

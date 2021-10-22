@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
@@ -15,10 +15,12 @@ import styles from './styles';
 import DetailsItem from './components/DetailsItem';
 import { balancesActions } from '../../store/actions';
 
-function BalanceDetailsScreen({ onGet, /* loading, */ item }) {
+function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
+	const { id } = route.params;
+
 	useFocusEffect(
 		React.useCallback(() => {
-			onGet();
+			onGetItem(id);
 		}, []),
 	);
 
@@ -54,7 +56,9 @@ function BalanceDetailsScreen({ onGet, /* loading, */ item }) {
 	};
 
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balanceteDetalhe}
@@ -76,14 +80,10 @@ function BalanceDetailsScreen({ onGet, /* loading, */ item }) {
 
 				<View style={styles.col}>
 					{item &&
-						item.detalhes.map((i) => (
+						item.movto_contabil?.map((itemDetails) => (
 							<DetailsItem
-								key={i?.id}
-								id={i.id}
-								data={i.data}
-								despesasDiversas={i.despesas_diversas}
-								honorariosSindico={i.honorarios_sindico}
-								luzForca={i.luz_forca}
+								key={itemDetails?.id}
+								itemDetails={itemDetails}
 							/>
 						))}
 				</View>
@@ -93,21 +93,28 @@ function BalanceDetailsScreen({ onGet, /* loading, */ item }) {
 }
 
 BalanceDetailsScreen.propTypes = {
-	onGet: PropTypes.func.isRequired,
-	// loading: PropTypes.bool.isRequired,
+	route: PropTypes.shape({
+		params: PropTypes.shape({
+			id: PropTypes.number,
+		}),
+	}).isRequired,
+	onGetItem: PropTypes.func.isRequired,
+
+	loading: PropTypes.bool.isRequired,
 	item: PropTypes.shape({
-		data: PropTypes.string,
+		ano: PropTypes.string,
+		mes: PropTypes.string,
 		saldo_anterior: PropTypes.number,
-		pagamentos: PropTypes.number,
-		rebimentos: PropTypes.number,
-		saldo: PropTypes.number,
-		detalhes: PropTypes.arrayOf(
+		total_pagamento: PropTypes.number,
+		total_recebimento: PropTypes.number,
+		saldo_atual: PropTypes.number,
+		movto_contabil: PropTypes.arrayOf(
 			PropTypes.shape({
 				id: PropTypes.number,
 				data: PropTypes.string,
-				despesas_diversas: PropTypes.number,
-				honorarios_sindico: PropTypes.number,
-				luz_forca: PropTypes.number,
+				valor: PropTypes.number,
+				// honorarios_sindico: PropTypes.number,
+				// luz_forca: PropTypes.number,
 			}),
 		),
 	}).isRequired,
@@ -115,11 +122,11 @@ BalanceDetailsScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
 	loading: state.api.loading,
-	list: state.balances.list,
+	item: state.balances.item,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	onGet: (id) => dispatch(balancesActions.getList(id)),
+	onGetItem: (id) => dispatch(balancesActions.getItem(id)),
 });
 
 export default connect(
