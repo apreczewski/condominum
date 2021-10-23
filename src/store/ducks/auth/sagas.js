@@ -94,6 +94,7 @@ export function* registerUser(payload) {
 				text1: 'Usuário criado com sucesso!',
 				type: 'success',
 			});
+			RootNavigation.navigate('Auth');
 			// redirecionar o usuário para tela de login
 		} else
 			Toast.show({
