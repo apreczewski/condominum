@@ -54,8 +54,8 @@ function PublicationsScreen({ onGet, loading, list }) {
 
 				<View style={styles.list}>
 					<ItemEmphasis
-						item={list[1]}
-						onPress={() => handlePublication(list[1])}
+						item={list[0]}
+						onPress={() => handlePublication(list[0])}
 					/>
 
 					{list && (

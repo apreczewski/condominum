@@ -113,8 +113,6 @@ BalanceDetailsScreen.propTypes = {
 				id: PropTypes.number,
 				data: PropTypes.string,
 				valor: PropTypes.number,
-				// honorarios_sindico: PropTypes.number,
-				// luz_forca: PropTypes.number,
 			}),
 		),
 	}).isRequired,

@@ -9,7 +9,13 @@ export const setList = (data) => ({
 	data,
 });
 
+export const putLike = (data) => ({
+	type: types.PUT_LIKE,
+	data,
+});
+
 export default {
 	getList,
 	setList,
+	putLike,
 };

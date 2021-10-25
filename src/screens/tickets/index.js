@@ -3,11 +3,10 @@ import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import { useFocusEffect } from '@react-navigation/native';
+
 import { Colors, Pallete, Strings } from '../../lib/constants';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
-
 import * as RootNavigator from '../../lib/utils/navigation';
 import { Item } from './components/Item';
 import { ItemEmphasis } from './components/ItemEmphasis';
@@ -22,7 +21,9 @@ function TicketsScreen({ onGet, loading, list }) {
 	);
 
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.tickets}
@@ -39,7 +40,8 @@ function TicketsScreen({ onGet, loading, list }) {
 						item={list[0]}
 						onPress={() => {
 							RootNavigator.navigate('TicketDetails', {
-								item: list[0],
+								itemCurrent: list[0],
+								loading,
 							});
 						}}
 					/>
@@ -57,7 +59,7 @@ function TicketsScreen({ onGet, loading, list }) {
 										RootNavigator.navigate(
 											'TicketDetails',
 											{
-												item,
+												itemCurrent: item,
 												loading,
 											},
 										);
@@ -77,10 +79,10 @@ TicketsScreen.propTypes = {
 	loading: PropTypes.bool,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
-			value: PropTypes.number,
-			dueDate: PropTypes.string,
-			state: PropTypes.number,
-			name: PropTypes.string,
+			id: PropTypes.number,
+			valor: PropTypes.string,
+			vencimento: PropTypes.string,
+			situacao: PropTypes.string,
 		}),
 	).isRequired,
 };
@@ -90,6 +92,7 @@ TicketsScreen.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
+	loading: state.api.loading,
 	list: state.tickes.list,
 });
 

@@ -1,8 +1,8 @@
-import { SET_LIST } from './types';
-import data from './data.json';
+import { SET_LIST, SET_ITEM } from './types';
 
 const initialState = {
-	list: data || [],
+	list: [],
+	item: {},
 };
 
 const tickesReducer = (state = initialState, action) => {
@@ -11,6 +11,12 @@ const tickesReducer = (state = initialState, action) => {
 			return {
 				...state,
 				list: action.data,
+			};
+
+		case SET_ITEM:
+			return {
+				...state,
+				item: action.data,
 			};
 
 		default:

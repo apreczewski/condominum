@@ -4,18 +4,14 @@ import { Colors } from '../../../../lib/constants';
 const styles = (p) =>
 	StyleSheet.create({
 		bodyLeft: {
-			alignItems: 'flex-start',
-			flexDirection: 'column',
-			height: 110,
-			justifyContent: 'center',
+			height: '100%',
 			width: '80%',
 		},
 
 		bodyRight: {
-			alignItems: 'center',
-			flexDirection: 'row',
-			height: 110,
-			justifyContent: 'flex-end',
+			alignItems: 'flex-end',
+			justifyContent: 'center',
+			padding: 0,
 			width: '20%',
 		},
 

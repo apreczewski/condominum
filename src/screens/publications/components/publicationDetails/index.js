@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 
 import { ScrollView } from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
 import { Colors } from '../../../../lib/constants';
 import styles from './styles';
 
-function PublicationDetailsScreen({ data }) {
-	const [isLike, setIsLike] = useState(false);
+import { publicationsActions } from '../../../../store/actions';
 
-	const hangleIsLike = (status) => {
-		if (status) {
-			setIsLike(true);
-			return;
-		}
-		setIsLike(false);
+function PublicationDetailsScreen({ data }) {
+	const dispatch = useDispatch();
+
+	const hangleIsLike = (id, status) => {
+		dispatch(publicationsActions.putLike(id, status));
 	};
 
 	return (
@@ -33,10 +32,11 @@ function PublicationDetailsScreen({ data }) {
 				</View>
 			</ScrollView>
 
-			<TouchableOpacity onPress={() => hangleIsLike(!isLike)}>
+			<TouchableOpacity
+				onPress={() => hangleIsLike(data.id, !data.status_curtida)}>
 				<View style={styles.like}>
 					<AntDesign
-						name={isLike ? 'heart' : 'hearto'}
+						name={data.status_curtida ? 'heart' : 'hearto'}
 						size={30}
 						color={Colors.primary}
 					/>
@@ -50,6 +50,7 @@ PublicationDetailsScreen.propTypes = {
 	data: PropTypes.shape({
 		id: PropTypes.number,
 		imagem: PropTypes.string,
+		status_curtida: PropTypes.bool,
 		titulo: PropTypes.string,
 		texto_detalhado: PropTypes.string,
 		dt_pub_fim: PropTypes.string,
