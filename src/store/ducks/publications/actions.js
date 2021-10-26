@@ -9,13 +9,26 @@ export const setList = (data) => ({
 	data,
 });
 
-export const putLike = (data) => ({
-	type: types.PUT_LIKE,
+export const getItem = (id) => ({
+	type: types.GET_ITEM,
+	id,
+});
+
+export const setItem = (data) => ({
+	type: types.SET_ITEM,
 	data,
+});
+
+export const putLike = (id, status) => ({
+	type: types.PUT_LIKE,
+	id,
+	status,
 });
 
 export default {
 	getList,
 	setList,
+	getItem,
+	setItem,
 	putLike,
 };

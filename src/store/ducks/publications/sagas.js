@@ -23,6 +23,24 @@ export function* getList() {
 	yield put(apiActions.apiEnd());
 }
 
+export function* getItem(payload) {
+	const { id } = payload;
+
+	yield put(apiActions.apiStart());
+
+	try {
+		const response = yield call(publications.getPublication, id);
+
+		if (response.data) {
+			yield put(actions.setItem(response.data.publicacao));
+		}
+	} catch (error) {
+		showToast('error', `Erro ao buscar notificação id: ${id}`);
+	}
+
+	yield put(apiActions.apiEnd());
+}
+
 export function* putLike(id, status) {
 	yield put(apiActions.apiStart());
 
@@ -44,5 +62,6 @@ export function* putLike(id, status) {
 
 export default function* watchPublications() {
 	yield takeLatest(types.GET_LIST, getList);
+	yield takeLatest(types.GET_ITEM, getItem);
 	yield takeLatest(types.PUT_LIKE, putLike);
 }

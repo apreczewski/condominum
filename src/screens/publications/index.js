@@ -11,10 +11,11 @@ import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
 import { Item } from './components/Item';
 import { ItemEmphasis } from './components/ItemEmphasis';
-import { publicationsActions } from '../../store/actions';
-
 import styles from './styles';
 import PublicationDetailsScreen from './components/publicationDetails';
+
+import { publicationsActions } from '../../store/actions';
+import {} from '../../store/ducks/publications/reducers';
 
 function PublicationsScreen({ onGet, loading, list }) {
 	const [visible, setVisible] = useState(false);
@@ -36,11 +37,14 @@ function PublicationsScreen({ onGet, loading, list }) {
 
 	const handlePublication = useCallback((item) => {
 		setPublicationCurrent(item);
+
 		handleModal(!visible);
 	}, []);
 
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.publication}
@@ -55,22 +59,25 @@ function PublicationsScreen({ onGet, loading, list }) {
 				<View style={styles.list}>
 					<ItemEmphasis
 						item={list[0]}
-						onPress={() => handlePublication(list[0])}
+						onPress={
+							() => handlePublication(list[0].id) //
+						}
 					/>
 
 					{list && (
 						<FlatList
-							refreshControl={
-								<RefreshControl refreshing={loading} />
-							}
 							data={list}
-							keyExtractor={(item) => item?.id.toString()}
+							keyExtractor={(itemCurrent) =>
+								itemCurrent?.id.toString()
+							}
 							renderItem={({ item, index }) =>
 								index > 0 && (
 									<Item
 										item={item}
 										isLast={index === list.length - 1}
-										onPress={() => handlePublication(item)}
+										onPress={() =>
+											handlePublication(item.id)
+										}
 									/>
 								)
 							}
@@ -88,7 +95,7 @@ function PublicationsScreen({ onGet, loading, list }) {
 				onRequestClose={() => handleModal(!visible)}
 				style={styles.modal}>
 				{visible && (
-					<PublicationDetailsScreen data={publicationCurrent} />
+					<PublicationDetailsScreen idCurrent={publicationCurrent} />
 				)}
 			</Modal>
 		</ScrollView>

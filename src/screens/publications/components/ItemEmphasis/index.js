@@ -7,7 +7,10 @@ export const ItemEmphasis = ({ item, onPress, isLast }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles({ isLast }).container}>
 			<View style={styles({}).content}>
-				<Image style={styles({}).image} source={item?.imagem} />
+				<Image
+					style={styles({}).image}
+					source={{ uri: item?.imagem }}
+				/>
 				<Text style={styles({}).seeMore}>Ver mais...</Text>
 			</View>
 
@@ -24,9 +27,14 @@ ItemEmphasis.propTypes = {
 		imagem: PropTypes.string,
 		titulo: PropTypes.string,
 		dt_pub_fim: PropTypes.string,
-	}).isRequired,
+	}),
 };
 
 ItemEmphasis.defaultProps = {
 	isLast: false,
+	item: {
+		imagem: '',
+		titulo: '',
+		dt_pub_fim: '',
+	},
 };
