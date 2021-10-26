@@ -2,14 +2,18 @@ import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
 import { View, Text, Image, Alert, ScrollView } from 'react-native';
 import { Form } from '@unform/mobile';
+import { useDispatch } from 'react-redux';
 
 import { Images, Pallete, Strings } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
+import { forgotPasswordActions } from '../../store/actions';
 
 export default function ForgotPasswordScreen() {
+	const dispatch = useDispatch();
+
 	const formRef = useRef(null);
 
 	const handleSubmit = useCallback(async (data) => {
@@ -25,6 +29,8 @@ export default function ForgotPasswordScreen() {
 			await schema.validate(data, {
 				abortEarly: false,
 			});
+
+			dispatch(forgotPasswordActions.putForgotPassword(data.email));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);

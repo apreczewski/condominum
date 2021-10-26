@@ -7,5 +7,3 @@ export const getPublication = (id) =>
 
 export const putLike = ({ id, status }) =>
 	api.put(`put_curtida?idpublicacao=${id}&statusnovocurtida=${status}`);
-
-/* `put_curtida?idpublicacao=${id}&statusnovocurtida=${status}` */

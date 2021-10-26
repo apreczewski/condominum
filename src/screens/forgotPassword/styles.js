@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
 	logo: {
 		alignSelf: 'center',
 		height: 150,
-		marginTop: 80,
+		marginTop: 30,
 		resizeMode: 'contain',
 		width: 250,
 	},
@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto-Bold',
 		fontSize: 18,
 		justifyContent: 'center',
-		marginVertical: 40,
+		marginVertical: 30,
 		textAlign: 'center',
 		width: '100%',
 	},
 
 	viewButton: {
-		marginTop: 200,
+		marginTop: 150,
 	},
 });
 
