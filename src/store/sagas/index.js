@@ -6,6 +6,7 @@ import watchforgotPassword from '../ducks/forgotPassword/sagas';
 import watchTickes from '../ducks/tickes/sagas';
 import watchHelp from '../ducks/help/sagas';
 import watchCondominium from '../ducks/condominium/sagas';
+import watchDrawerNavigator from '../ducks/drawerNavigator/sagas';
 
 export default function* startForman() {
 	yield fork(watchUserAuthentication);
@@ -15,4 +16,5 @@ export default function* startForman() {
 	yield fork(watchTickes);
 	yield fork(watchHelp);
 	yield fork(watchCondominium);
+	yield fork(watchDrawerNavigator);
 }
