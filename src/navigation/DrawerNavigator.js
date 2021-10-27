@@ -17,7 +17,7 @@ import PublicationsScreen from '../screens/publications';
 import TicketScreen from '../screens/tickets';
 import BalanceScreen from '../screens/balance';
 import ReservesScreen from '../screens/reserves';
-import { CondominiumScreen } from '../screens/condominium';
+import CondominiumScreen from '../screens/condominium';
 import ReservesManagementScreen from '../screens/reservesManagement';
 import ProfileScreen from '../screens/profile';
 import ChangePasswordScreen from '../screens/changePassword';

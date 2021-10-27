@@ -6,6 +6,7 @@ import publicationReducer from '../ducks/publications';
 import forgotPasswordReducer from '../ducks/forgotPassword';
 import tickesReducer from '../ducks/tickes';
 import helpReducer from '../ducks/help';
+import condominiumReducer from '../ducks/condominium';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
 	forgotPassword: forgotPasswordReducer,
 	tickes: tickesReducer,
 	help: helpReducer,
+	condominium: condominiumReducer,
 });
 
 export default rootReducer;
