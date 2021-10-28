@@ -54,9 +54,9 @@ const Strings = {
 		'Informe o e-mail cadastrado! Você receberá neste e-mail orientações para trocar sua senha.',
 	createUserText:
 		'Informe seus dados para criarmos sua conta no app! Alguns dados são obrigatórios para que ocorra a identificação dos seus condomínios.',
-	copy: 'copiar',
+	copy: 'Copiar',
 	toShare: 'Compartilhar',
-	download: 'Baixar',
+	download: 'Atualizar',
 	valuesDetails: 'Valores detalhados',
 	dueDate: 'Vencimento:',
 	unlinkedAccountText:

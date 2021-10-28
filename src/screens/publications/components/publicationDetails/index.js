@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Pressable } from 'react-native';
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -10,7 +10,7 @@ import { Colors } from '../../../../lib/constants';
 import styles from './styles';
 import { publicationsActions } from '../../../../store/actions';
 
-function PublicationDetailsScreen({ onGetItem, idCurrent, item }) {
+function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 	const dispatch = useDispatch();
 
 	useFocusEffect(
@@ -26,27 +26,40 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item }) {
 
 	return (
 		<View style={styles.container}>
-			<View>
-				<Image source={{ uri: item?.imagem }} style={styles.image} />
-			</View>
-			<ScrollView>
-				<View style={styles.description}>
-					<Text style={styles.title}>{item?.titulo}</Text>
-					<Text style={styles.subTitle}>{item?.texto_detalhado}</Text>
-					<Text style={styles.date}>{item?.dt_pub_fim}</Text>
-				</View>
-			</ScrollView>
+			<View style={styles.content}>
+				<Pressable style={styles.close} onPress={close}>
+					<AntDesign name="close" size={35} color={Colors.tertiary} />
+				</Pressable>
+				<Image
+					source={{ uri: item?.imagem }}
+					resizeMode="cover"
+					style={styles.image}
+				/>
 
-			<TouchableOpacity
-				onPress={() => hangleIsLike(item.id, item.status_curtida)}>
-				<View style={styles.like}>
-					<AntDesign
-						name={item.status_curtida ? 'heart' : 'hearto'}
-						size={30}
-						color={Colors.primary}
-					/>
-				</View>
-			</TouchableOpacity>
+				<ScrollView
+					showsVerticalScrollIndicator={false}
+					style={styles.maxSize}
+					contentContainerStyle={styles.viewText}>
+					<View style={styles.description}>
+						<Text style={styles.title}>{item?.titulo}</Text>
+						<Text style={styles.subTitle}>
+							{item?.texto_detalhado}
+						</Text>
+						<Text style={styles.date}>{item?.dt_pub_fim}</Text>
+					</View>
+				</ScrollView>
+
+				<TouchableOpacity
+					onPress={() => hangleIsLike(item.id, item.status_curtida)}>
+					<View style={styles.like}>
+						<AntDesign
+							name={item.status_curtida ? 'heart' : 'hearto'}
+							size={30}
+							color={Colors.primary}
+						/>
+					</View>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 }
@@ -54,6 +67,7 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item }) {
 PublicationDetailsScreen.propTypes = {
 	onGetItem: PropTypes.func.isRequired,
 	idCurrent: PropTypes.number.isRequired,
+	close: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		id: PropTypes.number,
 		imagem: PropTypes.string,

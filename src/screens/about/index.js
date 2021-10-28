@@ -8,7 +8,7 @@ import { Pallete, General } from '../../lib/constants';
 import styles from './styles';
 
 const DESCRIPTION =
-	'Está na sua mão economizar. MultiMercados oferece descontos e ofertas exclusivas, entre outras facilidades para o seu dia a dia.';
+	'Faça suas reservas, fique a par do que está acontecendo em seu condomínio e acompanhe seus boletos. O aplicativo de gestão de Condomínios facilita o seu dia a dia.';
 
 function AboutScreen() {
 	const { version } = Constants.manifest;

@@ -8,11 +8,6 @@ const styles = StyleSheet.create({
 	list: {
 		paddingTop: 20,
 	},
-
-	modal: {
-		alignItems: 'flex-end',
-		margin: 0,
-	},
 });
 
 export default styles;

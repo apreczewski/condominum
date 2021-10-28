@@ -24,10 +24,12 @@ export const ItemSchedules = () => (
 
 			<Text style={styles.text}>Nenhum agendamento realizado.</Text>
 
-			<View style={styles.rowForLeft}>
+			<TouchableOpacity
+				style={styles.rowForLeft}
+				onPress={() => Navigation.navigate('ReserveAdd')}>
 				<Feather name="plus" size={25} color={Colors.primary} />
 				<Text style={styles.baseboard}>Novo agendamento</Text>
-			</View>
+			</TouchableOpacity>
 		</View>
 
 		<TouchableOpacity

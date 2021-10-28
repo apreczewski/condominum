@@ -86,16 +86,18 @@ function PublicationsScreen({ onGet, loading, list }) {
 				</View>
 			</View>
 			<Modal
-				backdropOpacity={0.6}
+				backdropOpacity={0.2}
 				isVisible={visible}
 				backdropTransitionInTiming={800}
 				backdropTransitionOutTiming={200}
 				animationInTiming={500}
 				onBackdropPress={() => handleModal(!visible)}
-				onRequestClose={() => handleModal(!visible)}
-				style={styles.modal}>
+				onRequestClose={() => handleModal(!visible)}>
 				{visible && (
-					<PublicationDetailsScreen idCurrent={publicationCurrent} />
+					<PublicationDetailsScreen
+						close={() => setVisible(false)}
+						idCurrent={publicationCurrent}
+					/>
 				)}
 			</Modal>
 		</ScrollView>

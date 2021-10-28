@@ -64,7 +64,7 @@ export default function ProfileScreen() {
 				<CreateUser
 					formRef={formRef}
 					nameButton={Strings.profile}
-					onSubmit={handleSubmit}
+					onSubmit={handleSubmit()}
 					onPress={() => formRef.current?.submitForm()}
 					data={{
 						email: 'joao@gmail.com',

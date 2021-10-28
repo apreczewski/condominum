@@ -23,6 +23,7 @@ import { HelpDetailsScreen } from '../screens/helpDetails';
 
 import ForgotPasswordScreen from '../screens/forgotPassword';
 import BalanceDetailsScreen from '../screens/balanceDetails';
+import BalanceScreen from '../screens/balance';
 
 import { Colors, Images } from '../lib/constants';
 
@@ -113,6 +114,26 @@ function MainStackNavigator() {
 						<Stack.Screen
 							name="TicketDetails"
 							component={TicketDetailsScreen}
+							options={({ navigation }) => ({
+								headerTitle: () => (
+									<Image source={Images.logoSmall} />
+								),
+								headerTitleAlign: 'center',
+								headerLeft: () => (
+									<Entypo
+										name="chevron-thin-left"
+										size={24}
+										color={Colors.secondary}
+										onPress={() => navigation.goBack()}
+									/>
+								),
+								headerLeftContainerStyle: { marginLeft: 5 },
+							})}
+						/>
+
+						<Stack.Screen
+							name="Balance"
+							component={BalanceScreen}
 							options={({ navigation }) => ({
 								headerTitle: () => (
 									<Image source={Images.logoSmall} />

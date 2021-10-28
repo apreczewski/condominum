@@ -34,7 +34,7 @@ import { Colors, Images, Metrics } from '../lib/constants';
 
 const Drawer = createDrawerNavigator();
 
-function MainDrawerNavigator({ /* loading */ onGet, list }) {
+function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 	useFocusEffect(
 		React.useCallback(() => {
 			onGet();
@@ -90,24 +90,22 @@ function MainDrawerNavigator({ /* loading */ onGet, list }) {
 					/>
 				))} */}
 
-			{list[0].status && (
-				<Drawer.Screen
-					name="Home"
-					component={HomeScreen}
-					options={{
-						title: 'Home',
-						drawerIcon: ({ focused, size }) => (
-							<Ionicons
-								name="md-home"
-								size={size}
-								color={
-									focused ? Colors.primary : Colors.secondary
-								}
-							/>
-						),
-					}}
-				/>
-			)}
+			{/* {list[0].status && ( */}
+			<Drawer.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{
+					title: 'Home',
+					drawerIcon: ({ focused, size }) => (
+						<Ionicons
+							name="md-home"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
+			{/* )} */}
 
 			<Drawer.Screen
 				name="Publications"

@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	label: {
+		flex: 1,
 		fontFamily: 'Roboto-Regular',
 		fontSize: 18,
 		marginLeft: 15,

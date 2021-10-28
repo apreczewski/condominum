@@ -11,15 +11,21 @@ const styles = StyleSheet.create({
 	left: {
 		alignItems: 'center',
 		flex: 0.9,
-		flexDirection: 'row',
+		flexDirection: 'column',
 	},
 	right: {
 		alignItems: 'flex-end',
 		flex: 0.1,
 	},
-	title: {
+	text: {
 		...Pallete.inputRegular,
 		color: Colors.secondary,
+		width: '90%',
+	},
+	title: {
+		...Pallete.h5Secondary,
+		color: Colors.secondary,
+		marginBottom: 10,
 		width: '90%',
 	},
 });
