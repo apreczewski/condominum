@@ -77,7 +77,7 @@ export default function AuthScreen() {
 							label="Senha"
 							placeholder="Senha"
 							labelError="Senha incorreta!"
-							secureTextEntry
+							passwordProps="password"
 							returnKeyType="send"
 							onSubmitEditing={() =>
 								formRef.current?.submitForm()

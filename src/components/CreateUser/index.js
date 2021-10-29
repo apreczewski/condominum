@@ -79,7 +79,7 @@ export default function CreateUser({
 					label="Nova Senha"
 					labelError="Senha não atende critérios minimos"
 					placeholder="Nova Senha - mínimo 6 caracteres"
-					secureTextEntry
+					passwordProps="password"
 				/>
 
 				<Input
@@ -87,7 +87,7 @@ export default function CreateUser({
 					label="Confirme a nova senha"
 					labelError="Senha não confere com a nova senha"
 					placeholder="Confirme a nova senha"
-					secureTextEntry
+					passwordProps="password"
 					returnKeyType="send"
 					onSubmitEditing={onPress}
 				/>
