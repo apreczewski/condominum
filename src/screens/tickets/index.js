@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
+import { View, ScrollView, FlatList, RefreshControl, Text } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -36,15 +36,19 @@ function TicketsScreen({ onGet, loading, list }) {
 				</TitleSubTitleWithIcon>
 
 				<View style={styles.list}>
-					<ItemEmphasis
-						item={list[0]}
-						onPress={() => {
-							RootNavigator.navigate('TicketDetails', {
-								itemCurrent: list[0],
-								loading,
-							});
-						}}
-					/>
+					{list.length ? (
+						<ItemEmphasis
+							item={list[0]}
+							onPress={() => {
+								RootNavigator.navigate('TicketDetails', {
+									itemCurrent: list[0],
+									loading,
+								});
+							}}
+						/>
+					) : (
+						<Text style={styles.row}>Você não possui boletos!</Text>
+					)}
 
 					<FlatList
 						refreshControl={<RefreshControl refreshing={loading} />}

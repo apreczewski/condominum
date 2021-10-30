@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
-import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
+import { View, ScrollView, FlatList, RefreshControl, Text } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
 import * as RootNavigator from '../../lib/utils/navigation';
@@ -34,18 +34,22 @@ function BalanceScreen({ onGet, loading, list }) {
 					/>
 				</TitleSubTitleWithIcon>
 				<View style={styles.body}>
-					<ItemEmphasis
-						onPress={() => {
-							RootNavigator.navigate('BalanceDetails', {
-								item: list[0],
-								id: list[0]?.id,
-							});
-						}}
-						item={list[0]}
-						iconName="arrow-forward-ios"
-						iconColor={Colors.secondary}
-						iconSize={30}
-					/>
+					{list.length ? (
+						<ItemEmphasis
+							onPress={() => {
+								RootNavigator.navigate('BalanceDetails', {
+									item: list[0],
+									id: list[0]?.id,
+								});
+							}}
+							item={list[0]}
+							iconName="arrow-forward-ios"
+							iconColor={Colors.secondary}
+							iconSize={30}
+						/>
+					) : (
+						<Text>Você não possui balancetes!</Text>
+					)}
 
 					{list && (
 						<FlatList
