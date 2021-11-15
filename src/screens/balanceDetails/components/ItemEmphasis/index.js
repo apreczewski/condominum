@@ -15,7 +15,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 				<Text style={styles.text}>{`${item.mes}/${item.ano}`}</Text>
 
 				<View style={styles.textInfo}>
-					<Text style={Pallete.paragraph}>Saldo Anterior</Text>
+					<Text style={Pallete.paragraph}>Saldo Anterior:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
 						value={item.saldo_anterior}
@@ -23,7 +23,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 				</View>
 
 				<View style={styles.textInfo}>
-					<Text style={Pallete.paragraph}>Pagamentos</Text>
+					<Text style={Pallete.paragraph}>Pagamentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
 						value={item.total_pagamento}
@@ -31,7 +31,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 				</View>
 
 				<View style={styles.textInfo}>
-					<Text style={Pallete.paragraph}>Recebimentos</Text>
+					<Text style={Pallete.paragraph}>Recebimentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
 						value={item.total_recebimento}
@@ -39,7 +39,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 				</View>
 
 				<View style={styles.label}>
-					<Text style={Pallete.paragraph}>Saldo</Text>
+					<Text style={Pallete.paragraph}>Saldo:</Text>
 
 					<ValueFormat
 						style={Pallete.paragraph}
@@ -55,6 +55,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 						color={Colors.primary}
 					/>
 					<Text style={styles.textShare}>Compartilhar</Text>
+					<Text style={styles.textShare}>pdf</Text>
 				</View>
 			</View>
 		</View>
@@ -64,11 +65,20 @@ export const ItemEmphasis = ({ onPress, item }) => (
 ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
-		mes: PropTypes.string,
-		ano: PropTypes.string,
-		saldo_anterior: PropTypes.number,
-		total_pagamento: PropTypes.number,
-		total_recebimento: PropTypes.number,
-		saldo_atual: PropTypes.number,
+		mes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		ano: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		saldo_anterior: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		total_pagamento: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		total_recebimento: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		saldo_atual: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	}).isRequired,
 };

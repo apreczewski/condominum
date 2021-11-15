@@ -21,11 +21,11 @@ export function ValueFormat({ value, style }) {
 }
 
 ValueFormat.propTypes = {
-	value: PropTypes.number,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	style: PropTypes.shape({}),
 };
 
 ValueFormat.defaultProps = {
-	value: 0,
+	value: 0 || '',
 	style: {},
 };

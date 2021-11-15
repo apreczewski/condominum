@@ -65,12 +65,18 @@ Item.propTypes = {
 	isLast: PropTypes.bool,
 	item: PropTypes.shape({
 		id: PropTypes.number,
-		valor: PropTypes.string,
+		valor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		situacao: PropTypes.string,
 		vencimento: PropTypes.string,
-	}).isRequired,
+	}),
 };
 
 Item.defaultProps = {
 	isLast: false,
+	item: {
+		id: 0,
+		valor: '' || 0,
+		situacao: '',
+		vencimento: '',
+	},
 };

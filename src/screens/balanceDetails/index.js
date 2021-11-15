@@ -102,17 +102,29 @@ BalanceDetailsScreen.propTypes = {
 
 	loading: PropTypes.bool.isRequired,
 	item: PropTypes.shape({
-		ano: PropTypes.string,
-		mes: PropTypes.string,
-		saldo_anterior: PropTypes.number,
-		total_pagamento: PropTypes.number,
-		total_recebimento: PropTypes.number,
-		saldo_atual: PropTypes.number,
+		ano: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		mes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		saldo_anterior: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		total_pagamento: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		total_recebimento: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		saldo_atual: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		movto_contabil: PropTypes.arrayOf(
 			PropTypes.shape({
 				id: PropTypes.number,
 				data: PropTypes.string,
-				valor: PropTypes.number,
+				valor: PropTypes.oneOfType([
+					PropTypes.string,
+					PropTypes.number,
+				]),
 			}),
 		),
 	}).isRequired,

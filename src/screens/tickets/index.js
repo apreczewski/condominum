@@ -84,7 +84,7 @@ TicketsScreen.propTypes = {
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
 			id: PropTypes.number,
-			valor: PropTypes.string,
+			valor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 			vencimento: PropTypes.string,
 			situacao: PropTypes.string,
 		}),

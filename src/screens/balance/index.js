@@ -88,7 +88,10 @@ BalanceScreen.propTypes = {
 		PropTypes.shape({
 			id: PropTypes.number,
 			data: PropTypes.number,
-			saldo_anterior: PropTypes.number,
+			saldo_anterior: PropTypes.oneOfType([
+				PropTypes.string,
+				PropTypes.number,
+			]),
 			pagamentos: PropTypes.number,
 			rebimentos: PropTypes.number,
 			saldo: PropTypes.number,

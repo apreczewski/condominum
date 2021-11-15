@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		justifyContent: 'space-between',
 		marginTop: 10,
-		paddingHorizontal: 30,
+		paddingHorizontal: 10,
 		paddingVertical: 10,
-		width: 200,
+		width: 220,
 	},
 
 	text: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		width: '100%',
+		width: '80%',
 	},
 
 	textSeeMore: {
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
 		color: Colors.primary,
 		fontSize: 10,
 		fontWeight: 'bold',
-		marginTop: 10,
 	},
 });
 

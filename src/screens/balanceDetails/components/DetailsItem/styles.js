@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-end',
 		backgroundColor: Colors.white,
 		borderRadius: 5,
-		flexDirection: 'row',
+		flexDirection: 'column',
 		justifyContent: 'space-between',
 		marginTop: 10,
 		paddingHorizontal: 15,
@@ -17,24 +17,25 @@ const styles = StyleSheet.create({
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
 		fontSize: 20,
+		marginBottom: 7,
+		width: '100%',
 	},
 	col: {
-		alignItems: 'flex-start',
-		flexDirection: 'column',
+		flexDirection: 'row',
 		width: '100%',
 	},
 
 	colLeft: {
 		alignItems: 'flex-start',
 		flexDirection: 'column',
-		width: '40%',
+		width: '50%',
 	},
 
 	colRight: {
 		alignItems: 'flex-end',
 		flexDirection: 'column',
 		justifyContent: 'flex-end',
-		width: '60%',
+		width: '50%',
 	},
 
 	h3: {

@@ -73,7 +73,7 @@ ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
 		id: PropTypes.number,
-		valor: PropTypes.string,
+		valor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		situacao: PropTypes.string,
 		vencimento: PropTypes.string,
 	}),

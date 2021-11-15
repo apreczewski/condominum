@@ -153,7 +153,10 @@ TicketDetailsScreen.propTypes = {
 		params: PropTypes.shape({
 			itemCurrent: PropTypes.shape({
 				id: PropTypes.number,
-				valor: PropTypes.string,
+				valor: PropTypes.oneOfType([
+					PropTypes.string,
+					PropTypes.number,
+				]),
 				vencimento: PropTypes.string,
 				situacao: PropTypes.string,
 			}),
@@ -170,7 +173,10 @@ TicketDetailsScreen.propTypes = {
 		desepesa: PropTypes.arrayOf(
 			PropTypes.shape({
 				descricao: PropTypes.string,
-				valor: PropTypes.string,
+				valor: PropTypes.oneOfType([
+					PropTypes.string,
+					PropTypes.number,
+				]),
 			}),
 		),
 	}).isRequired,
