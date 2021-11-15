@@ -14,6 +14,7 @@ export default function CreateUser({
 	onSubmit,
 	onPress,
 	data,
+	clearErrors,
 }) {
 	return (
 		<View>
@@ -29,6 +30,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="email-address"
 					placeholder="E-mail"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -40,6 +42,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="text"
 					placeholder="Nome Completo"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -51,6 +54,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="text"
 					placeholder="Nome com o qual deseja ser tratado"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -61,6 +65,7 @@ export default function CreateUser({
 					labelError="Digite um telefone"
 					keyboardType="phone-pad"
 					placeholder="(   ) ___________"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -72,6 +77,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="number-pad"
 					placeholder="CPF/CNPJ"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -80,6 +86,7 @@ export default function CreateUser({
 					labelError="Senha não atende critérios minimos"
 					placeholder="Nova Senha - mínimo 6 caracteres"
 					passwordProps="password"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -90,6 +97,7 @@ export default function CreateUser({
 					passwordProps="password"
 					returnKeyType="send"
 					onSubmitEditing={onPress}
+					clearErrors={clearErrors}
 				/>
 
 				<View style={styles.viewButton}>
@@ -117,6 +125,7 @@ CreateUser.propTypes = {
 		phone: PropTypes.string,
 		cpfcnpj: PropTypes.string,
 	}),
+	clearErrors: PropTypes.func,
 };
 
 CreateUser.defaultProps = {
@@ -127,4 +136,5 @@ CreateUser.defaultProps = {
 		phone: '',
 		cpfcnpj: '',
 	}),
+	clearErrors: () => {},
 };

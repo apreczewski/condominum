@@ -58,6 +58,10 @@ export default function ProfileScreen() {
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
@@ -73,6 +77,7 @@ export default function ProfileScreen() {
 						phone: '51 985455260',
 						cpfcnpj: '012.451.545-55',
 					}}
+					clearErrors={handleErros}
 				/>
 			</View>
 		</ScrollView>

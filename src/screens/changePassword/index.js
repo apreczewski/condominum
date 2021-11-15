@@ -47,6 +47,10 @@ export default function ChangePasswordScreen() {
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : null}>
@@ -61,6 +65,7 @@ export default function ChangePasswordScreen() {
 							labelError="Senha não atende critérios minimos"
 							placeholder="Nova Senha - mínimo 6 caracteres"
 							passwordProps="password"
+							clearErrors={handleErros}
 						/>
 
 						<Input
@@ -73,6 +78,7 @@ export default function ChangePasswordScreen() {
 							onSubmitEditing={() =>
 								formRef.current?.submitForm()
 							}
+							clearErrors={handleErros}
 						/>
 						<View style={styles.viewButton}>
 							<Button

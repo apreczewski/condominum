@@ -4,10 +4,8 @@ import { General, Pallete } from '../../lib/constants';
 
 const styles = StyleSheet.create({
 	container: {
-		...General.container,
-		backgroundColor: Colors.white,
 		flex: 1,
-		height: '100vh',
+		justifyContent: 'center',
 	},
 
 	description: {

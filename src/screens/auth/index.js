@@ -54,6 +54,10 @@ export default function AuthScreen() {
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : null}>
@@ -70,6 +74,7 @@ export default function AuthScreen() {
 							autoCapitalize="none"
 							keyboardType="email-address"
 							placeholder="E-mail"
+							clearErrors={handleErros}
 						/>
 
 						<Input
@@ -82,6 +87,7 @@ export default function AuthScreen() {
 							onSubmitEditing={() =>
 								formRef.current?.submitForm()
 							}
+							clearErrors={handleErros}
 						/>
 						<View style={styles.viewButtonForm}>
 							<Button

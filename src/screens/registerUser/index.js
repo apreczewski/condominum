@@ -67,6 +67,10 @@ function RegisterUserScreen({
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
@@ -76,6 +80,7 @@ function RegisterUserScreen({
 					onSubmit={handleSubmit}
 					onPress={() => formRef.current?.submitForm()}
 					data={{}}
+					clearErrors={handleErros}
 				/>
 			</View>
 		</ScrollView>

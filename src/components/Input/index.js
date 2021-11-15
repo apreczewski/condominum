@@ -13,6 +13,7 @@ function Input({
 	label,
 	labelError,
 	passwordProps,
+	clearErrors,
 	...rest
 }) {
 	const inputElementRef = useRef(null);
@@ -44,6 +45,8 @@ function Input({
 
 	const [hidePass, setHidePass] = useState(true);
 
+	// const [isFocused, setIsFocused] = useState(false);
+
 	return (
 		<>
 			{label && <Text style={styles.label}>{label}</Text>}
@@ -58,6 +61,7 @@ function Input({
 					}}
 					secureTextEntry={passwordProps === 'password' && hidePass}
 					{...rest}
+					onFocus={() => clearErrors()}
 				/>
 
 				{passwordProps === 'password' && (
@@ -95,6 +99,7 @@ Input.propTypes = {
 	labelError: PropTypes.string,
 	valueCurrent: PropTypes.string,
 	passwordProps: PropTypes.string,
+	clearErrors: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -103,4 +108,5 @@ Input.defaultProps = {
 	labelError: '',
 	valueCurrent: '',
 	passwordProps: '',
+	clearErrors: () => {},
 };

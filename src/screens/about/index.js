@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import Constants from 'expo-constants';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import logoClass from '../../assets/images/logo_class.png';
 import { Pallete, General } from '../../lib/constants';
@@ -14,8 +13,8 @@ function AboutScreen() {
 	const { version } = Constants.manifest;
 	const textVersion = `Versão ${version}`;
 	return (
-		<ScrollView vertical>
-			<View style={Pallete.screen}>
+		<View style={Pallete.screen}>
+			<View style={styles.container}>
 				<Text style={styles.description}>{DESCRIPTION}</Text>
 				<View style={styles.middle}>
 					<Image
@@ -36,7 +35,7 @@ function AboutScreen() {
 				</View>
 				<Text style={styles.version}>{textVersion}</Text>
 			</View>
-		</ScrollView>
+		</View>
 	);
 }
 

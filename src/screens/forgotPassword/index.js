@@ -44,6 +44,10 @@ export default function ForgotPasswordScreen() {
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
@@ -61,6 +65,7 @@ export default function ForgotPasswordScreen() {
 						placeholder="E-mail"
 						returnKeyType="send"
 						onSubmitEditing={() => formRef.current?.submitForm()}
+						clearErrors={handleErros}
 					/>
 					<View style={styles.viewButton}>
 						<Button
