@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 import { MaterialIcons } from '@expo/vector-icons';
+
+import Toast from 'react-native-root-toast';
 
 import { useFocusEffect } from '@react-navigation/native';
 import { connect } from 'react-redux';
@@ -54,6 +56,20 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 				// console.log(JSON.stringify(err));
 			});
 	};
+
+	useEffect(() => {
+		Toast.show(
+			'Os dados do balancete são disponibilizados apenas para acompanhamento. Estão sujeitos a alterações, até que se encerre o exercício contábil.',
+			{
+				duration: Toast.durations.SHORT,
+				position: Toast.positions.BOTTOM,
+				animation: true,
+				hideOnPress: true,
+				backgroundColor: Colors.background,
+				textColor: Colors.secondary,
+			},
+		);
+	}, []);
 
 	return (
 		<ScrollView
