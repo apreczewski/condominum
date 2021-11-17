@@ -61,7 +61,7 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 		Toast.show(
 			'Os dados do balancete são disponibilizados apenas para acompanhamento. Estão sujeitos a alterações, até que se encerre o exercício contábil.',
 			{
-				duration: 3000,
+				duration: 8000,
 				position: Toast.positions.BOTTOM,
 				animation: true,
 				hideOnPress: true,
