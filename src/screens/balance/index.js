@@ -22,7 +22,9 @@ function BalanceScreen({ onGet, loading, list }) {
 	);
 
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balancete}
@@ -53,9 +55,6 @@ function BalanceScreen({ onGet, loading, list }) {
 
 					{list && (
 						<FlatList
-							refreshControl={
-								<RefreshControl refreshing={loading} />
-							}
 							data={list}
 							keyExtractor={(item) => item?.id.toString()}
 							renderItem={({ item, index }) =>

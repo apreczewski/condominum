@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		elevation: 3,
 		flexDirection: 'column',
-
 		flex: 1,
+
 		justifyContent: 'flex-end',
 		padding: 13,
 		paddingHorizontal: 15,

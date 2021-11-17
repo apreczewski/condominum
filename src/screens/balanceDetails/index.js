@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, ScrollView, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
@@ -57,25 +57,28 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 			});
 	};
 
-	useEffect(() => {
+	const handleShowToast = () => {
 		Toast.show(
 			'Os dados do balancete são disponibilizados apenas para acompanhamento. Estão sujeitos a alterações, até que se encerre o exercício contábil.',
 			{
-				duration: Toast.durations.SHORT,
+				duration: 3000,
 				position: Toast.positions.BOTTOM,
 				animation: true,
 				hideOnPress: true,
 				backgroundColor: Colors.background,
 				textColor: Colors.secondary,
+				visible: true,
 			},
 		);
-	}, []);
+	};
+
+	useFocusEffect(() => handleShowToast());
 
 	return (
-		<ScrollView
-			vertical
-			refreshControl={<RefreshControl refreshing={loading} />}>
-			<View style={Pallete.screen}>
+		<View style={Pallete.screen}>
+			<ScrollView
+				vertical
+				refreshControl={<RefreshControl refreshing={loading} />}>
 				<TitleSubTitleWithIcon
 					title={Strings.balanceteDetalhe}
 					subTitle={Strings.balanceteDetalheDescription}>
@@ -103,8 +106,8 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 							/>
 						))}
 				</View>
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</View>
 	);
 }
 
