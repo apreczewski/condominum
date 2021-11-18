@@ -18,6 +18,8 @@ import DetailsItem from './components/DetailsItem';
 import { balancesActions } from '../../store/actions';
 
 function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
+	// const { itemCurrent, setItemCurrent } = useState(item);
+
 	const { id } = route.params;
 
 	useFocusEffect(
@@ -71,6 +73,16 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 			},
 		);
 	};
+
+	// const handleChangeItem = (balancete) => {
+	// 	const newBalancete = balancete.map(balance => {
+	// 		balancete.forEach(element => {
+	// 			if(balance.data === element.data){
+	// 				return element.descri
+	// 			}
+	// 		});
+	// 	})
+	// }
 
 	useFocusEffect(() => handleShowToast());
 

@@ -56,6 +56,13 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 
+	likeText: {
+		color: Colors.primary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 20,
+		marginLeft: 14,
+	},
+
 	maxSize: {
 		maxHeight: Metrics.screenHeight - (size + 100),
 	},

@@ -25,7 +25,10 @@ export function ItemEmphasis({ onPress, item }) {
 	return (
 		<Pressable onPress={onPress}>
 			<View style={styles({}).container}>
-				<ValueFormat style={styles({}).text} value={item?.valor} />
+				<ValueFormat
+					style={styles({}).text}
+					value={parseFloat(item?.valor)}
+				/>
 
 				<View style={styles({}).row}>
 					<Text style={styles({}).pay}>Vencimento</Text>

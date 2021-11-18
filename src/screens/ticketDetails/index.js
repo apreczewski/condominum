@@ -8,6 +8,11 @@ import {
 	RefreshControl,
 	FlatList,
 } from 'react-native';
+// import Clipboard from '@react-native-community/clipboard';
+import Toast from 'react-native-root-toast';
+
+import * as Clipboard from 'expo-clipboard';
+
 import { FontAwesome, EvilIcons, Feather } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
@@ -63,6 +68,31 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 			});
 	};
 
+	const handleCode = (code) => {
+		if (code.acao_copia === 'sim') {
+			Clipboard.setString(code.codigo_barras);
+			Toast.show('Copiado', {
+				duration: 3000,
+				position: Toast.positions.BOTTOM,
+				animation: true,
+				hideOnPress: true,
+				backgroundColor: Colors.background,
+				textColor: Colors.secondary,
+				visible: true,
+			});
+		} else {
+			Toast.show('Boleto não disponível', {
+				duration: 3000,
+				position: Toast.positions.BOTTOM,
+				animation: true,
+				hideOnPress: true,
+				backgroundColor: Colors.background,
+				textColor: Colors.secondary,
+				visible: true,
+			});
+		}
+	};
+
 	return (
 		<ScrollView
 			vertical
@@ -81,8 +111,7 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 				<ItemEmphasis onPress={openShareAsync} item={itemCurrent} />
 
 				<View style={styles.row}>
-					<TouchableOpacity
-						onPress={() => RootNavigator.navigate('')}>
+					<TouchableOpacity onPress={() => handleCode(item)}>
 						<View style={styles.square}>
 							<FontAwesome
 								name="barcode"
@@ -136,7 +165,7 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 									</Text>
 									<ValueFormat
 										style={styles.value}
-										value={desepesa?.valor}
+										value={parseFloat(desepesa?.valor)}
 									/>
 								</View>
 							)}

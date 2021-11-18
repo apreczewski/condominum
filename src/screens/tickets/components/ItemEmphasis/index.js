@@ -24,7 +24,10 @@ export const ItemEmphasis = ({ onPress, item }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles({}).container}>
 			<View style={styles({}).bodyLeft}>
-				<ValueFormat style={styles({}).h1} value={item?.valor} />
+				<ValueFormat
+					style={styles({}).h1}
+					value={parseFloat(item?.valor)}
+				/>
 
 				<View style={styles({}).row}>
 					<Text style={styles({}).h3}>Vencimento:</Text>

@@ -46,7 +46,7 @@ function HelpScreen({ loading, onGet, help }) {
 				<Item
 					item={item}
 					onPress={() =>
-						RootNavigator.navigate('DetailsHelp', { item })
+						RootNavigator.navigate('HelpDetails', { item })
 					}
 				/>
 			)}

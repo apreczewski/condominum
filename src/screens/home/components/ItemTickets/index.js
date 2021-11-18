@@ -39,7 +39,7 @@ export const ItemTickets = ({ item }) => {
 					<>
 						<ValueFormat
 							style={styles({}).h1}
-							value={item[0]?.valor}
+							value={parseFloat(item[0]?.valor)}
 						/>
 
 						<View style={styles({}).rowForLeft}>

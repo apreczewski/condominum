@@ -14,7 +14,7 @@ const Item = ({ onPress, item }) => (
 		activeOpacity={0.7}>
 		<View style={styles.left}>
 			<Text style={styles.title}>{item.titulo}</Text>
-			<Text style={styles.text}>{item.texto}</Text>
+			{/* <Text style={styles.text}>{item.texto}</Text> */}
 		</View>
 		<View style={styles.right}>
 			<AntDesign name="right" size={20} color={Colors.primary_400} />

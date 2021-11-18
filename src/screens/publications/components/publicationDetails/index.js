@@ -22,6 +22,8 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 	// console.log('idCurrent>>', item);
 	const hangleIsLike = (id, status) => {
 		dispatch(publicationsActions.putLike(id, status));
+
+		item.status_curtida = !item.status_curtida;
 	};
 
 	return (
@@ -30,11 +32,13 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 				<Pressable style={styles.close} onPress={close}>
 					<AntDesign name="close" size={35} color={Colors.tertiary} />
 				</Pressable>
-				<Image
-					source={{ uri: item?.imagem }}
-					resizeMode="cover"
-					style={styles.image}
-				/>
+				{item.imagem && (
+					<Image
+						source={{ uri: item?.imagem }}
+						resizeMode="cover"
+						style={styles.image}
+					/>
+				)}
 
 				<ScrollView
 					showsVerticalScrollIndicator={false}
@@ -57,6 +61,7 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 							size={30}
 							color={Colors.primary}
 						/>
+						<Text style={styles.likeText}>Curtir</Text>
 					</View>
 				</TouchableOpacity>
 			</View>

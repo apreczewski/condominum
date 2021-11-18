@@ -55,8 +55,9 @@ const styles = (p) =>
 		title: {
 			color: Colors.primary,
 			flexDirection: 'row',
-			fontFamily: 'Roboto-Bold',
+			fontFamily: 'Roboto',
 			fontSize: 20,
+			fontWeight: '500',
 			marginBottom: 10,
 			width: '100%',
 		},

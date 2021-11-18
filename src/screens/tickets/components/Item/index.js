@@ -24,7 +24,10 @@ export const Item = ({ onPress, item, isLast }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles({ isLast }).container}>
 			<View style={styles({}).bodyLeft}>
-				<ValueFormat style={styles({}).value} value={item.valor} />
+				<ValueFormat
+					style={styles({}).value}
+					value={parseFloat(item.valor)}
+				/>
 				<View style={styles({}).rowTicket}>
 					<Text style={Pallete.h3}>
 						{moment(

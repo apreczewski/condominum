@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Colors, Pallete } from '../../../../lib/constants';
 import styles from './styles';
-import { ValueFormat } from '../../../../components/ValueFormat';
+import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
 function DetailsItem({ itemDetails }) {
 	return (
@@ -30,7 +30,7 @@ function DetailsItem({ itemDetails }) {
 									? Colors.secondary
 									: Colors.primary,
 						}}
-						value={itemDetails.valor}
+						value={parseFloat(itemDetails.valor)}
 					/>
 				</View>
 			</View>

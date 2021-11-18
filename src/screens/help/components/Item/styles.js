@@ -17,15 +17,11 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-end',
 		flex: 0.1,
 	},
-	text: {
+
+	title: {
+		// ...Pallete.h5Secondary,
 		...Pallete.inputRegular,
 		color: Colors.secondary,
-		width: '90%',
-	},
-	title: {
-		...Pallete.h5Secondary,
-		color: Colors.secondary,
-		marginBottom: 10,
 		width: '90%',
 	},
 });

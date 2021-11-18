@@ -18,7 +18,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={Pallete.paragraph}>Saldo Anterior:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.saldo_anterior}
+						value={parseFloat(item.saldo_anterior)}
 					/>
 				</View>
 
@@ -26,7 +26,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={Pallete.paragraph}>Pagamentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.total_pagamento}
+						value={parseFloat(item.total_pagamento)}
 					/>
 				</View>
 
@@ -34,7 +34,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={Pallete.paragraph}>Recebimentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.total_recebimento}
+						value={parseFloat(item.total_recebimento)}
 					/>
 				</View>
 
@@ -43,7 +43,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.saldo_atual}
+						value={parseFloat(item.saldo_atual)}
 					/>
 				</View>
 			</View>
