@@ -32,7 +32,7 @@ export const ItemPublications = ({ item }) => (
 					<Text style={styles.baseboard}>{item[0]?.dt_pub_fim}</Text>
 				</>
 			) : (
-				<Text>Você não possui publicações!</Text>
+				<Text style={styles}>Você não possui publicações!</Text>
 			)}
 		</View>
 
