@@ -22,17 +22,17 @@ function RegisterUserScreen({
 
 		name: Yup.string().required('Nome obrigatório'),
 
-		nameSocial: Yup.string().required('Nome social obrigatório'),
+		// nameSocial: Yup.string().required('Nome social obrigatório'),
 
-		phone: Yup.string()
-			.min(8, 'Muito curto!')
-			.max(14, 'Muito longo!')
-			.required('Digite um telefone'),
+		// phone: Yup.string()
+		// 	.min(8, 'Muito curto!')
+		// 	.max(14, 'Muito longo!')
+		// 	.required('Digite um telefone'),
 
-		cpfCnpj: Yup.string()
-			.min(11, 'Muito curto!')
-			.max(20, 'Muito longo!')
-			.required('Digite CPF/CNPJ'),
+		// cpfCnpj: Yup.string()
+		// 	.min(11, 'Muito curto!')
+		// 	.max(20, 'Muito longo!')
+		// 	.required('Digite CPF/CNPJ'),
 
 		password: Yup.string().min(6, 'No mínimo 6 dígitos'),
 		passwordConfirmation: Yup.string().oneOf(
