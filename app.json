@@ -7,7 +7,7 @@
 		"icon": "./src/assets/images/icon.png",
 		"splash": {
 			"image": "./src/assets/images/splash.png",
-			"resizeMode": "contain",
+			"resizeMode": "cover",
 			"backgroundColor": "#ffffff"
 		},
 		"updates": {
@@ -19,8 +19,8 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./src/assets/images/adaptive-icon.png",
-				"backgroundColor": "#FFFFFF"
+				"foregroundImage": "./src/assets/images/icon.png",
+				"backgroundColor": "#000000"
 			},
 			"package": "com.apreczewski.prolarapp"
 		},
