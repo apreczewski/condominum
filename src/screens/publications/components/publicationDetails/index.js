@@ -24,7 +24,7 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 	const hangleIsLike = (id, status) => {
 		dispatch(publicationsActions.putLike(id, status));
 
-		item.status_curtida = !status;
+		item.status_curtida = !item.status_curtida;
 	};
 
 	return (
@@ -33,7 +33,8 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 				<Pressable style={styles.close} onPress={close}>
 					<AntDesign name="close" size={35} color={Colors.tertiary} />
 				</Pressable>
-				{item.imagem && (
+
+				{item?.imagem.length > 0 && (
 					<Image
 						source={{ uri: item?.imagem }}
 						resizeMode="cover"
@@ -86,8 +87,7 @@ PublicationDetailsScreen.propTypes = {
 		titulo: PropTypes.string,
 		texto_detalhado: PropTypes.string,
 		dt_pub_fim: PropTypes.string,
-		like: PropTypes.bool,
-		user: PropTypes.string,
+		// user: PropTypes.string,
 	}).isRequired,
 };
 

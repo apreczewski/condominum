@@ -81,7 +81,7 @@ const styles = (p) =>
 		},
 
 		text: {
-			color: Colors.secondary,
+			color: p.color,
 			fontFamily: 'Roboto-Regular',
 			fontSize: 14,
 		},

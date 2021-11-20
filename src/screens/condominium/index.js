@@ -11,14 +11,18 @@ import { Pallete, Strings } from '../../lib/constants';
 import styles from './styles';
 import { condominiumActions } from '../../store/actions';
 
-function CondominiumScreen({ onGet, loading, list }) {
+function CondominiumScreen({ user, onGet, loading, list }) {
 	useFocusEffect(
 		React.useCallback(() => {
+			// console.log('user >> ', user);
 			onGet();
 		}, []),
 	);
 
-	const [condominiumCurrent, setCondominiumCurrent] = useState(null);
+	const [condominiumCurrent, setCondominiumCurrent] = useState({
+		id: user.condominio_id,
+		condominio_nome: user.condominio_nome,
+	});
 
 	const handleSelectCondominium = (data) => {
 		setCondominiumCurrent(data);
@@ -60,7 +64,8 @@ function CondominiumScreen({ onGet, loading, list }) {
 											handleSelectCondominium(item)
 										}
 										select={
-											condominiumCurrent?.id === item?.id
+											condominiumCurrent?.id ===
+											item?.condominio_id
 										}
 									/>
 								</View>
@@ -81,6 +86,10 @@ function CondominiumScreen({ onGet, loading, list }) {
 }
 
 CondominiumScreen.propTypes = {
+	user: PropTypes.shape({
+		condominio_id: PropTypes.number,
+		condominio_nome: PropTypes.string,
+	}).isRequired,
 	onGet: PropTypes.func.isRequired,
 	loading: PropTypes.bool.isRequired,
 	list: PropTypes.arrayOf(
@@ -94,6 +103,7 @@ CondominiumScreen.propTypes = {
 const mapStateToProps = (state) => ({
 	loading: state.api.loading,
 	list: state.condominium.list,
+	user: state.auth.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -52,13 +52,16 @@ const styles = StyleSheet.create({
 	row2: {
 		alignItems: 'center',
 		fontSize: 18,
-		paddingVertical: 20,
+		paddingVertical: 15,
 		width: '100%',
 	},
 
 	subTitle: {
+		alignItems: 'center',
 		color: Colors.primary,
-		fontSize: 24,
+		fontSize: 20,
+		padding: 10,
+		textAlign: 'center',
 	},
 
 	title: {

@@ -65,9 +65,8 @@ export const ItemTickets = ({ item }) => {
 							/>
 							<Text
 								style={
-									styles({
-										color: colors[item[0]?.situacao],
-									}).text
+									styles({ color: colors[item[0]?.situacao] })
+										.text
 								}>
 								{item[0]?.situacao}
 							</Text>

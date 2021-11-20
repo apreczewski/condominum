@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
-import { Pallete, Strings } from '../../lib/constants';
+import { Pallete } from '../../lib/constants';
 import { ItemPublications } from './components/ItemPublications';
 import { ItemTickets } from './components/ItemTickets';
 import { ItemSchedules } from './components/ItemSchedules';
@@ -16,6 +16,7 @@ function HomeScreen({
 	onGetTicket,
 	ItemPublication,
 	ItemTicket,
+	user,
 }) {
 	useFocusEffect(
 		React.useCallback(() => {
@@ -28,9 +29,8 @@ function HomeScreen({
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<HeaderHome
-					title={Strings.home}
-					user={Strings.homeUser}
-					subTitle={Strings.homeDescription}
+					user={user.name.split(' ')[0]}
+					subTitle={user.condominio_nome}
 				/>
 				<ItemPublications item={ItemPublication} />
 				<ItemTickets item={ItemTicket} />
@@ -41,6 +41,10 @@ function HomeScreen({
 }
 
 HomeScreen.propTypes = {
+	user: PropTypes.shape({
+		name: PropTypes.string,
+		condominio_nome: PropTypes.string,
+	}).isRequired,
 	onGetPublication: PropTypes.func.isRequired,
 	onGetTicket: PropTypes.func.isRequired,
 	ItemPublication: PropTypes.arrayOf(
@@ -67,6 +71,7 @@ HomeScreen.propTypes = {
 const mapStateToProps = (state) => ({
 	ItemPublication: state.publications.list,
 	ItemTicket: state.tickes.list,
+	user: state.auth.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

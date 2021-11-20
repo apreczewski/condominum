@@ -71,15 +71,18 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 	const handleCode = (code) => {
 		if (code.acao_copia === 'sim') {
 			Clipboard.setString(code.codigo_barras);
-			Toast.show('Copiado', {
-				duration: 3000,
-				position: Toast.positions.BOTTOM,
-				animation: true,
-				hideOnPress: true,
-				backgroundColor: Colors.background,
-				textColor: Colors.secondary,
-				visible: true,
-			});
+			Toast.show(
+				`Codigo de barras será copiado para área de transferência. Código de barras: ${code.codigo_barras}`,
+				{
+					duration: 10000,
+					position: Toast.positions.BOTTOM,
+					animation: true,
+					hideOnPress: true,
+					backgroundColor: Colors.background,
+					textColor: Colors.secondary,
+					visible: true,
+				},
+			);
 		} else {
 			Toast.show('Boleto não disponível', {
 				duration: 3000,

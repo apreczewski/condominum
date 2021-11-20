@@ -21,6 +21,8 @@ export function* login(payload) {
 			const dataUser = {
 				name: response.data.login.nome,
 				social_name: response.data.login.nome_social,
+				condominio_id: response.data.login.condominio_id,
+				condominio_nome: response.data.login.condominio_nome,
 			};
 
 			const dataCondo = {
