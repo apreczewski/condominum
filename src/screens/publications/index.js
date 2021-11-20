@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
+import { View, ScrollView, FlatList, RefreshControl, Text } from 'react-native';
 import Modal from 'react-native-modal';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -57,12 +57,16 @@ function PublicationsScreen({ onGet, loading, list }) {
 				</TitleSubTitleWithIcon>
 
 				<View style={styles.list}>
-					<ItemEmphasis
-						item={list[0]}
-						onPress={
-							() => handlePublication(list[0].id) //
-						}
-					/>
+					{list.length ? (
+						<ItemEmphasis
+							item={list[0]}
+							onPress={
+								() => handlePublication(list[0].id) //
+							}
+						/>
+					) : (
+						<Text>Você não possui publicações!</Text>
+					)}
 
 					{list && (
 						<FlatList

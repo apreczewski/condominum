@@ -1,5 +1,4 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import Toast from 'react-native-toast-message';
 
 import * as publications from '../../../api/publications';
 import * as types from './types';
@@ -45,16 +44,9 @@ export function* putLike(id, status) {
 	yield put(apiActions.apiStart());
 
 	try {
-		const response = yield call(publications.putLike, id, status);
-
-		if (response.data) {
-			Toast.show({
-				text1: response.data.mensagem.mensagem,
-				type: 'info',
-			});
-		}
+		yield call(publications.putLike, id, status);
 	} catch (error) {
-		showToast('error', 'Erro ao buscar notificações');
+		showToast('error', 'Erro ao curtir');
 	}
 
 	yield put(apiActions.apiEnd());

@@ -91,6 +91,9 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 				))} */}
 
 			{/* {list[0].status && ( */}
+
+			{/* {console.log('>>> lenght', list.length === number)} */}
+
 			<Drawer.Screen
 				name="Home"
 				component={HomeScreen}
@@ -105,7 +108,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-			{/* )} */}
 
 			<Drawer.Screen
 				name="Publications"
@@ -135,6 +137,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Balance"
 				component={BalanceScreen}
@@ -149,6 +152,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Reserves"
 				component={ReservesScreen}
@@ -163,6 +167,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="ReservesManagement"
 				component={ReservesManagementScreen}
@@ -177,6 +182,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Condominium"
 				component={CondominiumScreen}
@@ -191,6 +197,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Profile"
 				component={ProfileScreen}
@@ -205,6 +212,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="ChangePassword"
 				component={ChangePasswordScreen}
@@ -219,6 +227,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Help"
 				component={HelpScreen}
@@ -233,6 +242,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Terms"
 				component={TermsScreen}
@@ -247,6 +257,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Polices"
 				component={PolicesScreen}
@@ -261,6 +272,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="About"
 				component={AboutScreen}

@@ -11,7 +11,10 @@ const Item = ({ onPress, item, isLast }) => (
 	<TouchableOpacity activeOpacity={0.8} onPress={onPress}>
 		<View style={styles({ isLast }).container}>
 			<View style={styles({}).bodyLeft}>
-				<Text style={styles({}).date}>{`${item.mes}/${item.ano}`}</Text>
+				<Text
+					style={
+						styles({}).date
+					}>{`${item.mes}/${item.ano} - ${item.tipo_descricao}`}</Text>
 				<View style={styles({}).saldo}>
 					<Text style={Pallete.paragraph}>Saldo </Text>
 					<ValueFormat
@@ -39,6 +42,7 @@ Item.propTypes = {
 	item: PropTypes.shape({
 		mes: PropTypes.number,
 		ano: PropTypes.number,
+		tipo_descricao: PropTypes.string,
 		saldo_atual: PropTypes.string,
 	}).isRequired,
 };

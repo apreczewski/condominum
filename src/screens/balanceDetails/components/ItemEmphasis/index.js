@@ -12,7 +12,10 @@ export const ItemEmphasis = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
 		<View style={styles.container}>
 			<View style={styles.bodyLeft}>
-				<Text style={styles.text}>{`${item.mes}/${item.ano}`}</Text>
+				<Text
+					style={
+						styles.text
+					}>{`${item.mes}/${item.ano} - ${item.tipo_descricao}`}</Text>
 
 				<View style={styles.textInfo}>
 					<Text style={Pallete.paragraph}>Saldo Anterior:</Text>
@@ -67,6 +70,7 @@ ItemEmphasis.propTypes = {
 	item: PropTypes.shape({
 		mes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		ano: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		tipo_descricao: PropTypes.string,
 		saldo_anterior: PropTypes.oneOfType([
 			PropTypes.string,
 			PropTypes.number,

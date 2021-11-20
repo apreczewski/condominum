@@ -12,7 +12,10 @@ import styles from './styles';
 export const ItemEmphasis = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
 		<View style={styles.container}>
-			<Text style={styles.text}>{`${item?.mes}/${item?.ano}`}</Text>
+			<Text
+				style={
+					styles.text
+				}>{`${item?.mes}/${item?.ano} - ${item.tipo_descricao}`}</Text>
 
 			<View style={styles.textInfo}>
 				<Text style={Pallete.paragraph}>Saldo Anterior</Text>
@@ -64,6 +67,7 @@ ItemEmphasis.propTypes = {
 	item: PropTypes.shape({
 		mes: PropTypes.number,
 		ano: PropTypes.number,
+		tipo_descricao: PropTypes.string,
 		total_pagamento: PropTypes.string,
 		total_recebimento: PropTypes.string,
 		saldo_anterior: PropTypes.string,

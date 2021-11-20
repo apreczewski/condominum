@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { View, Text, Image, TouchableOpacity, Pressable } from 'react-native';
 import PropTypes from 'prop-types';
 import { AntDesign } from '@expo/vector-icons';
@@ -23,7 +24,7 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 	const hangleIsLike = (id, status) => {
 		dispatch(publicationsActions.putLike(id, status));
 
-		item.status_curtida = !item.status_curtida;
+		item.status_curtida = !status;
 	};
 
 	return (
@@ -49,7 +50,12 @@ function PublicationDetailsScreen({ onGetItem, idCurrent, item, close }) {
 						<Text style={styles.subTitle}>
 							{item?.texto_detalhado}
 						</Text>
-						<Text style={styles.date}>{item?.dt_pub_fim}</Text>
+						<Text style={styles.date}>
+							{moment(
+								item?.dt_pub_fim,
+								'DD-MM-YYYY HH: mm: ss',
+							).format('DD/MM/YYYY')}
+						</Text>
 					</View>
 				</ScrollView>
 

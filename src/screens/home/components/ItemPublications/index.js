@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import moment from 'moment';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
@@ -29,10 +30,15 @@ export const ItemPublications = ({ item }) => (
 
 					<Text style={styles.title}>{item[0]?.titulo}</Text>
 
-					<Text style={styles.baseboard}>{item[0]?.dt_pub_fim}</Text>
+					<Text style={styles.baseboard}>
+						{moment(
+							item[0]?.dt_pub_fim,
+							'DD-MM-YYYY HH: mm: ss',
+						).format('DD/MM/YYYY')}
+					</Text>
 				</>
 			) : (
-				<Text style={styles}>Você não possui publicações!</Text>
+				<Text>Você não possui publicações!</Text>
 			)}
 		</View>
 
