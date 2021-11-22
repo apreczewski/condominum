@@ -9,6 +9,9 @@ import {
 	Feather,
 } from '@expo/vector-icons';
 import { Image } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useFocusEffect } from '@react-navigation/native';
 
 import CustomDrawerContent from './CustomDrawerContent';
 
@@ -17,7 +20,7 @@ import PublicationsScreen from '../screens/publications';
 import TicketScreen from '../screens/tickets';
 import BalanceScreen from '../screens/balance';
 import ReservesScreen from '../screens/reserves';
-import { CondominiumScreen } from '../screens/condominium';
+import CondominiumScreen from '../screens/condominium';
 import ReservesManagementScreen from '../screens/reservesManagement';
 import ProfileScreen from '../screens/profile';
 import ChangePasswordScreen from '../screens/changePassword';
@@ -25,12 +28,19 @@ import HelpScreen from '../screens/help';
 import TermsScreen from '../screens/terms';
 import PolicesScreen from '../screens/polices';
 import AboutScreen from '../screens/about';
+import { drawerActions } from '../store/actions';
 
 import { Colors, Images, Metrics } from '../lib/constants';
 
 const Drawer = createDrawerNavigator();
 
-function MainDrawerNavigator() {
+function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
+	useFocusEffect(
+		React.useCallback(() => {
+			onGet();
+		}, []),
+	);
+
 	return (
 		<Drawer.Navigator
 			initialRouteName="Home"
@@ -57,6 +67,33 @@ function MainDrawerNavigator() {
 				drawerInactiveBackgroundColor: 'transparent',
 			}}
 			drawerContent={(props) => <CustomDrawerContent {...props} />}>
+			{/* {list &&
+				list?.map((item) => (
+					<Drawer.Screen
+						key={item.id}
+						name={item.slug}
+						component={HomeScreen}
+						options={{
+							title: item.titulo,
+							drawerIcon: ({ focused, size }) => (
+								<Ionicons
+									name="md-home"
+									size={size}
+									color={
+										focused
+											? Colors.primary
+											: Colors.secondary
+									}
+								/>
+							),
+						}}
+					/>
+				))} */}
+
+			{/* {list[0].status && ( */}
+
+			{/* {console.log('>>> lenght', list.length === number)} */}
+
 			<Drawer.Screen
 				name="Home"
 				component={HomeScreen}
@@ -71,6 +108,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Publications"
 				component={PublicationsScreen}
@@ -99,6 +137,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Balance"
 				component={BalanceScreen}
@@ -113,6 +152,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Reserves"
 				component={ReservesScreen}
@@ -127,6 +167,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="ReservesManagement"
 				component={ReservesManagementScreen}
@@ -141,6 +182,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Condominium"
 				component={CondominiumScreen}
@@ -155,6 +197,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Profile"
 				component={ProfileScreen}
@@ -169,6 +212,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="ChangePassword"
 				component={ChangePasswordScreen}
@@ -183,6 +227,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Help"
 				component={HelpScreen}
@@ -197,6 +242,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Terms"
 				component={TermsScreen}
@@ -211,6 +257,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="Polices"
 				component={PolicesScreen}
@@ -225,6 +272,7 @@ function MainDrawerNavigator() {
 					),
 				}}
 			/>
+
 			<Drawer.Screen
 				name="About"
 				component={AboutScreen}
@@ -242,4 +290,23 @@ function MainDrawerNavigator() {
 		</Drawer.Navigator>
 	);
 }
-export default MainDrawerNavigator;
+
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	list: state.drawerNavigator.list,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onGet: () => dispatch(drawerActions.getList()),
+});
+
+MainDrawerNavigator.propTypes = {
+	onGet: PropTypes.func.isRequired,
+	loading: PropTypes.bool.isRequired,
+	list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(MainDrawerNavigator);

@@ -29,16 +29,16 @@ export default function AuthScreen() {
 	const loading = useSelector(authSelectors.getLoading);
 	const formRef = useRef(null);
 
+	const schema = Yup.object().shape({
+		username: Yup.string()
+			.required('E-mail obrigatório')
+			.email('Digite um e-mail válido'),
+		password: Yup.string().required('Senha obrigatória'),
+	});
+
 	const handleSubmit = useCallback(async (data) => {
 		try {
 			formRef.current?.setErrors({});
-
-			const schema = Yup.object().shape({
-				username: Yup.string()
-					.required('E-mail obrigatório')
-					.email('Digite um e-mail válido'),
-				password: Yup.string().required('Senha obrigatória'),
-			});
 
 			await schema.validate(data, {
 				abortEarly: false,
@@ -52,6 +52,10 @@ export default function AuthScreen() {
 				formRef.current?.setErrors(errors);
 			}
 		}
+	}, []);
+
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
 	}, []);
 
 	return (
@@ -70,6 +74,7 @@ export default function AuthScreen() {
 							autoCapitalize="none"
 							keyboardType="email-address"
 							placeholder="E-mail"
+							clearErrors={handleErros}
 						/>
 
 						<Input
@@ -77,11 +82,12 @@ export default function AuthScreen() {
 							label="Senha"
 							placeholder="Senha"
 							labelError="Senha incorreta!"
-							secureTextEntry
+							passwordProps="password"
 							returnKeyType="send"
 							onSubmitEditing={() =>
 								formRef.current?.submitForm()
 							}
+							clearErrors={handleErros}
 						/>
 						<View style={styles.viewButtonForm}>
 							<Button

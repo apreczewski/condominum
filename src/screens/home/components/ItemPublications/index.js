@@ -1,13 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import moment from 'moment';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-/* import PropTypes from 'prop-types'; */
+import PropTypes from 'prop-types';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+
 import styles from './styles';
-import publication from '../../../../assets/images/publication.png';
 import { Strings, Colors } from '../../../../lib/constants';
 import * as Navigation from '../../../../lib/utils/navigation';
 
-export const ItemPublications = () => (
+export const ItemPublications = ({ item }) => (
 	<View style={styles.container}>
 		<View style={styles.body}>
 			<View style={styles.row}>
@@ -19,11 +21,25 @@ export const ItemPublications = () => (
 				/>
 			</View>
 
-			<Image source={publication} style={styles.image} />
+			{item.length ? (
+				<>
+					<Image
+						source={{ uri: item[0]?.imagem }}
+						style={styles.image}
+					/>
 
-			<Text style={styles.title}>Uso de máscaras</Text>
+					<Text style={styles.title}>{item[0]?.titulo}</Text>
 
-			<Text style={styles.baseboard}>Prolar - Há 4 horas</Text>
+					<Text style={styles.baseboard}>
+						{moment(
+							item[0]?.dt_pub_fim,
+							'DD-MM-YYYY HH: mm: ss',
+						).format('DD/MM/YYYY')}
+					</Text>
+				</>
+			) : (
+				<Text>Você não possui publicações!</Text>
+			)}
 		</View>
 
 		<TouchableOpacity
@@ -38,3 +54,23 @@ export const ItemPublications = () => (
 		</TouchableOpacity>
 	</View>
 );
+
+ItemPublications.propTypes = {
+	item: PropTypes.arrayOf(
+		PropTypes.shape({
+			imagem: PropTypes.string,
+			titulo: PropTypes.string,
+			dt_pub_fim: PropTypes.string,
+		}),
+	),
+};
+
+ItemPublications.defaultProps = {
+	item: [
+		{
+			imagem: '',
+			titulo: '',
+			dt_pub_fim: '',
+		},
+	],
+};

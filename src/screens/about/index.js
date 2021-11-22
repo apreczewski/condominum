@@ -1,21 +1,20 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import Constants from 'expo-constants';
-import { ScrollView } from 'react-native-gesture-handler';
 
 import logoClass from '../../assets/images/logo_class.png';
 import { Pallete, General } from '../../lib/constants';
 import styles from './styles';
 
 const DESCRIPTION =
-	'Está na sua mão economizar. MultiMercados oferece descontos e ofertas exclusivas, entre outras facilidades para o seu dia a dia.';
+	'Faça suas reservas, fique a par do que está acontecendo em seu condomínio e acompanhe seus boletos. O aplicativo de gestão de Condomínios facilita o seu dia a dia.';
 
 function AboutScreen() {
 	const { version } = Constants.manifest;
 	const textVersion = `Versão ${version}`;
 	return (
-		<ScrollView vertical>
-			<View style={Pallete.screen}>
+		<View style={Pallete.screen}>
+			<View style={styles.container}>
 				<Text style={styles.description}>{DESCRIPTION}</Text>
 				<View style={styles.middle}>
 					<Image
@@ -36,7 +35,7 @@ function AboutScreen() {
 				</View>
 				<Text style={styles.version}>{textVersion}</Text>
 			</View>
-		</ScrollView>
+		</View>
 	);
 }
 

@@ -1,13 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useRef, useEffect } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import React, { useRef, useEffect, useState } from 'react';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useField } from '@unform/core';
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons, MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import { Colors } from '../../lib/constants';
 
-function Input({ name, valueCurrent, label, labelError, ...rest }) {
+function Input({
+	name,
+	valueCurrent,
+	label,
+	labelError,
+	passwordProps,
+	clearErrors,
+	...rest
+}) {
 	const inputElementRef = useRef(null);
 
 	const {
@@ -35,6 +43,10 @@ function Input({ name, valueCurrent, label, labelError, ...rest }) {
 		});
 	}, [fieldName, registerField]);
 
+	const [hidePass, setHidePass] = useState(true);
+
+	// const [isFocused, setIsFocused] = useState(false);
+
 	return (
 		<>
 			{label && <Text style={styles.label}>{label}</Text>}
@@ -47,8 +59,24 @@ function Input({ name, valueCurrent, label, labelError, ...rest }) {
 					onChangeText={(value) => {
 						inputValueRef.current.value = value;
 					}}
+					secureTextEntry={passwordProps === 'password' && hidePass}
 					{...rest}
+					onFocus={() => clearErrors()}
 				/>
+
+				{passwordProps === 'password' && (
+					<TouchableOpacity onPress={() => setHidePass(!hidePass)}>
+						<MaterialIcons
+							name={
+								hidePass === true
+									? 'visibility'
+									: 'visibility-off'
+							}
+							size={30}
+							color={Colors.secondary}
+						/>
+					</TouchableOpacity>
+				)}
 
 				{!!error && (
 					<EvilIcons
@@ -70,6 +98,8 @@ Input.propTypes = {
 	label: PropTypes.string,
 	labelError: PropTypes.string,
 	valueCurrent: PropTypes.string,
+	passwordProps: PropTypes.string,
+	clearErrors: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -77,4 +107,6 @@ Input.defaultProps = {
 	label: '',
 	labelError: '',
 	valueCurrent: '',
+	passwordProps: '',
+	clearErrors: () => {},
 };

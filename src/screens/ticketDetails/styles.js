@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: Colors.white,
 		borderRadius: 5,
+		// height: 'calc(100% - 80)',
 		justifyContent: 'space-between',
 		paddingHorizontal: 18,
 		paddingVertical: 15,

@@ -1,11 +1,26 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from '../../../../lib/constants';
+import { Colors, Metrics } from '../../../../lib/constants';
+
+const size = Metrics.screenWidth - 100;
 
 const styles = StyleSheet.create({
+	close: {
+		position: 'absolute',
+		right: 5,
+		top: 5,
+		zIndex: 100,
+	},
+
 	container: {
+		alignItems: 'center',
+		backgroundColor: Colors.transparent,
+		justifyContent: 'center',
+	},
+
+	content: {
 		backgroundColor: Colors.white,
-		height: '100%',
-		width: '85%',
+		borderRadius: 5,
+		width: Metrics.screenWidth - 40,
 	},
 
 	date: {
@@ -26,7 +41,8 @@ const styles = StyleSheet.create({
 	},
 
 	image: {
-		width: '100%',
+		height: size,
+		width: Metrics.screenWidth - 40,
 	},
 
 	like: {
@@ -38,6 +54,17 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		paddingVertical: 16,
 		width: '100%',
+	},
+
+	likeText: {
+		color: Colors.primary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 20,
+		marginLeft: 14,
+	},
+
+	maxSize: {
+		maxHeight: Metrics.screenHeight - (size + 100),
 	},
 
 	subTitle: {
@@ -56,6 +83,10 @@ const styles = StyleSheet.create({
 		fontSize: 25,
 		marginBottom: 10,
 		width: '100%',
+	},
+
+	viewText: {
+		padding: 20,
 	},
 });
 

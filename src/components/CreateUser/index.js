@@ -10,10 +10,11 @@ import Input from '../Input';
 
 export default function CreateUser({
 	formRef,
+	nameButton,
 	onSubmit,
 	onPress,
-	nameButton,
 	data,
+	clearErrors,
 }) {
 	return (
 		<View>
@@ -29,6 +30,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="email-address"
 					placeholder="E-mail"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -40,6 +42,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="text"
 					placeholder="Nome Completo"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -51,6 +54,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="text"
 					placeholder="Nome com o qual deseja ser tratado"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -61,6 +65,7 @@ export default function CreateUser({
 					labelError="Digite um telefone"
 					keyboardType="phone-pad"
 					placeholder="(   ) ___________"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -72,6 +77,7 @@ export default function CreateUser({
 					autoCapitalize="none"
 					keyboardType="number-pad"
 					placeholder="CPF/CNPJ"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -79,7 +85,8 @@ export default function CreateUser({
 					label="Nova Senha"
 					labelError="Senha não atende critérios minimos"
 					placeholder="Nova Senha - mínimo 6 caracteres"
-					secureTextEntry
+					passwordProps="password"
+					clearErrors={clearErrors}
 				/>
 
 				<Input
@@ -87,9 +94,10 @@ export default function CreateUser({
 					label="Confirme a nova senha"
 					labelError="Senha não confere com a nova senha"
 					placeholder="Confirme a nova senha"
-					secureTextEntry
+					passwordProps="password"
 					returnKeyType="send"
 					onSubmitEditing={onPress}
+					clearErrors={clearErrors}
 				/>
 
 				<View style={styles.viewButton}>
@@ -104,7 +112,29 @@ export default function CreateUser({
 }
 
 CreateUser.propTypes = {
-	button: PropTypes.string,
-	onPress: PropTypes.func,
-	onSubmit: PropTypes.func,
-}.isRequired;
+	formRef: PropTypes.shape({
+		current: PropTypes.instanceOf(),
+	}).isRequired,
+	nameButton: PropTypes.string.isRequired,
+	onPress: PropTypes.func.isRequired,
+	onSubmit: PropTypes.func.isRequired,
+	data: PropTypes.shape({
+		email: PropTypes.string,
+		name: PropTypes.string,
+		nameSocial: PropTypes.string,
+		phone: PropTypes.string,
+		cpfcnpj: PropTypes.string,
+	}),
+	clearErrors: PropTypes.func,
+};
+
+CreateUser.defaultProps = {
+	data: PropTypes.shape({
+		email: '',
+		name: '',
+		nameSocial: '',
+		phone: '',
+		cpfcnpj: '',
+	}),
+	clearErrors: () => {},
+};

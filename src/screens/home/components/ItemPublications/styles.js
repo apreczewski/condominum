@@ -7,14 +7,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		fontFamily: 'Roboto-Bold',
 		fontSize: 15,
-		marginBottom: 10,
-		maxWidth: '100%',
+		textAlign: 'center',
+		width: '100%',
 	},
 
 	body: {
-		alignItems: 'center',
-		paddingHorizontal: 19,
-		paddingTop: 16,
+		marginBottom: 24,
+		padding: 13,
 		width: '100%',
 	},
 
@@ -71,7 +70,8 @@ const styles = StyleSheet.create({
 		fontFamily: 'Roboto-Regular',
 		fontSize: 20,
 		marginBottom: 10,
-		maxWidth: '100%',
+		textAlign: 'center',
+		width: '100%',
 	},
 });
 

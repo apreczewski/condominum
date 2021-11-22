@@ -47,6 +47,10 @@ export default function ChangePasswordScreen() {
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : null}>
@@ -60,19 +64,21 @@ export default function ChangePasswordScreen() {
 							label="Nova Senha"
 							labelError="Senha não atende critérios minimos"
 							placeholder="Nova Senha - mínimo 6 caracteres"
-							secureTextEntry
+							passwordProps="password"
+							clearErrors={handleErros}
 						/>
 
 						<Input
 							name="passwordConfirmation"
 							label="Confirme a nova senha"
 							labelError="Senha não confere com a nova senha"
-							secureTextEntry
+							passwordProps="password"
 							placeholder="Confirme a nova senha"
 							returnKeyType="send"
 							onSubmitEditing={() =>
 								formRef.current?.submitForm()
 							}
+							clearErrors={handleErros}
 						/>
 						<View style={styles.viewButton}>
 							<Button

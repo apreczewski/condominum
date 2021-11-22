@@ -7,6 +7,7 @@ import api from '../../../api/api';
 import * as types from './types';
 import * as selectors from './selectors';
 import * as RootNavigation from '../../../lib/utils/navigation';
+import { apiActions } from '../api';
 
 export function* login(payload) {
 	yield put(actions.setLoading());
@@ -20,6 +21,8 @@ export function* login(payload) {
 			const dataUser = {
 				name: response.data.login.nome,
 				social_name: response.data.login.nome_social,
+				condominio_id: response.data.login.condominio_id,
+				condominio_nome: response.data.login.condominio_nome,
 			};
 
 			const dataCondo = {
@@ -56,6 +59,58 @@ export function* login(payload) {
 	}
 
 	yield put(actions.setLoading());
+}
+
+export function* registerUser(payload) {
+	const { user } = payload;
+
+	const userData = {
+		email: user.email,
+		nome: user.name,
+		nome_social: user.nameSocial,
+		cpf_cnpj: user.cpfCnpj,
+		telefone: user.phone,
+		senha: user.password,
+		confirmacao_senha: user.passwordConfirmation,
+		pessoa_tipo: user.pessoa_tipo,
+	};
+
+	yield put(apiActions.apiStart());
+
+	try {
+		const token = yield call(auth.loginApp, {
+			username: 'app1',
+			password: 'password',
+		});
+
+		api.defaults.headers.common[
+			'x-access-token'
+		] = `${token.data.loginapp.token}`;
+
+		const response = yield call(auth.registerUser, userData);
+
+		// console.log('>>>>', response.data.mensagem);
+
+		if (response.data?.usuario) {
+			Toast.show({
+				text1: 'Usuário criado com sucesso!',
+				type: 'success',
+			});
+			RootNavigation.navigate('Auth');
+			// redirecionar o usuário para tela de login
+		} else
+			Toast.show({
+				text1: response.data.mensagem.mensagem,
+				type: 'error',
+			});
+	} catch (error) {
+		Toast.show({
+			text1: 'Erro ao realizar o login tente novamente!',
+			type: 'error',
+		});
+	}
+
+	yield put(apiActions.apiEnd());
 }
 
 async function getToken() {
@@ -115,6 +170,7 @@ export function* logout() {
 
 export default function* watchUserAuthentication() {
 	yield takeLatest(types.LOGIN_USER, login);
+	yield takeLatest(types.REGISTER_USER, registerUser);
 	yield takeLatest(types.CHECK_USER, checkUser);
 	yield takeLatest(types.LOGOUT, logout);
 }

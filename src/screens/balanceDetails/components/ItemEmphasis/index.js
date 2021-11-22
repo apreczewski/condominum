@@ -12,36 +12,42 @@ export const ItemEmphasis = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
 		<View style={styles.container}>
 			<View style={styles.bodyLeft}>
-				<Text style={styles.text}>{item.data}</Text>
+				<Text
+					style={
+						styles.text
+					}>{`${item.mes}/${item.ano} - ${item.tipo_descricao}`}</Text>
 
 				<View style={styles.textInfo}>
-					<Text style={Pallete.paragraph}>Saldo Anterior</Text>
+					<Text style={Pallete.paragraph}>Saldo Anterior:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.saldo_anterior}
+						value={parseFloat(item.saldo_anterior)}
 					/>
 				</View>
 
 				<View style={styles.textInfo}>
-					<Text style={Pallete.paragraph}>Pagamentos</Text>
+					<Text style={Pallete.paragraph}>Pagamentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.pagamentos}
+						value={parseFloat(item.total_pagamento)}
 					/>
 				</View>
 
 				<View style={styles.textInfo}>
-					<Text style={Pallete.paragraph}>Recebimentos</Text>
+					<Text style={Pallete.paragraph}>Recebimentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={item.rebimentos}
+						value={parseFloat(item.total_recebimento)}
 					/>
 				</View>
 
 				<View style={styles.label}>
-					<Text style={Pallete.paragraph}>Saldo</Text>
+					<Text style={Pallete.paragraph}>Saldo:</Text>
 
-					<ValueFormat style={Pallete.paragraph} value={item.saldo} />
+					<ValueFormat
+						style={Pallete.paragraph}
+						value={parseFloat(item.saldo_atual)}
+					/>
 				</View>
 			</View>
 			<View style={styles.bodyRight}>
@@ -52,6 +58,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 						color={Colors.primary}
 					/>
 					<Text style={styles.textShare}>Compartilhar</Text>
+					<Text style={styles.textShare}>pdf</Text>
 				</View>
 			</View>
 		</View>
@@ -61,10 +68,21 @@ export const ItemEmphasis = ({ onPress, item }) => (
 ItemEmphasis.propTypes = {
 	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
-		data: PropTypes.string,
-		saldo_anterior: PropTypes.number,
-		pagamentos: PropTypes.number,
-		rebimentos: PropTypes.number,
-		saldo: PropTypes.number,
+		mes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		ano: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		tipo_descricao: PropTypes.string,
+		saldo_anterior: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		total_pagamento: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		total_recebimento: PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.number,
+		]),
+		saldo_atual: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	}).isRequired,
 };

@@ -11,13 +11,15 @@ const styles = StyleSheet.create({
 	left: {
 		alignItems: 'center',
 		flex: 0.9,
-		flexDirection: 'row',
+		flexDirection: 'column',
 	},
 	right: {
 		alignItems: 'flex-end',
 		flex: 0.1,
 	},
+
 	title: {
+		// ...Pallete.h5Secondary,
 		...Pallete.inputRegular,
 		color: Colors.secondary,
 		width: '90%',

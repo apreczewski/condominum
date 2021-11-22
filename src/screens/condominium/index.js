@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useFocusEffect } from '@react-navigation/native';
+import PropTypes from 'prop-types';
+import { connect, useDispatch } from 'react-redux';
+
 import Button from '../../components/Button';
 import RadioButton from '../../components/RadioButton';
 import { Pallete, Strings } from '../../lib/constants';
-
 import styles from './styles';
+import { condominiumActions } from '../../store/actions';
 
-export function CondominiumScreen() {
-	const condominiums = [
-		{
-			id: '1',
-			name: 'Condomínio Las Palmas',
-		},
-		{
-			id: '2',
-			name: 'Condomínio Cruzeiro',
-		},
-		{
-			id: '3',
-			name: 'Condomínio Vila Real',
-		},
-		{
-			id: '4',
-			name: 'Condomínio Verdes',
-		},
-	];
-	const [condominiumCurrent, setCondominiumCurrent] = useState(null);
+function CondominiumScreen({ user, onGet, loading, list }) {
+	useFocusEffect(
+		React.useCallback(() => {
+			// console.log('user >> ', user);
+			onGet();
+		}, []),
+	);
+
+	const [condominiumCurrent, setCondominiumCurrent] = useState({
+		id: user.condominio_id,
+		condominio_nome: user.condominio_nome,
+	});
 
 	const handleSelectCondominium = (data) => {
 		setCondominiumCurrent(data);
 	};
 
+	const dispatch = useDispatch();
+
+	const handleid = (id) => {
+		dispatch(condominiumActions.putItem(id));
+	};
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<View style={styles.container}>
 					<View style={styles.row1}>
@@ -43,31 +46,68 @@ export function CondominiumScreen() {
 					</View>
 					<View style={styles.row2}>
 						<Text style={styles.subTitle}>
-							{condominiumCurrent?.name}
+							{condominiumCurrent?.condominio_nome}
 						</Text>
 					</View>
 				</View>
 
-				<FlatList
-					data={condominiums}
-					renderItem={({ item }) => (
-						<View style={styles.cardAmbient}>
-							<RadioButton
-								label={item.name}
-								onPress={() => handleSelectCondominium(item)}
-								select={condominiumCurrent?.id === item.id}
+				{list && (
+					<>
+						<FlatList
+							data={list}
+							keyExtractor={(item) => item?.id.toString()}
+							renderItem={({ item }) => (
+								<View style={styles.cardAmbient}>
+									<RadioButton
+										label={item?.condominio_nome}
+										onPress={() =>
+											handleSelectCondominium(item)
+										}
+										select={
+											condominiumCurrent?.id ===
+											item?.condominio_id
+										}
+									/>
+								</View>
+							)}
+						/>
+						<View style={styles.viewButtons}>
+							<Button
+								text={Strings.condominiumExchange}
+								onPress={() => handleid(condominiumCurrent?.id)}
+								disabled={!condominiumCurrent?.id}
 							/>
 						</View>
-					)}
-				/>
-				<View style={styles.viewButtons}>
-					<Button
-						text={Strings.condominiumExchange}
-						// onPress=""
-						disabled={!condominiumCurrent?.select}
-					/>
-				</View>
+					</>
+				)}
 			</View>
 		</ScrollView>
 	);
 }
+
+CondominiumScreen.propTypes = {
+	user: PropTypes.shape({
+		condominio_id: PropTypes.number,
+		condominio_nome: PropTypes.string,
+	}).isRequired,
+	onGet: PropTypes.func.isRequired,
+	loading: PropTypes.bool.isRequired,
+	list: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.number,
+			condominio_nome: PropTypes.string,
+		}),
+	).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	list: state.condominium.list,
+	user: state.auth.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onGet: () => dispatch(condominiumActions.getList()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CondominiumScreen);

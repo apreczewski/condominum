@@ -6,6 +6,9 @@ export const CHECK_USER = 'auth/CHECK_USER';
 export const RESET_USER = 'auth/CHECK_USER';
 export const SET_LOADING = 'auth/SET_LOADING';
 export const SET_CONDO = 'auth/SET_CONDO';
+export const SET_ERROR = 'auth/SET_ERROR';
+export const SET_SUCCESS = 'auth/SET_SUCCESS';
+export const REGISTER_USER = 'auth/REGISTER_USER';
 
 export default {
 	LOGIN_USER,
@@ -16,4 +19,5 @@ export default {
 	RESET_USER,
 	SET_LOADING,
 	SET_CONDO,
+	REGISTER_USER,
 };

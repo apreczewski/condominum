@@ -4,20 +4,20 @@ import { General, Pallete } from '../../lib/constants';
 
 const styles = StyleSheet.create({
 	container: {
-		...General.container,
-		backgroundColor: Colors.white,
 		flex: 1,
-		justifyContent: 'space-between',
-		padding: 20,
+		justifyContent: 'center',
 	},
 
 	description: {
 		...Pallete.regularLight,
 		color: Colors.secondary,
 		fontSize: 15,
+		lineHeight: 20,
+		textAlign: 'justify',
 	},
 
 	image: {
+		marginTop: 60,
 		...General.section,
 		height: 50,
 		width: 200,

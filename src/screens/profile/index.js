@@ -1,12 +1,14 @@
 import { View, Alert, ScrollView } from 'react-native';
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import CreateUser from '../../components/CreateUser';
 import { Pallete, Strings } from '../../lib/constants';
-
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
-export default function ProfileScreen() {
+function ProfileScreen({ user }) {
 	const formRef = useRef(null);
 
 	const schema = Yup.object().shape({
@@ -35,8 +37,6 @@ export default function ProfileScreen() {
 	});
 
 	const handleSubmit = useCallback(async (data) => {
-		// console.log('formmm >> ', data);
-
 		try {
 			formRef.current?.setErrors({});
 
@@ -58,23 +58,46 @@ export default function ProfileScreen() {
 		}
 	}, []);
 
+	const handleErros = useCallback(() => {
+		formRef.current?.setErrors([]);
+	}, []);
+
 	return (
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<CreateUser
 					formRef={formRef}
 					nameButton={Strings.profile}
-					onSubmit={handleSubmit}
+					onSubmit={handleSubmit()}
 					onPress={() => formRef.current?.submitForm()}
 					data={{
 						email: 'joao@gmail.com',
-						name: 'João Paulo',
-						nameSocial: 'JP',
+						name: user.name,
+						nameSocial: user.social_name,
 						phone: '51 985455260',
 						cpfcnpj: '012.451.545-55',
 					}}
+					clearErrors={handleErros}
 				/>
 			</View>
 		</ScrollView>
 	);
 }
+
+ProfileScreen.propTypes = {
+	user: PropTypes.shape({
+		name: PropTypes.string,
+		social_name: PropTypes.string,
+	}).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	user: state.auth.user,
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+// 	onGet: () => dispatch(condominiumActions.getList()),
+// });
+
+export default connect(mapStateToProps)(ProfileScreen);

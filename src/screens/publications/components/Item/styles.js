@@ -32,8 +32,9 @@ const styles = (p) =>
 		seeMore: {
 			color: Colors.primary,
 			flexDirection: 'row',
-			fontFamily: 'Roboto-Bold',
+			fontFamily: 'Roboto',
 			fontSize: 15,
+			fontWeight: '700',
 			marginBottom: 15,
 			width: '100%',
 		},
@@ -50,8 +51,9 @@ const styles = (p) =>
 		title: {
 			color: Colors.primary,
 			flexDirection: 'row',
-			fontFamily: 'Roboto-Bold',
+			fontFamily: 'Roboto',
 			fontSize: 20,
+			fontWeight: '500',
 			marginBottom: 10,
 			width: '100%',
 		},

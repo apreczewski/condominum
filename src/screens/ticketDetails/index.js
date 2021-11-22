@@ -1,27 +1,41 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 import {
 	View,
 	ScrollView,
 	Text,
 	TouchableOpacity,
-	FlatList,
 	RefreshControl,
+	FlatList,
 } from 'react-native';
+// import Clipboard from '@react-native-community/clipboard';
+import Toast from 'react-native-root-toast';
+
+import * as Clipboard from 'expo-clipboard';
+
 import { FontAwesome, EvilIcons, Feather } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
+import { useFocusEffect } from '@react-navigation/native';
+import { connect } from 'react-redux';
+
 import { Colors, Pallete, Strings } from '../../lib/constants';
-
 import * as RootNavigator from '../../lib/utils/navigation';
-
 import styles from './styles';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 import { ValueFormat } from '../../lib/utils/formatCurrency';
 import { ItemEmphasis } from './components/ItemEmphasis';
+import { tickesActions } from '../../store/actions';
 
-function TicketDetailsScreen({ route }) {
-	const { item, loading } = route.params;
+function TicketDetailsScreen({ onGetItem, route, loading, item }) {
+	const { itemCurrent } = route.params;
+
+	useFocusEffect(
+		React.useCallback(() => {
+			onGetItem(itemCurrent?.id);
+		}, []),
+	);
 
 	const fileUri = `${FileSystem.cacheDirectory}test.pdf`;
 
@@ -54,8 +68,38 @@ function TicketDetailsScreen({ route }) {
 			});
 	};
 
+	const handleCode = (code) => {
+		if (code.acao_copia === 'sim') {
+			Clipboard.setString(code.codigo_barras);
+			Toast.show(
+				`Codigo de barras será copiado para área de transferência. Código de barras: ${code.codigo_barras}`,
+				{
+					duration: 10000,
+					position: Toast.positions.BOTTOM,
+					animation: true,
+					hideOnPress: true,
+					backgroundColor: Colors.background,
+					textColor: Colors.secondary,
+					visible: true,
+				},
+			);
+		} else {
+			Toast.show('Boleto não disponível', {
+				duration: 3000,
+				position: Toast.positions.BOTTOM,
+				animation: true,
+				hideOnPress: true,
+				backgroundColor: Colors.background,
+				textColor: Colors.secondary,
+				visible: true,
+			});
+		}
+	};
+
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.ticketDetails}
@@ -67,11 +111,10 @@ function TicketDetailsScreen({ route }) {
 					/>
 				</TitleSubTitleWithIcon>
 
-				<ItemEmphasis item={item} />
+				<ItemEmphasis onPress={openShareAsync} item={itemCurrent} />
 
 				<View style={styles.row}>
-					<TouchableOpacity
-						onPress={() => RootNavigator.navigate('')}>
+					<TouchableOpacity onPress={() => handleCode(item)}>
 						<View style={styles.square}>
 							<FontAwesome
 								name="barcode"
@@ -114,19 +157,23 @@ function TicketDetailsScreen({ route }) {
 
 				<View style={styles.container}>
 					<Text style={styles.expenses}>{Strings.valuesDetails}</Text>
-					<FlatList
-						refreshControl={<RefreshControl refreshing={loading} />}
-						data={item?.expenses}
-						renderItem={({ item: expense }) => (
-							<View style={styles.row_ticket}>
-								<Text style={styles.h3}>{expense?.text}</Text>
-								<ValueFormat
-									style={styles.value}
-									value={expense?.value}
-								/>
-							</View>
-						)}
-					/>
+					<ScrollView>
+						<FlatList
+							data={item?.desepesa}
+							keyExtractor={(item, index) => index.toString()}
+							renderItem={({ item: desepesa }) => (
+								<View style={styles.row_ticket}>
+									<Text style={styles.h3}>
+										{desepesa?.descricao}
+									</Text>
+									<ValueFormat
+										style={styles.value}
+										value={parseFloat(desepesa?.valor)}
+									/>
+								</View>
+							)}
+						/>
+					</ScrollView>
 				</View>
 			</View>
 		</ScrollView>
@@ -136,22 +183,47 @@ function TicketDetailsScreen({ route }) {
 TicketDetailsScreen.propTypes = {
 	route: PropTypes.shape({
 		params: PropTypes.shape({
-			item: PropTypes.shape({
+			itemCurrent: PropTypes.shape({
 				id: PropTypes.number,
-				value: PropTypes.number,
-				dueDate: PropTypes.string,
-				name: PropTypes.string,
-				state: PropTypes.number,
-				expenses: PropTypes.arrayOf(
-					PropTypes.shape({
-						text: PropTypes.string,
-						value: PropTypes.number,
-					}),
-				),
+				valor: PropTypes.oneOfType([
+					PropTypes.string,
+					PropTypes.number,
+				]),
+				vencimento: PropTypes.string,
+				situacao: PropTypes.string,
 			}),
-			loading: PropTypes.bool,
 		}),
+	}).isRequired,
+
+	loading: PropTypes.bool.isRequired,
+	onGetItem: PropTypes.func.isRequired,
+
+	item: PropTypes.shape({
+		pdf_url: PropTypes.string,
+		url_boleto: PropTypes.string,
+		codigo_barras: PropTypes.string,
+		desepesa: PropTypes.arrayOf(
+			PropTypes.shape({
+				descricao: PropTypes.string,
+				valor: PropTypes.oneOfType([
+					PropTypes.string,
+					PropTypes.number,
+				]),
+			}),
+		),
 	}).isRequired,
 };
 
-export default TicketDetailsScreen;
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	item: state.tickes.item,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	onGetItem: (id) => dispatch(tickesActions.getItem(id)),
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(TicketDetailsScreen);

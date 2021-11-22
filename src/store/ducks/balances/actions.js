@@ -9,7 +9,19 @@ export const setList = (data) => ({
 	data,
 });
 
+export const getItem = (id) => ({
+	type: types.GET_ITEM,
+	id,
+});
+
+export const setItem = (data) => ({
+	type: types.SET_ITEM,
+	data,
+});
+
 export default {
 	getList,
 	setList,
+	getItem,
+	setItem,
 };

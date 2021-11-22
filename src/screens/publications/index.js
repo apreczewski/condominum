@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
+import { View, ScrollView, FlatList, RefreshControl, Text } from 'react-native';
 import Modal from 'react-native-modal';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -11,10 +11,11 @@ import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 
 import { Item } from './components/Item';
 import { ItemEmphasis } from './components/ItemEmphasis';
-import { publicationsActions } from '../../store/actions';
-
 import styles from './styles';
 import PublicationDetailsScreen from './components/publicationDetails';
+
+import { publicationsActions } from '../../store/actions';
+import {} from '../../store/ducks/publications/reducers';
 
 function PublicationsScreen({ onGet, loading, list }) {
 	const [visible, setVisible] = useState(false);
@@ -36,11 +37,14 @@ function PublicationsScreen({ onGet, loading, list }) {
 
 	const handlePublication = useCallback((item) => {
 		setPublicationCurrent(item);
+
 		handleModal(!visible);
 	}, []);
 
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.publication}
@@ -53,38 +57,51 @@ function PublicationsScreen({ onGet, loading, list }) {
 				</TitleSubTitleWithIcon>
 
 				<View style={styles.list}>
-					<ItemEmphasis
-						item={list[1]}
-						onPress={() => handlePublication(list[1])}
-					/>
+					{list.length ? (
+						<ItemEmphasis
+							item={list[0]}
+							onPress={
+								() => handlePublication(list[0].id) //
+							}
+						/>
+					) : (
+						<Text>Você não possui publicações!</Text>
+					)}
 
-					<FlatList
-						refreshControl={<RefreshControl refreshing={loading} />}
-						data={list}
-						keyExtractor={(item) => item?.id.toString()}
-						renderItem={({ item, index }) =>
-							index > 0 && (
-								<Item
-									item={item}
-									isLast={index === list.length - 1}
-									onPress={() => handlePublication(item)}
-								/>
-							)
-						}
-					/>
+					{list && (
+						<FlatList
+							data={list}
+							keyExtractor={(itemCurrent) =>
+								itemCurrent?.id.toString()
+							}
+							renderItem={({ item, index }) =>
+								index > 0 && (
+									<Item
+										item={item}
+										isLast={index === list.length - 1}
+										onPress={() =>
+											handlePublication(item.id)
+										}
+									/>
+								)
+							}
+						/>
+					)}
 				</View>
 			</View>
 			<Modal
-				backdropOpacity={0.6}
+				backdropOpacity={0.2}
 				isVisible={visible}
 				backdropTransitionInTiming={800}
 				backdropTransitionOutTiming={200}
 				animationInTiming={500}
 				onBackdropPress={() => handleModal(!visible)}
-				onRequestClose={() => handleModal(!visible)}
-				style={styles.modal}>
+				onRequestClose={() => handleModal(!visible)}>
 				{visible && (
-					<PublicationDetailsScreen data={publicationCurrent} />
+					<PublicationDetailsScreen
+						close={() => setVisible(false)}
+						idCurrent={publicationCurrent}
+					/>
 				)}
 			</Modal>
 		</ScrollView>

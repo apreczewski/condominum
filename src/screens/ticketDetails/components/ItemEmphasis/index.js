@@ -1,54 +1,71 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import PropTypes from 'prop-types';
 import { EvilIcons } from '@expo/vector-icons';
+import moment from 'moment';
 
 import { Colors } from '../../../../lib/constants';
 import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
 import styles from './styles';
 
-export function ItemEmphasis({ item }) {
+export function ItemEmphasis({ onPress, item }) {
 	const icon = {
-		0: 'clock',
-		1: 'close-o',
-		2: 'check',
+		'aguardando pagamento': 'clock',
+		atrasado: 'close-o',
+		pago: 'check',
 	};
 
 	const colors = {
-		0: Colors.secondary,
-		1: Colors.primary,
-		2: Colors.green,
+		'aguardando pagamento': Colors.secondary,
+		atrasado: Colors.primary,
+		pago: Colors.green,
 	};
 
 	return (
-		<View style={styles({}).container}>
-			<ValueFormat style={styles({}).text} value={item?.value} />
-
-			<View style={styles({}).row}>
-				<Text style={styles({}).pay}>Vencimento</Text>
-				<Text style={styles({}).date}>{item.dueDate}</Text>
-			</View>
-
-			<View style={styles({ borderColor: colors[item.state] }).label}>
-				<EvilIcons
-					name={icon[item.state]}
-					size={30}
-					color={colors[item.state]}
+		<Pressable onPress={onPress}>
+			<View style={styles({}).container}>
+				<ValueFormat
+					style={styles({}).text}
+					value={parseFloat(item?.valor)}
 				/>
-				<Text style={styles({ color: colors[item.state] }).textStatus}>
-					{item.name}
-				</Text>
+
+				<View style={styles({}).row}>
+					<Text style={styles({}).pay}>Vencimento</Text>
+					<Text style={styles({}).date}>
+						{moment(
+							item?.vencimento,
+							'DD-MM-YYYY HH: mm: ss',
+						).format('DD/MM/YYYY')}
+					</Text>
+				</View>
+
+				<View
+					style={
+						styles({ borderColor: colors[item?.situacao] }).label
+					}>
+					<EvilIcons
+						name={icon[item?.situacao]}
+						size={30}
+						color={colors[item?.situacao]}
+					/>
+					<Text
+						style={
+							styles({ color: colors[item?.situacao] }).textStatus
+						}>
+						{item?.situacao}
+					</Text>
+				</View>
 			</View>
-		</View>
+		</Pressable>
 	);
 }
 
 ItemEmphasis.propTypes = {
+	onPress: PropTypes.func.isRequired,
 	item: PropTypes.shape({
-		value: PropTypes.number,
-		name: PropTypes.string,
-		state: PropTypes.number,
-		dueDate: PropTypes.string,
+		valor: PropTypes.string,
+		situacao: PropTypes.string,
+		vencimento: PropTypes.string,
 	}).isRequired,
 };
