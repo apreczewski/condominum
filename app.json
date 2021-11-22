@@ -22,7 +22,8 @@
 				"foregroundImage": "./src/assets/images/icon.png",
 				"backgroundColor": "#000000"
 			},
-			"package": "com.prolar.prolarcondominios"
+			"package": "com.prolar.prolarcondominios",
+			"versionCode": 1
 		},
 		"web": {
 			"favicon": "./src/assets/images/favicon.png"
