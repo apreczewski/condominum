@@ -1,7 +1,7 @@
 {
 	"expo": {
-		"name": "Prolar",
-		"slug": "prolarapp",
+		"name": "Prolar Condomínios",
+		"slug": "prolarcondominios",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./src/assets/images/icon.png",
@@ -22,7 +22,7 @@
 				"foregroundImage": "./src/assets/images/icon.png",
 				"backgroundColor": "#000000"
 			},
-			"package": "com.apreczewski.prolarapp"
+			"package": "com.prolar.prolarcondominios"
 		},
 		"web": {
 			"favicon": "./src/assets/images/favicon.png"
