@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
 	View,
 	ScrollView,
@@ -12,16 +12,16 @@ import {
 import Toast from 'react-native-root-toast';
 
 import * as Clipboard from 'expo-clipboard';
-
+import * as WebBrowser from 'expo-web-browser';
 import { FontAwesome, EvilIcons, Feather } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
+
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
 import { useFocusEffect } from '@react-navigation/native';
 import { connect } from 'react-redux';
 
 import { Colors, Pallete, Strings } from '../../lib/constants';
-import * as RootNavigator from '../../lib/utils/navigation';
 import styles from './styles';
 import { TitleSubTitleWithIcon } from '../../components/TitleSubTitleWithIcon';
 import { ValueFormat } from '../../lib/utils/formatCurrency';
@@ -96,6 +96,24 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 		}
 	};
 
+	const openWebBrowser = useCallback(async (url, reemite) => {
+		if (reemite === 'sim') {
+			WebBrowser.openBrowserAsync(`https://${url}`);
+		} else {
+			Toast.show('Boleto não disponível', {
+				duration: 3000,
+				position: Toast.positions.BOTTOM,
+				animation: true,
+				hideOnPress: true,
+				backgroundColor: Colors.background,
+				textColor: Colors.secondary,
+				visible: true,
+			});
+		}
+
+		// this.props.onPress && this.props.onPress();
+	}, []);
+
 	return (
 		<ScrollView
 			vertical
@@ -141,7 +159,12 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 					</TouchableOpacity>
 
 					<TouchableOpacity
-						onPress={() => RootNavigator.navigate('')}>
+						onPress={() =>
+							openWebBrowser(
+								`${item?.url_boleto}`,
+								item.acao_reemite,
+							)
+						}>
 						<View style={styles.square}>
 							<Feather
 								name="download"
@@ -201,6 +224,7 @@ TicketDetailsScreen.propTypes = {
 	item: PropTypes.shape({
 		pdf_url: PropTypes.string,
 		url_boleto: PropTypes.string,
+		acao_reemite: PropTypes.string,
 		codigo_barras: PropTypes.string,
 		desepesa: PropTypes.arrayOf(
 			PropTypes.shape({

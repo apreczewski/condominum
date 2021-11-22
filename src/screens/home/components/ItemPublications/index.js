@@ -32,7 +32,7 @@ export const ItemPublications = ({ item }) => (
 
 					<Text style={styles.baseboard}>
 						{moment(
-							item[0]?.dt_pub_fim,
+							item[0]?.dt_pub_inicio,
 							'DD-MM-YYYY HH: mm: ss',
 						).format('DD/MM/YYYY')}
 					</Text>
@@ -60,7 +60,7 @@ ItemPublications.propTypes = {
 		PropTypes.shape({
 			imagem: PropTypes.string,
 			titulo: PropTypes.string,
-			dt_pub_fim: PropTypes.string,
+			dt_pub_inicio: PropTypes.string,
 		}),
 	),
 };
@@ -70,7 +70,7 @@ ItemPublications.defaultProps = {
 		{
 			imagem: '',
 			titulo: '',
-			dt_pub_fim: '',
+			dt_pub_inicio: '',
 		},
 	],
 };

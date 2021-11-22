@@ -73,7 +73,7 @@ function PublicationDetailsScreen({
 							</Text>
 							<Text style={styles.date}>
 								{moment(
-									item?.dt_pub_fim,
+									item?.dt_pub_inicio,
 									'DD-MM-YYYY HH: mm: ss',
 								).format('DD/MM/YYYY')}
 							</Text>
@@ -110,21 +110,9 @@ PublicationDetailsScreen.propTypes = {
 		status_curtida: PropTypes.bool,
 		titulo: PropTypes.string,
 		texto_detalhado: PropTypes.string,
-		dt_pub_fim: PropTypes.string,
-		// user: PropTypes.string,
+		dt_pub_inicio: PropTypes.string,
 	}).isRequired,
 };
-
-// PublicationDetailsScreen.defaultProps = {
-// 	item: PropTypes.shape({
-// 		id: PropTypes.number.isRequired,
-// 		imagem: '',
-// 		status_curtida: false,
-// 		titulo: '',
-// 		texto_detalhado: '',
-// 		dt_pub_fim: '',
-// 	}),
-// };
 
 const mapStateToProps = (state) => ({
 	loading: state.api.loading,
