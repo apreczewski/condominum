@@ -8883,15 +8883,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-webview@npm:^11.14.0":
-  version: 11.14.0
-  resolution: "react-native-webview@npm:11.14.0"
+"react-native-webview@npm:11.6.2":
+  version: 11.6.2
+  resolution: "react-native-webview@npm:11.6.2"
   dependencies:
     escape-string-regexp: 2.0.0
     invariant: 2.2.4
   peerDependencies:
-    react-native: ">=0.65.1"
-  checksum: b09ea14a79da103529b94201e93824e2a8c688abf1f62fa63af0017ed5b23ece2d37be0e0ff3dd1d6c94a94ffe1f5cd2cfb903664992cb7bd689f093c5af4a0a
+    react-native: ">=0.60 <=0.64"
+  checksum: 307c27345f1c4a14222ea916ff3d6cf5a544cb2af8920fcb50d3afb1e64f8c4cf15e37e4d983768cc36be379a199578549a5c8290e5da453d919096d15b82c18
   languageName: node
   linkType: hard
 
@@ -9400,7 +9400,7 @@ __metadata:
     react-native-step-indicator: ^1.0.3
     react-native-toast-message: ^1.4.9
     react-native-web: ~0.13.12
-    react-native-webview: ^11.14.0
+    react-native-webview: 11.6.2
     react-number-format: ^4.7.3
     react-redux: ^7.2.4
     redux: ^4.1.1

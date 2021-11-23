@@ -20,10 +20,15 @@ export function* login(payload) {
 
 		if (response.data.login) {
 			const dataUser = {
+				email: response.data.login.email,
 				name: response.data.login.nome,
 				social_name: response.data.login.nome_social,
+				fone: response.data.login.fone,
 				condominio_id: response.data.login.condominio_id,
 				condominio_nome: response.data.login.condominio_nome,
+				token: response.data.login.token,
+				cnpj: response.data.login.cnpj,
+				cpf: response.data.login.cpf,
 			};
 
 			const dataCondo = {
@@ -176,9 +181,37 @@ export function* logout() {
 	AsyncStorage.removeItem('userToken');
 }
 
+export function* putChangePassword({ data }) {
+	yield put(apiActions.apiStart());
+
+	try {
+		const response = yield call(auth.changePassword, {
+			email: data.email,
+			nome: data.name,
+			nome_social: data.social_name,
+			telefone: data.fone,
+			senha: data.senha,
+		});
+		if (response.data) {
+			Toast.show({
+				text1: response.data.mensagem.mensagem,
+				type: 'info',
+			});
+		}
+	} catch (error) {
+		Toast.show({
+			text1: 'Erro ao salvar nova senha',
+			type: 'error',
+		});
+	}
+
+	yield put(apiActions.apiEnd());
+}
+
 export default function* watchUserAuthentication() {
 	yield takeLatest(types.LOGIN_USER, login);
 	yield takeLatest(types.REGISTER_USER, registerUser);
 	yield takeLatest(types.CHECK_USER, checkUser);
 	yield takeLatest(types.LOGOUT, logout);
+	yield takeLatest(types.PUT_CHANGEPASSWORD, putChangePassword);
 }

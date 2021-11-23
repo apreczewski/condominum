@@ -50,7 +50,7 @@
 		"react-native-step-indicator": "^1.0.3",
 		"react-native-toast-message": "^1.4.9",
 		"react-native-web": "~0.13.12",
-		"react-native-webview": "^11.14.0",
+		"react-native-webview": "11.6.2",
 		"react-number-format": "^4.7.3",
 		"react-redux": "^7.2.4",
 		"redux": "^4.1.1",
