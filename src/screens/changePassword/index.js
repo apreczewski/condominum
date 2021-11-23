@@ -8,18 +8,23 @@ import {
 	View,
 	Alert,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
+import { useDispatch, connect } from 'react-redux';
 
+import { authActions } from '../../store/actions';
 import { Images, Strings, Pallete } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
-export default function ChangePasswordScreen() {
+function ChangePasswordScreen({ user }) {
+	const dispatch = useDispatch();
+
 	const formRef = useRef(null);
 
-	const handleSubmit = useCallback(async (data) => {
+	const handleSubmit = useCallback(async (password) => {
 		try {
 			formRef.current?.setErrors({});
 
@@ -31,9 +36,16 @@ export default function ChangePasswordScreen() {
 				),
 			});
 
-			await schema.validate(data, {
+			await schema.validate(password, {
 				abortEarly: false,
 			});
+
+			dispatch(
+				authActions.putChangePassword({
+					...user,
+					senha: password.password,
+				}),
+			);
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -83,7 +95,9 @@ export default function ChangePasswordScreen() {
 						<View style={styles.viewButton}>
 							<Button
 								text={Strings.changePassword}
-								onPress={() => formRef.current?.submitForm()}
+								onPress={(event) =>
+									formRef.current?.submitForm(event)
+								}
 							/>
 						</View>
 					</Form>
@@ -92,3 +106,21 @@ export default function ChangePasswordScreen() {
 		</KeyboardAvoidingView>
 	);
 }
+
+ChangePasswordScreen.propTypes = {
+	user: PropTypes.shape({
+		social_name: PropTypes.string,
+		email: PropTypes.string,
+		name: PropTypes.string,
+		fone: PropTypes.string,
+		condominio_id: PropTypes.number,
+		condominio_nome: PropTypes.string,
+	}).isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	loading: state.api.loading,
+	user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(ChangePasswordScreen);
