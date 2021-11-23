@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
+import * as RootNavigator from '../../lib/utils/navigation';
 import { Pallete, Strings } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
@@ -21,7 +22,10 @@ export default function UnlinkedAccountScreen() {
 					</Text>
 				</View>
 
-				<Button text={Strings.access} onPress={() => ''} />
+				<Button
+					text={Strings.access}
+					onPress={() => RootNavigator.navigate('RegisterUser')}
+				/>
 			</View>
 		</ScrollView>
 	);
