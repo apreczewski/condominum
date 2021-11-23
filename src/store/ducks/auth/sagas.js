@@ -1,6 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import * as actions from './actions';
 import * as auth from '../../../api/auth';
 import api from '../../../api/api';
@@ -89,15 +90,22 @@ export function* registerUser(payload) {
 
 		const response = yield call(auth.registerUser, userData);
 
-		// console.log('>>>>', response.data.mensagem);
-
 		if (response.data?.usuario) {
-			Toast.show({
-				text1: 'Usuário criado com sucesso!',
-				type: 'success',
-			});
-			RootNavigation.navigate('Auth');
+			Toast.show(
+				'Olá! Seu cadastro foi realizado com sucesso. Para que seu acesso seja liberado, informe o e-mail cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que  o vincule a sua unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das facilidades que o aplicativo proporciona.',
+				{
+					duration: 5000,
+					position: Toast.positions.TOP,
+					animation: true,
+					hideOnPress: true,
+					backgroundColor: Colors.background,
+					textColor: Colors.secondary,
+					visible: true,
+					type: 'success',
+				},
+			);
 			// redirecionar o usuário para tela de login
+			RootNavigation.navigate('Auth');
 		} else
 			Toast.show({
 				text1: response.data.mensagem.mensagem,
