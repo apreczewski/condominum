@@ -9,6 +9,7 @@ export const SET_CONDO = 'auth/SET_CONDO';
 export const SET_ERROR = 'auth/SET_ERROR';
 export const SET_SUCCESS = 'auth/SET_SUCCESS';
 export const REGISTER_USER = 'auth/REGISTER_USER';
+export const PUT_CHANGEPASSWORD = 'v1/put_usuario';
 
 export default {
 	LOGIN_USER,
@@ -20,4 +21,5 @@ export default {
 	SET_LOADING,
 	SET_CONDO,
 	REGISTER_USER,
+	PUT_CHANGEPASSWORD,
 };

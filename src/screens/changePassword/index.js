@@ -9,17 +9,21 @@ import {
 	Alert,
 } from 'react-native';
 import { Form } from '@unform/mobile';
+import { useDispatch, connect } from 'react-redux';
 
+import { authActions } from '../../store/actions';
 import { Images, Strings, Pallete } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
-export default function ChangePasswordScreen() {
+function ChangePasswordScreen() {
+	const dispatch = useDispatch();
+
 	const formRef = useRef(null);
 
-	const handleSubmit = useCallback(async (data) => {
+	const handleSubmit = useCallback(async (password) => {
 		try {
 			formRef.current?.setErrors({});
 
@@ -31,9 +35,12 @@ export default function ChangePasswordScreen() {
 				),
 			});
 
-			await schema.validate(data, {
+			await schema.validate(password, {
 				abortEarly: false,
 			});
+			// console.log('>>>> ', password, user);
+
+			dispatch(authActions.putChangePassword(password));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -92,3 +99,9 @@ export default function ChangePasswordScreen() {
 		</KeyboardAvoidingView>
 	);
 }
+
+const mapStateToProps = (state) => ({
+	user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(ChangePasswordScreen);
