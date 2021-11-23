@@ -173,12 +173,17 @@ export function* logout() {
 	AsyncStorage.removeItem('userToken');
 }
 
-export function* putChangePassword(data) {
+export function* putChangePassword({ data }) {
 	yield put(apiActions.apiStart());
 
 	try {
-		const response = yield call(auth.putChangePassword, data);
-
+		const response = yield call(auth.changePassword, {
+			email: data.email,
+			nome: data.name,
+			nome_social: data.social_name,
+			telefone: data.fone,
+			senha: data.senha,
+		});
 		if (response.data) {
 			Toast.show({
 				text1: response.data.mensagem.mensagem,

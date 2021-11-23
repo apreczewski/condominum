@@ -18,7 +18,7 @@ function ProfileScreen({ user }) {
 
 		name: Yup.string().required('Nome obrigatório'),
 
-		nameSocial: Yup.string().required('Nome social obrigatório'),
+		/* nameSocial: Yup.string().required('Nome social obrigatório'),
 
 		phone: Yup.string()
 			.min(8, 'Muito curto!')
@@ -27,7 +27,7 @@ function ProfileScreen({ user }) {
 
 		cpfCnpj: Yup.string()
 			.max(20, 'Muito longo!')
-			.required('Digite CPF/CNPJ'),
+	.required('Digite CPF/CNPJ'), */
 
 		password: Yup.string().min(6, 'No mínimo 6 dígitos'),
 		passwordConfirmation: Yup.string().oneOf(
@@ -37,6 +37,7 @@ function ProfileScreen({ user }) {
 	});
 
 	const handleSubmit = useCallback(async (data) => {
+		// console.log('data', data);
 		try {
 			formRef.current?.setErrors({});
 
@@ -48,8 +49,6 @@ function ProfileScreen({ user }) {
 				const errors = getValidationErrors(err);
 
 				formRef.current?.setErrors(errors);
-
-				// console.log(errors);
 
 				return;
 			}
@@ -68,14 +67,14 @@ function ProfileScreen({ user }) {
 				<CreateUser
 					formRef={formRef}
 					nameButton={Strings.profile}
-					onSubmit={handleSubmit()}
+					onSubmit={handleSubmit}
 					onPress={() => formRef.current?.submitForm()}
 					data={{
-						email: 'joao@gmail.com',
+						email: user.email,
 						name: user.name,
 						nameSocial: user.social_name,
-						phone: '51 985455260',
-						cpfcnpj: '012.451.545-55',
+						phone: user.fone,
+						cpfcnpj: user.cpf ? user.cpf : user.cnpj,
 					}}
 					clearErrors={handleErros}
 				/>
@@ -86,8 +85,14 @@ function ProfileScreen({ user }) {
 
 ProfileScreen.propTypes = {
 	user: PropTypes.shape({
-		name: PropTypes.string,
 		social_name: PropTypes.string,
+		email: PropTypes.string,
+		name: PropTypes.string,
+		fone: PropTypes.string,
+		condominio_id: PropTypes.number,
+		condominio_nome: PropTypes.string,
+		cnpj: PropTypes.string,
+		cpf: PropTypes.string,
 	}).isRequired,
 };
 
@@ -95,9 +100,5 @@ const mapStateToProps = (state) => ({
 	loading: state.api.loading,
 	user: state.auth.user,
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-// 	onGet: () => dispatch(condominiumActions.getList()),
-// });
 
 export default connect(mapStateToProps)(ProfileScreen);

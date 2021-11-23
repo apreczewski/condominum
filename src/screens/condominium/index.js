@@ -14,13 +14,12 @@ import { condominiumActions } from '../../store/actions';
 function CondominiumScreen({ user, onGet, loading, list }) {
 	useFocusEffect(
 		React.useCallback(() => {
-			// console.log('user >> ', user);
 			onGet();
 		}, []),
 	);
 
 	const [condominiumCurrent, setCondominiumCurrent] = useState({
-		id: user.condominio_id,
+		condominio_id: user.condominio_id,
 		condominio_nome: user.condominio_nome,
 	});
 
@@ -64,7 +63,7 @@ function CondominiumScreen({ user, onGet, loading, list }) {
 											handleSelectCondominium(item)
 										}
 										select={
-											condominiumCurrent?.id ===
+											condominiumCurrent?.condominio_id ===
 											item?.condominio_id
 										}
 									/>
@@ -74,8 +73,10 @@ function CondominiumScreen({ user, onGet, loading, list }) {
 						<View style={styles.viewButtons}>
 							<Button
 								text={Strings.condominiumExchange}
-								onPress={() => handleid(condominiumCurrent?.id)}
-								disabled={!condominiumCurrent?.id}
+								onPress={() =>
+									handleid(condominiumCurrent?.condominio_id)
+								}
+								disabled={!condominiumCurrent?.condominio_id}
 							/>
 						</View>
 					</>
@@ -94,6 +95,7 @@ CondominiumScreen.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	list: PropTypes.arrayOf(
 		PropTypes.shape({
+			condominio_id: PropTypes.number,
 			id: PropTypes.number,
 			condominio_nome: PropTypes.string,
 		}),

@@ -8,6 +8,7 @@ import {
 	View,
 	Alert,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
 import { useDispatch, connect } from 'react-redux';
 
@@ -18,7 +19,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
-function ChangePasswordScreen() {
+function ChangePasswordScreen({ user }) {
 	const dispatch = useDispatch();
 
 	const formRef = useRef(null);
@@ -38,9 +39,13 @@ function ChangePasswordScreen() {
 			await schema.validate(password, {
 				abortEarly: false,
 			});
-			// console.log('>>>> ', password, user);
 
-			dispatch(authActions.putChangePassword(password));
+			dispatch(
+				authActions.putChangePassword({
+					...user,
+					senha: password.password,
+				}),
+			);
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -90,7 +95,9 @@ function ChangePasswordScreen() {
 						<View style={styles.viewButton}>
 							<Button
 								text={Strings.changePassword}
-								onPress={() => formRef.current?.submitForm()}
+								onPress={(event) =>
+									formRef.current?.submitForm(event)
+								}
 							/>
 						</View>
 					</Form>
@@ -100,7 +107,19 @@ function ChangePasswordScreen() {
 	);
 }
 
+ChangePasswordScreen.propTypes = {
+	user: PropTypes.shape({
+		social_name: PropTypes.string,
+		email: PropTypes.string,
+		name: PropTypes.string,
+		fone: PropTypes.string,
+		condominio_id: PropTypes.number,
+		condominio_nome: PropTypes.string,
+	}).isRequired,
+};
+
 const mapStateToProps = (state) => ({
+	loading: state.api.loading,
 	user: state.auth.user,
 });
 
