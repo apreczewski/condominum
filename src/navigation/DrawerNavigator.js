@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import {
-	Ionicons,
-	FontAwesome,
-	MaterialCommunityIcons,
-	Feather,
-} from '@expo/vector-icons';
+// import {
+// 	Ionicons,
+// 	FontAwesome,
+// 	MaterialCommunityIcons,
+// 	Feather,
+// } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -34,12 +34,46 @@ import { Colors, Images, Metrics } from '../lib/constants';
 
 const Drawer = createDrawerNavigator();
 
-function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
+function MainDrawerNavigator({ onGet, list }) {
+	const components = {
+		// 1: {
+		// 	icon: (size, focused) => (
+		// 		<MaterialCommunityIcons
+		// 			name="tooltip-text-outline"
+		// 			size={size}
+		// 			color={focused ? Colors.primary : Colors.secondary}
+		// 		/>
+		// 	),
+		// 	screen: HomeScreen,
+		// },
+		1: { icon: 'tooltip-text-outline', screen: HomeScreen },
+		2: { icon: 'tooltip-text-outline', screen: PublicationsScreen },
+		3: { icon: 'calendar-edit', screen: ReservesManagementScreen },
+		4: { icon: 'barcode', screen: TicketScreen },
+		5: { icon: 'file-table-outline', screen: BalanceScreen },
+		6: { icon: 'calendar-month-outline', screen: ReservesScreen },
+		7: { icon: 'office-building', screen: CondominiumScreen },
+		8: { icon: 'user', screen: ProfileScreen },
+		9: { icon: 'key-outline', screen: ChangePasswordScreen },
+		10: { icon: 'file-document-outline', screen: TermsScreen },
+		11: { icon: 'file-document-outline', screen: PolicesScreen },
+		12: { icon: 'information-outline', screen: AboutScreen },
+		13: { icon: 'help-circle-outline', screen: HelpScreen },
+	};
+
 	useFocusEffect(
-		React.useCallback(() => {
+		useCallback(() => {
 			onGet();
 		}, []),
 	);
+
+	// const loadingDrawer = useCallback((listCurrent) => {
+	// 	listCurrent.map((item) => {
+	// 		if (item.permissao) {
+	// 			components.forEach((element) => ({ ...item }));
+	// 		}
+	// 	});
+	// }, []);
 
 	return (
 		<Drawer.Navigator
@@ -67,34 +101,20 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 				drawerInactiveBackgroundColor: 'transparent',
 			}}
 			drawerContent={(props) => <CustomDrawerContent {...props} />}>
-			{/* {list &&
-				list?.map((item) => (
-					<Drawer.Screen
-						key={item.id}
-						name={item.slug}
-						component={HomeScreen}
-						options={{
-							title: item.titulo,
-							drawerIcon: ({ focused, size }) => (
-								<Ionicons
-									name="md-home"
-									size={size}
-									color={
-										focused
-											? Colors.primary
-											: Colors.secondary
-									}
-								/>
-							),
-						}}
-					/>
-				))} */}
+			{list.map((item) => (
+				<Drawer.Screen
+					key={item?.id}
+					name={item?.slug}
+					component={components[item.posicao].screen}
+					options={{
+						title: item?.titulo,
+						drawerIcon: ({ focused, size }) =>
+							components[item.posicao].icon(focused, size),
+					}}
+				/>
+			))}
 
-			{/* {list[0].status && ( */}
-
-			{/* {console.log('>>> lenght', list.length === number)} */}
-
-			<Drawer.Screen
+			{/* <Drawer.Screen
 				name="Home"
 				component={HomeScreen}
 				options={{
@@ -107,9 +127,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Publications"
 				component={PublicationsScreen}
 				options={{
@@ -122,8 +141,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Ticket"
 				component={TicketScreen}
 				options={{
@@ -136,9 +155,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Balance"
 				component={BalanceScreen}
 				options={{
@@ -151,9 +169,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Reserves"
 				component={ReservesScreen}
 				options={{
@@ -166,9 +183,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="ReservesManagement"
 				component={ReservesManagementScreen}
 				options={{
@@ -181,9 +197,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Condominium"
 				component={CondominiumScreen}
 				options={{
@@ -196,9 +211,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Profile"
 				component={ProfileScreen}
 				options={{
@@ -211,9 +225,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="ChangePassword"
 				component={ChangePasswordScreen}
 				options={{
@@ -226,9 +239,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Help"
 				component={HelpScreen}
 				options={{
@@ -241,9 +253,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Terms"
 				component={TermsScreen}
 				options={{
@@ -256,9 +267,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Polices"
 				component={PolicesScreen}
 				options={{
@@ -271,9 +281,8 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
-
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="About"
 				component={AboutScreen}
 				options={{
@@ -286,7 +295,7 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 						/>
 					),
 				}}
-			/>
+			/> */}
 		</Drawer.Navigator>
 	);
 }

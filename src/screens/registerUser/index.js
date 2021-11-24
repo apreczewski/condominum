@@ -1,13 +1,16 @@
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
-import { View, Alert, ScrollView } from 'react-native';
+import { View, Alert, ScrollView, Text } from 'react-native';
 
 import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Form } from '@unform/mobile';
 import { authActions } from '../../store/actions';
-import CreateUser from '../../components/CreateUser';
-import { Pallete, Strings } from '../../lib/constants';
+import { Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import styles from './styles';
 
 function RegisterUserScreen({
 	/* onRegister */ onSetError /* onSetSuccess */,
@@ -19,21 +22,7 @@ function RegisterUserScreen({
 		email: Yup.string()
 			.required('E-mail obrigatório')
 			.email('Digite um e-mail válido'),
-
 		name: Yup.string().required('Nome obrigatório'),
-
-		// nameSocial: Yup.string().required('Nome social obrigatório'),
-
-		// phone: Yup.string()
-		// 	.min(8, 'Muito curto!')
-		// 	.max(14, 'Muito longo!')
-		// 	.required('Digite um telefone'),
-
-		// cpfCnpj: Yup.string()
-		// 	.min(11, 'Muito curto!')
-		// 	.max(20, 'Muito longo!')
-		// 	.required('Digite CPF/CNPJ'),
-
 		password: Yup.string().min(6, 'No mínimo 6 dígitos'),
 		passwordConfirmation: Yup.string().oneOf(
 			[Yup.ref('password'), null],
@@ -73,15 +62,91 @@ function RegisterUserScreen({
 
 	return (
 		<ScrollView vertical>
-			<View style={Pallete.screen}>
-				<CreateUser
-					formRef={formRef}
-					nameButton={Strings.createAcont}
-					onSubmit={handleSubmit}
-					onPress={() => formRef.current?.submitForm()}
-					data={{}}
-					clearErrors={handleErros}
-				/>
+			<View>
+				<Text style={styles.text}>{Strings.createUserText}</Text>
+
+				<Form ref={formRef} onSubmit={handleSubmit}>
+					<Input
+						name="email"
+						label="E-mail"
+						autoCorrect={false}
+						labelError="Digite um e-mail válido!"
+						autoCapitalize="none"
+						keyboardType="email-address"
+						placeholder="E-mail"
+						clearErrors={handleErros}
+					/>
+
+					<Input
+						name="name"
+						label="Nome Completo"
+						autoCorrect={false}
+						labelError="Digite nome completo!"
+						autoCapitalize="none"
+						keyboardType="text"
+						placeholder="Nome Completo"
+						clearErrors={handleErros}
+					/>
+
+					<Input
+						name="nameSocial"
+						label="Nome Social"
+						autoCorrect={false}
+						labelError="Digite nome social!"
+						autoCapitalize="none"
+						keyboardType="text"
+						placeholder="Nome com o qual deseja ser tratado"
+						clearErrors={handleErros}
+					/>
+
+					<Input
+						name="phone"
+						label="Telefone"
+						autoCorrect={false}
+						labelError="Digite um telefone"
+						keyboardType="phone-pad"
+						placeholder="(   ) ___________"
+						clearErrors={handleErros}
+					/>
+
+					<Input
+						name="cpfCnpj"
+						label="CPF/CNPJ"
+						autoCorrect={false}
+						labelError="Digite CPF/CNPJ"
+						autoCapitalize="none"
+						keyboardType="number-pad"
+						placeholder="CPF/CNPJ"
+						clearErrors={handleErros}
+					/>
+
+					<Input
+						name="password"
+						label="Nova Senha"
+						labelError="Senha não atende critérios minimos"
+						placeholder="Nova Senha - mínimo 6 caracteres"
+						passwordProps="password"
+						clearErrors={handleErros}
+					/>
+
+					<Input
+						name="passwordConfirmation"
+						label="Confirme a nova senha"
+						labelError="Senha não confere com a nova senha"
+						placeholder="Confirme a nova senha"
+						passwordProps="password"
+						returnKeyType="send"
+						onSubmitEditing={() => formRef.current?.submitForm()}
+						clearErrors={handleErros}
+					/>
+
+					<View style={styles.viewButton}>
+						<Button
+							text="Cfiar Conta"
+							onPress={() => formRef.current?.submitForm()}
+						/>
+					</View>
+				</Form>
 			</View>
 		</ScrollView>
 	);
