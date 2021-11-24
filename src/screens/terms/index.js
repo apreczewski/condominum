@@ -19,10 +19,12 @@ function TermsScreen({ loading, onGet, terms }) {
 		<ScrollView
 			refreshControl={<RefreshControl refreshing={loading} />}
 			style={Pallete.screen}>
-			<View style={styles.container}>
-				<Text style={styles.title}>{terms[0].title}</Text>
-				<Text style={styles.text}>{terms[0].text}</Text>
-			</View>
+			{terms.length > 0 && (
+				<View style={styles.container}>
+					<Text style={styles.title}>{terms[2].title}</Text>
+					<Text style={styles.text}>{terms[2].text}</Text>
+				</View>
+			)}
 		</ScrollView>
 	);
 }
