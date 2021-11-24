@@ -9,7 +9,18 @@ export const setHelp = (data) => ({
 	data,
 });
 
+export const getTerms = () => ({
+	type: types.GET_TERMS,
+});
+
+export const setTerms = (data) => ({
+	type: types.SET_TERMS,
+	data,
+});
+
 export default {
 	getHelp,
 	setHelp,
+	getTerms,
+	setTerms,
 };
