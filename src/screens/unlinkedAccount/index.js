@@ -24,7 +24,7 @@ export default function UnlinkedAccountScreen() {
 
 				<Button
 					text={Strings.access}
-					onPress={() => RootNavigator.navigate('RegisterUser')}
+					onPress={() => RootNavigator.navigate('Auth')}
 				/>
 			</View>
 		</ScrollView>

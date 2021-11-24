@@ -6,7 +6,7 @@ import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
 import { authActions } from '../../store/actions';
-import { Strings } from '../../lib/constants';
+import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -61,8 +61,8 @@ function RegisterUserScreen({
 	}, []);
 
 	return (
-		<ScrollView vertical>
-			<View>
+		<ScrollView>
+			<View style={Pallete.screen}>
 				<Text style={styles.text}>{Strings.createUserText}</Text>
 
 				<Form ref={formRef} onSubmit={handleSubmit}>
@@ -142,7 +142,7 @@ function RegisterUserScreen({
 
 					<View style={styles.viewButton}>
 						<Button
-							text="Cfiar Conta"
+							text="Criar Conta"
 							onPress={() => formRef.current?.submitForm()}
 						/>
 					</View>
@@ -153,9 +153,7 @@ function RegisterUserScreen({
 }
 
 RegisterUserScreen.propTypes = {
-	// onRegister: PropTypes.func.isRequired,
 	onSetError: PropTypes.func.isRequired,
-	// onSetSuccess: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

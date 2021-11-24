@@ -1,7 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 import * as actions from './actions';
 import * as auth from '../../../api/auth';
 import api from '../../../api/api';
@@ -95,21 +95,14 @@ export function* registerUser(payload) {
 
 		const response = yield call(auth.registerUser, userData);
 
-		if (response.data?.usuario) {
-			Toast.show(
-				'Olá! Seu cadastro foi realizado com sucesso. Para que seu acesso seja liberado, informe o e-mail cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que  o vincule a sua unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das facilidades que o aplicativo proporciona.',
-				{
-					duration: 5000,
-					position: Toast.positions.TOP,
-					animation: true,
-					hideOnPress: true,
-					backgroundColor: Colors.background,
-					textColor: Colors.secondary,
-					visible: true,
-					type: 'success',
-				},
-			);
-			// redirecionar o usuário para tela de login
+		if (response.data.usuario) {
+			Toast.show({
+				text1: 'Cadastro',
+				text2: 'Olá! Seu cadastro foi realizado com sucesso. Para que seu acesso seja liberado, informe o e-mail \n	cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que  o vincule a sua \n	unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das \n facilidades que o aplicativo proporciona.',
+				type: 'success',
+				visibilityTime: 5000,
+			});
+
 			RootNavigation.navigate('Auth');
 		} else
 			Toast.show({
