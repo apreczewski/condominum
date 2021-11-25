@@ -1,7 +1,9 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import toastUser from 'react-native-root-toast';
 
+// import { Colors } from '../../../lib/constants';
 import * as actions from './actions';
 import * as auth from '../../../api/auth';
 import api from '../../../api/api';
@@ -96,19 +98,12 @@ export function* registerUser(payload) {
 		const response = yield call(auth.registerUser, userData);
 
 		if (response.data.usuario) {
-			Toast.show({
-				text1: 'Cadastro',
-				text2: 'Olá! Seu cadastro foi realizado com sucesso. Para que seu acesso seja liberado, informe o e-mail \n	cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que  o vincule a sua \n	unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das \n facilidades que o aplicativo proporciona.',
-				type: 'success',
-				visibilityTime: 5000,
-			});
-
-			RootNavigation.navigate('Auth');
-		} else
-			Toast.show({
-				text1: response.data.mensagem.mensagem,
-				type: 'error',
-			});
+			return;
+		}
+		Toast.show({
+			text1: response.data.mensagem.mensagem,
+			type: 'error',
+		});
 	} catch (error) {
 		Toast.show({
 			text1: 'Erro ao realizar o login tente novamente!',

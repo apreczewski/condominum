@@ -1,10 +1,11 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { View, Alert, ScrollView, Text } from 'react-native';
-
 import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
+
+import ModalInfo from '../unlinkedAccount';
 import { authActions } from '../../store/actions';
 import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
@@ -15,7 +16,13 @@ import styles from './styles';
 function RegisterUserScreen({
 	/* onRegister */ onSetError /* onSetSuccess */,
 }) {
+	const [modalInfo, setModalInfo] = useState(false);
+
+	const handleModal = (status) =>
+		status ? setModalInfo(true) : setModalInfo(false);
+
 	const dispatch = useDispatch();
+
 	const formRef = useRef(null);
 
 	const schema = Yup.object().shape({
@@ -44,6 +51,8 @@ function RegisterUserScreen({
 					pessoa_tipo: 'fisica',
 				}),
 			);
+
+			handleModal(!modalInfo);
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -147,6 +156,10 @@ function RegisterUserScreen({
 						/>
 					</View>
 				</Form>
+				<ModalInfo
+					visible={modalInfo}
+					close={() => handleModal(!modalInfo)}
+				/>
 			</View>
 		</ScrollView>
 	);

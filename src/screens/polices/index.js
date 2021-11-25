@@ -19,7 +19,7 @@ function PolicesScreen({ loading, onGet, polices }) {
 		<ScrollView
 			refreshControl={<RefreshControl refreshing={loading} />}
 			style={Pallete.screen}>
-			{polices.length > 0 && (
+			{polices.length > 1 && (
 				<View style={styles.container}>
 					<Text style={styles.title}>{polices[1].title}</Text>
 					<Text style={styles.text}>{polices[1].text}</Text>
@@ -42,7 +42,11 @@ PolicesScreen.propTypes = {
 	onGet: PropTypes.func.isRequired,
 	loading: PropTypes.bool.isRequired,
 	polices: PropTypes.arrayOf(
-		PropTypes.shape({ title: PropTypes.string, text: PropTypes.string }),
+		PropTypes.shape({
+			title: PropTypes.string,
+			text: PropTypes.string,
+			slug: PropTypes.string,
+		}),
 	).isRequired,
 };
 

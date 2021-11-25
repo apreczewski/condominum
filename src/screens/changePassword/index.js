@@ -46,6 +46,7 @@ function ChangePasswordScreen({ user }) {
 					senha: password.password,
 				}),
 			);
+			formRef.current.reset();
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
