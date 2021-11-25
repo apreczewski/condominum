@@ -18,7 +18,7 @@ export const ItemEmphasis = ({ item, onPress, isLast }) => (
 			<Text style={styles({}).title}>{item?.titulo}</Text>
 
 			<Text style={styles({}).baseboard}>
-				{moment(item?.dt_pub_fim, 'DD-MM-YYYY HH: mm: ss').format(
+				{moment(item?.dt_pub_inicio, 'DD-MM-YYYY HH: mm: ss').format(
 					'DD/MM/YYYY',
 				)}
 			</Text>
@@ -32,7 +32,7 @@ ItemEmphasis.propTypes = {
 	item: PropTypes.shape({
 		imagem: PropTypes.string,
 		titulo: PropTypes.string,
-		dt_pub_fim: PropTypes.string,
+		dt_pub_inicio: PropTypes.string,
 	}),
 };
 
@@ -41,6 +41,6 @@ ItemEmphasis.defaultProps = {
 	item: {
 		imagem: '',
 		titulo: '',
-		dt_pub_fim: '',
+		dt_pub_inicio: '',
 	},
 };

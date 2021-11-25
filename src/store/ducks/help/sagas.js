@@ -20,6 +20,23 @@ export function* getHelp() {
 	yield put(apiActions.apiEnd());
 }
 
+export function* getTerms() {
+	yield put(apiActions.apiStart());
+
+	try {
+		const response = yield call(help.getTerms);
+
+		if (response.data) {
+			yield put(actions.setTerms(response.data.termo));
+		}
+	} catch (error) {
+		showToast('error', 'Erro ao carregar');
+	}
+
+	yield put(apiActions.apiEnd());
+}
+
 export default function* watchHelp() {
 	yield takeLatest(types.GET_HELP, getHelp);
+	yield takeLatest(types.GET_TERMS, getTerms);
 }

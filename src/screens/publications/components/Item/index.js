@@ -11,7 +11,7 @@ export const Item = ({ onPress, item, isLast }) => (
 			<Text style={styles({}).subTitle}>{item?.texto_resumido}</Text>
 			<Text style={styles({}).seeMore}>Ver mais...</Text>
 			<Text style={styles({}).baseboard}>
-				{moment(item?.dt_pub_fim, 'DD-MM-YYYY HH: mm: ss').format(
+				{moment(item?.dt_pub_inicio, 'DD-MM-YYYY HH: mm: ss').format(
 					'DD/MM/YYYY',
 				)}
 			</Text>
@@ -25,7 +25,7 @@ Item.propTypes = {
 	item: PropTypes.shape({
 		titulo: PropTypes.string,
 		texto_resumido: PropTypes.string,
-		dt_pub_fim: PropTypes.string,
+		dt_pub_inicio: PropTypes.string,
 	}).isRequired,
 };
 

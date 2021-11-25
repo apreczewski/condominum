@@ -12,7 +12,6 @@ export default function CreateUser({
 	formRef,
 	nameButton,
 	onSubmit,
-	onPress,
 	data,
 	clearErrors,
 }) {
@@ -31,6 +30,7 @@ export default function CreateUser({
 					keyboardType="email-address"
 					placeholder="E-mail"
 					clearErrors={clearErrors}
+					disabled={false}
 				/>
 
 				<Input
@@ -80,26 +80,6 @@ export default function CreateUser({
 					clearErrors={clearErrors}
 				/>
 
-				<Input
-					name="password"
-					label="Nova Senha"
-					labelError="Senha não atende critérios minimos"
-					placeholder="Nova Senha - mínimo 6 caracteres"
-					passwordProps="password"
-					clearErrors={clearErrors}
-				/>
-
-				<Input
-					name="passwordConfirmation"
-					label="Confirme a nova senha"
-					labelError="Senha não confere com a nova senha"
-					placeholder="Confirme a nova senha"
-					passwordProps="password"
-					returnKeyType="send"
-					onSubmitEditing={onPress}
-					clearErrors={clearErrors}
-				/>
-
 				<View style={styles.viewButton}>
 					<Button
 						text={nameButton}
@@ -116,7 +96,6 @@ CreateUser.propTypes = {
 		current: PropTypes.instanceOf(),
 	}).isRequired,
 	nameButton: PropTypes.string.isRequired,
-	onPress: PropTypes.func.isRequired,
 	onSubmit: PropTypes.func.isRequired,
 	data: PropTypes.shape({
 		email: PropTypes.string,

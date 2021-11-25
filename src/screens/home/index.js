@@ -29,8 +29,8 @@ function HomeScreen({
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
 				<HeaderHome
-					user={user.name.split(' ')[0]}
-					subTitle={user.condominio_nome}
+					user={user ? user.name.split(' ')[0] : ''}
+					subTitle={user ? user.condominio_nome : ''}
 				/>
 				<ItemPublications item={ItemPublication} />
 				<ItemTickets item={ItemTicket} />
@@ -41,10 +41,13 @@ function HomeScreen({
 }
 
 HomeScreen.propTypes = {
-	user: PropTypes.shape({
-		name: PropTypes.string,
-		condominio_nome: PropTypes.string,
-	}).isRequired,
+	user: PropTypes.oneOfType([
+		PropTypes.shape({
+			name: PropTypes.string,
+			condominio_nome: PropTypes.string,
+		}),
+		PropTypes.bool,
+	]).isRequired,
 	onGetPublication: PropTypes.func.isRequired,
 	onGetTicket: PropTypes.func.isRequired,
 	ItemPublication: PropTypes.arrayOf(

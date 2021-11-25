@@ -14,6 +14,7 @@ function Input({
 	labelError,
 	passwordProps,
 	clearErrors,
+	disabled,
 	...rest
 }) {
 	const inputElementRef = useRef(null);
@@ -53,6 +54,8 @@ function Input({
 
 			<View style={styles.container}>
 				<TextInput
+					editable={disabled}
+					selectTextOnFocus={disabled}
 					style={styles.input}
 					defaultValue={valueCurrent || defaultValue}
 					ref={inputElementRef}
@@ -100,6 +103,7 @@ Input.propTypes = {
 	valueCurrent: PropTypes.string,
 	passwordProps: PropTypes.string,
 	clearErrors: PropTypes.func,
+	disabled: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -109,4 +113,5 @@ Input.defaultProps = {
 	valueCurrent: '',
 	passwordProps: '',
 	clearErrors: () => {},
+	disabled: true,
 };

@@ -1,18 +1,24 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
-import * as React from 'react';
+import React, { useCallback } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import {
-	Ionicons,
-	FontAwesome,
-	MaterialCommunityIcons,
-	Feather,
-} from '@expo/vector-icons';
+// import {
+// 	Ionicons,
+// 	FontAwesome,
+// 	MaterialCommunityIcons,
+// 	Feather,
+// } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useFocusEffect } from '@react-navigation/native';
 
+import {
+	Feather,
+	FontAwesome,
+	Ionicons,
+	MaterialCommunityIcons,
+} from '@expo/vector-icons';
 import CustomDrawerContent from './CustomDrawerContent';
 
 import HomeScreen from '../screens/home';
@@ -34,12 +40,20 @@ import { Colors, Images, Metrics } from '../lib/constants';
 
 const Drawer = createDrawerNavigator();
 
-function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
+function MainDrawerNavigator({ onGet }) {
 	useFocusEffect(
-		React.useCallback(() => {
+		useCallback(() => {
 			onGet();
 		}, []),
 	);
+
+	// const loadingDrawer = useCallback((listCurrent) => {
+	// 	listCurrent.map((item) => {
+	// 		if (item.permissao) {
+	// 			components.forEach((element) => ({ ...item }));
+	// 		}
+	// 	});
+	// }, []);
 
 	return (
 		<Drawer.Navigator
@@ -67,32 +81,20 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 				drawerInactiveBackgroundColor: 'transparent',
 			}}
 			drawerContent={(props) => <CustomDrawerContent {...props} />}>
-			{/* {list &&
-				list?.map((item) => (
-					<Drawer.Screen
-						key={item.id}
-						name={item.slug}
-						component={HomeScreen}
-						options={{
-							title: item.titulo,
-							drawerIcon: ({ focused, size }) => (
-								<Ionicons
-									name="md-home"
-									size={size}
-									color={
-										focused
-											? Colors.primary
-											: Colors.secondary
-									}
-								/>
-							),
-						}}
-					/>
-				))} */}
-
-			{/* {list[0].status && ( */}
-
-			{/* {console.log('>>> lenght', list.length === number)} */}
+			{/*
+			{list.map((item) => (
+				<Drawer.Screen
+					key={item?.id}
+					name={item?.slug}
+					component={components[item.posicao].screen}
+					options={{
+						title: item?.titulo,
+						drawerIcon: ({ focused, size }) =>
+							components[item.posicao].icon(focused, size),
+					}}
+				/>
+			))}
+			*/}
 
 			<Drawer.Screen
 				name="Home"
@@ -108,7 +110,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Publications"
 				component={PublicationsScreen}
@@ -137,7 +138,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Balance"
 				component={BalanceScreen}
@@ -152,7 +152,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Reserves"
 				component={ReservesScreen}
@@ -167,7 +166,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="ReservesManagement"
 				component={ReservesManagementScreen}
@@ -182,7 +180,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Condominium"
 				component={CondominiumScreen}
@@ -197,7 +194,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Profile"
 				component={ProfileScreen}
@@ -212,7 +208,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="ChangePassword"
 				component={ChangePasswordScreen}
@@ -227,7 +222,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Help"
 				component={HelpScreen}
@@ -242,7 +236,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Terms"
 				component={TermsScreen}
@@ -257,7 +250,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="Polices"
 				component={PolicesScreen}
@@ -272,7 +264,6 @@ function MainDrawerNavigator({ /* loading */ onGet /* list */ }) {
 					),
 				}}
 			/>
-
 			<Drawer.Screen
 				name="About"
 				component={AboutScreen}

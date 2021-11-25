@@ -51,6 +51,11 @@ export const setError = (error) => ({
 	error,
 });
 
+export const putChangePassword = (data) => ({
+	type: types.PUT_CHANGEPASSWORD,
+	data,
+});
+
 export default {
 	loginUserAction,
 	logout,
@@ -63,4 +68,5 @@ export default {
 	setSuccess,
 	setError,
 	registerUser,
+	putChangePassword,
 };
