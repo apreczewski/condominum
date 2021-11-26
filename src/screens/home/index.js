@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 
-import ModalInfo from '../unlinkedAccount';
 import { Pallete } from '../../lib/constants';
 import { ItemPublications } from './components/ItemPublications';
 import { ItemTickets } from './components/ItemTickets';
@@ -37,10 +36,6 @@ function HomeScreen({
 				<ItemTickets item={ItemTicket} />
 				<ItemSchedules />
 			</View>
-			<ModalInfo
-				visible
-				// close={() => handleModal(!modalInfo)}
-			/>
 		</ScrollView>
 	);
 }

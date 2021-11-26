@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, RefreshControl } from 'react-native';
+import { View, ScrollView, RefreshControl, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
@@ -110,13 +110,18 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 				/>
 
 				<View style={styles.col}>
-					{item &&
-						item.movto_contabil?.map((itemDetails) => (
-							<DetailsItem
-								key={itemDetails?.id}
-								itemDetails={itemDetails}
-							/>
-						))}
+					{item ? (
+						<>
+							{item.movto_contabil?.map((itemDetails) => (
+								<DetailsItem
+									key={itemDetails?.id}
+									itemDetails={itemDetails}
+								/>
+							))}
+						</>
+					) : (
+						<Text />
+					)}
 				</View>
 			</ScrollView>
 		</View>

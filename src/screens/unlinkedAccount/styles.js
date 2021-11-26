@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		alignContent: 'center',
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
-		fontSize: 30,
+		fontSize: 27,
 		justifyContent: 'center',
 		textAlign: 'center',
 		width: '84%',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		marginVertical: 50,
 		paddingHorizontal: 10,
-		paddingVertical: 50,
+		paddingVertical: 28,
 		width: '100%',
 	},
 

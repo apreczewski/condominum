@@ -9,19 +9,19 @@ import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 import styles from './styles';
 
 export const ItemEmphasis = ({ onPress, item }) => (
-	<Pressable onPress={onPress}>
-		<View style={styles.container}>
+	<View style={styles.container}>
+		{item?.mes !== undefined && (
 			<View style={styles.bodyLeft}>
 				<Text
 					style={
 						styles.text
-					}>{`${item.mes}/${item.ano} - ${item.tipo_descricao}`}</Text>
+					}>{`${item?.mes}/${item?.ano} - ${item?.tipo_descricao}`}</Text>
 
 				<View style={styles.textInfo}>
 					<Text style={Pallete.paragraph}>Saldo Anterior:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={parseFloat(item.saldo_anterior)}
+						value={parseFloat(item?.saldo_anterior)}
 					/>
 				</View>
 
@@ -29,7 +29,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={Pallete.paragraph}>Pagamentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={parseFloat(item.total_pagamento)}
+						value={parseFloat(item?.total_pagamento)}
 					/>
 				</View>
 
@@ -37,7 +37,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={Pallete.paragraph}>Recebimentos:</Text>
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={parseFloat(item.total_recebimento)}
+						value={parseFloat(item?.total_recebimento)}
 					/>
 				</View>
 
@@ -46,11 +46,14 @@ export const ItemEmphasis = ({ onPress, item }) => (
 
 					<ValueFormat
 						style={Pallete.paragraph}
-						value={parseFloat(item.saldo_atual)}
+						value={parseFloat(item?.saldo_atual)}
 					/>
 				</View>
 			</View>
-			<View style={styles.bodyRight}>
+		)}
+
+		<View style={styles.bodyRight}>
+			<Pressable onPress={onPress}>
 				<View style={styles.anchorShare}>
 					<MaterialIcons
 						name="share"
@@ -60,13 +63,13 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={styles.textShare}>Compartilhar</Text>
 					<Text style={styles.textShare}>pdf</Text>
 				</View>
-			</View>
+			</Pressable>
 		</View>
-	</Pressable>
+	</View>
 );
 
 ItemEmphasis.propTypes = {
-	onPress: PropTypes.func.isRequired,
+	onPress: PropTypes.func,
 	item: PropTypes.shape({
 		mes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		ano: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -84,5 +87,18 @@ ItemEmphasis.propTypes = {
 			PropTypes.number,
 		]),
 		saldo_atual: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	}).isRequired,
+	}),
+};
+
+ItemEmphasis.defaultProps = {
+	onPress: () => {},
+	item: {
+		mes: '' || 0,
+		ano: '' || 0,
+		tipo_descricao: '',
+		saldo_anterior: '' || 0,
+		total_pagamento: '' || 0,
+		total_recebimento: '' || 0,
+		saldo_atual: '' || 0,
+	},
 };

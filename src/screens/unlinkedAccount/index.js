@@ -8,7 +8,7 @@ import { Pallete, Strings } from '../../lib/constants';
 import styles from './styles';
 import Button from '../../components/Button';
 
-export default function UnlinkedAccountScreen({ visible, close }) {
+export default function UnlinkedAccountScreen({ visible, close, email }) {
 	return (
 		<Modal
 			backdropOpacity={0.2}
@@ -22,13 +22,24 @@ export default function UnlinkedAccountScreen({ visible, close }) {
 				<View style={Pallete.screen}>
 					<View style={styles.viewTitle}>
 						<Text style={styles.title}>
-							Conta criada! Solicite seu vínculo!
+							Conta criada! {'\n'}
+							Solicite seu vínculo!
 						</Text>
 					</View>
 
 					<View style={styles.viewText}>
 						<Text style={styles.text}>
-							{Strings.unlinkedAccountText}
+							Olá! {'\n'}
+							{'\n'} Seu cadastro foi realizado com sucesso:){' '}
+							{'\n'}
+							{'\n'} Para que seu acesso seja liberado, informe o
+							e-mail cadastrado ({`${email}`}) ao seu síndico ou
+							administradora e solicite que o vincule a sua
+							unidade. {'\n'}
+							{'\n'} Após o vínculo ter sido realizado, clique
+							abaixo para acesar o sistema. {'\n'}
+							{'\n'} Desfrute das facilidades que o aplicativo
+							proporciona.
 						</Text>
 					</View>
 
@@ -48,9 +59,11 @@ export default function UnlinkedAccountScreen({ visible, close }) {
 UnlinkedAccountScreen.propTypes = {
 	visible: PropTypes.bool,
 	close: PropTypes.func,
+	email: PropTypes.string,
 };
 
 UnlinkedAccountScreen.defaultProps = {
 	visible: false,
 	close: () => {},
+	email: '',
 };

@@ -16,6 +16,8 @@ import styles from './styles';
 function RegisterUserScreen({
 	/* onRegister */ onSetError /* onSetSuccess */,
 }) {
+	const [email, setEmail] = useState('');
+
 	const [modalInfo, setModalInfo] = useState(false);
 
 	const handleModal = (status) =>
@@ -53,6 +55,7 @@ function RegisterUserScreen({
 			);
 
 			handleModal(!modalInfo);
+			setEmail(data.email);
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -159,6 +162,7 @@ function RegisterUserScreen({
 				<ModalInfo
 					visible={modalInfo}
 					close={() => handleModal(!modalInfo)}
+					email={email}
 				/>
 			</View>
 		</ScrollView>

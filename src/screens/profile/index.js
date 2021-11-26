@@ -32,7 +32,6 @@ function ProfileScreen({ user }) {
 	}); */
 
 	const handleSubmit = useCallback(async () => {
-		// console.log('data', data);
 		try {
 			formRef.current?.setErrors({});
 
