@@ -87,10 +87,10 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 	useFocusEffect(() => handleShowToast());
 
 	return (
-		<View style={Pallete.screen}>
-			<ScrollView
-				vertical
-				refreshControl={<RefreshControl refreshing={loading} />}>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
+			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balanceteDetalhe}
 					subTitle={Strings.balanceteDetalheDescription}>
@@ -123,8 +123,8 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 						<Text />
 					)}
 				</View>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	);
 }
 

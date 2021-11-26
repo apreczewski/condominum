@@ -3,55 +3,70 @@ import { View, Text, Pressable } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { Pallete } from '../../../../lib/constants';
+import { Colors, Pallete } from '../../../../lib/constants';
 import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
 import styles from './styles';
 
 export const ItemEmphasis = ({ onPress, item }) => (
 	<Pressable onPress={onPress}>
-		<View style={styles.container}>
+		<View style={styles({}).container}>
 			<Text
 				style={
-					styles.text
+					styles({}).text
 				}>{`${item?.mes}/${item?.ano} - ${item.tipo_descricao}`}</Text>
 
-			<View style={styles.textInfo}>
+			<View style={styles({}).textInfo}>
 				<Text style={Pallete.paragraph}>Saldo Anterior</Text>
 				<ValueFormat
-					style={Pallete.paragraph}
+					style={
+						parseFloat(item?.saldo_anterior) < 0
+							? styles({ color: Colors.primary }).paragraph
+							: styles({ color: Colors.secondary }).paragraph
+					}
 					value={parseFloat(item?.saldo_anterior)}
 				/>
 			</View>
 
-			<View style={styles.textInfo}>
+			<View style={styles({}).textInfo}>
 				<Text style={Pallete.paragraph}>Pagamentos</Text>
 				<ValueFormat
-					style={Pallete.paragraph}
+					style={
+						parseFloat(item?.total_pagamento) < 0
+							? styles({ color: Colors.primary }).paragraph
+							: styles({ color: Colors.secondary }).paragraph
+					}
 					value={parseFloat(item?.total_pagamento)}
 				/>
 			</View>
 
-			<View style={styles.textInfo}>
+			<View style={styles({}).textInfo}>
 				<Text style={Pallete.paragraph}>Recebimentos</Text>
 				<ValueFormat
-					style={Pallete.paragraph}
+					style={
+						parseFloat(item?.total_recebimento) < 0
+							? styles({ color: Colors.primary }).paragraph
+							: styles({ color: Colors.secondary }).paragraph
+					}
 					value={parseFloat(item?.total_recebimento)}
 				/>
 			</View>
 
-			<View style={styles.label}>
+			<View style={styles({}).label}>
 				<Text style={Pallete.paragraph}>Saldo</Text>
 
 				<ValueFormat
-					style={Pallete.paragraph}
+					style={
+						parseFloat(item.saldo_atual) < 0
+							? styles({ color: Colors.primary }).paragraph
+							: styles({ color: Colors.secondary }).paragraph
+					}
 					value={parseFloat(item?.saldo_atual)}
 				/>
 			</View>
 
-			<View style={styles.anchorSeeMore}>
-				<Text style={styles.textSeeMore}>Ver detalhes </Text>
+			<View style={styles({}).anchorSeeMore}>
+				<Text style={styles({}).textSeeMore}>Ver detalhes </Text>
 				<MaterialIcons
 					name="arrow-forward-ios"
 					size={25}

@@ -114,6 +114,47 @@ export function* registerUser(payload) {
 	yield put(apiActions.apiEnd());
 }
 
+export function* changeUser(payload) {
+	const { user } = payload;
+
+	const userData = {
+		email: user.email,
+		nome: user.name,
+		nome_social: user.nameSocial,
+		telefone: user.phone,
+	};
+
+	yield put(apiActions.apiStart());
+
+	try {
+		const token = yield call(auth.loginApp, {
+			username: 'app1',
+			password: 'password',
+		});
+
+		api.defaults.headers.common[
+			'x-access-token'
+		] = `${token.data.loginapp.token}`;
+
+		const response = yield call(auth.registerUser, userData);
+
+		if (response.data.usuario) {
+			return;
+		}
+		Toast.show({
+			text1: response.data.mensagem.mensagem,
+			type: 'error',
+		});
+	} catch (error) {
+		Toast.show({
+			text1: 'Erro ao alterar usuário!',
+			type: 'error',
+		});
+	}
+
+	yield put(apiActions.apiEnd());
+}
+
 async function getToken() {
 	const tokenFromStorage = await AsyncStorage.getItem('userToken');
 

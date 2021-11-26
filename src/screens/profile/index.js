@@ -1,7 +1,8 @@
 import { View, Alert, ScrollView, Text } from 'react-native';
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
 
@@ -10,34 +11,18 @@ import styles from './styles';
 import Input from '../../components/Input';
 import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
+import { authActions } from '../../store/actions';
 
 function ProfileScreen({ user }) {
 	const formRef = useRef(null);
 
-	/* const schema = Yup.object().shape({
-		email: Yup.string()
-			.required('E-mail obrigatório')
-			.email('Digite um e-mail válido'),
+	const dispatch = useDispatch();
 
-		name: Yup.string().required('Nome obrigatório'),
-
-		social_name: Yup.string().required('Nome social obrigatório'),
-
-		fone: Yup.string()
-			.min(8, 'Muito curto!')
-			.max(15, 'Muito longo!')
-			.required('Digite um telefone'),
-
-		cpf: Yup.string().max(20, 'Muito longo!').required('Digite CPF/CNPJ'),
-	}); */
-
-	const handleSubmit = useCallback(async () => {
+	const handleSubmit = useCallback(async (data) => {
 		try {
 			formRef.current?.setErrors({});
 
-			/* await schema.validate(data, {
-				abortEarly: false,
-			}); */
+			dispatch(authActions.registerUser(data));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);

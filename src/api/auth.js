@@ -7,3 +7,5 @@ export const registerUser = (data) => api.post('post_usuario', data);
 export const loginApp = (user) => api.get('loginapp', { auth: user });
 
 export const changePassword = (data) => api.put('put_usuario', data);
+
+export const changeUser = (data) => api.put('put_usuario', data);
