@@ -48,7 +48,7 @@ function MainDrawerNavigator({ onGet, list }) {
 			screen: BalanceScreen,
 		},
 		5: {
-			icon: 'table',
+			icon: 'calendar',
 			screen: ReservesScreen,
 		},
 		6: {

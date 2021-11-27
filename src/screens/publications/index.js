@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { View, ScrollView, FlatList, RefreshControl, Text } from 'react-native';
 import Modal from 'react-native-modal';
 
@@ -49,8 +49,8 @@ function PublicationsScreen({ onGet, loading, list }) {
 				<TitleSubTitleWithIcon
 					title={Strings.publication}
 					subTitle={Strings.publicationDescription}>
-					<MaterialCommunityIcons
-						name="tooltip-text-outline"
+					<FontAwesome5
+						name="comment"
 						size={42}
 						color={Colors.primary}
 					/>
