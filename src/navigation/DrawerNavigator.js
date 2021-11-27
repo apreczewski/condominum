@@ -2,12 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useCallback } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-// import {
-// 	Ionicons,
-// 	FontAwesome,
-// 	MaterialCommunityIcons,
-// 	Feather,
-// } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -36,29 +31,54 @@ const Drawer = createDrawerNavigator();
 
 function MainDrawerNavigator({ onGet, list }) {
 	const components = {
-		// 1: {
-		// 	icon: (size, focused) => (
-		// 		<MaterialCommunityIcons
-		// 			name="tooltip-text-outline"
-		// 			size={size}
-		// 			color={focused ? Colors.primary : Colors.secondary}
-		// 		/>
-		// 	),
-		// 	screen: HomeScreen,
-		// },
-		1: { icon: 'tooltip-text-outline', screen: HomeScreen },
-		2: { icon: 'tooltip-text-outline', screen: PublicationsScreen },
-		3: { icon: 'calendar-edit', screen: ReservesManagementScreen },
-		4: { icon: 'barcode', screen: TicketScreen },
-		5: { icon: 'file-table-outline', screen: BalanceScreen },
-		6: { icon: 'calendar-month-outline', screen: ReservesScreen },
-		7: { icon: 'office-building', screen: CondominiumScreen },
-		8: { icon: 'user', screen: ProfileScreen },
-		9: { icon: 'key-outline', screen: ChangePasswordScreen },
-		10: { icon: 'file-document-outline', screen: TermsScreen },
-		11: { icon: 'file-document-outline', screen: PolicesScreen },
-		12: { icon: 'information-outline', screen: AboutScreen },
-		13: { icon: 'help-circle-outline', screen: HelpScreen },
+		1: {
+			icon: 'home',
+			screen: HomeScreen,
+		},
+		2: {
+			icon: 'comment',
+			screen: PublicationsScreen,
+		},
+		3: {
+			icon: 'calendar',
+			screen: ReservesManagementScreen,
+		},
+		4: {
+			icon: 'barcode',
+			screen: TicketScreen,
+		},
+		5: {
+			icon: 'table',
+			screen: BalanceScreen,
+		},
+		6: {
+			icon: 'table',
+			screen: ReservesScreen,
+		},
+		7: {
+			icon: 'building',
+			screen: CondominiumScreen,
+		},
+		8: {
+			icon: 'user',
+			screen: ProfileScreen,
+		},
+		9: {
+			icon: 'key',
+			screen: ChangePasswordScreen,
+		},
+		10: {
+			icon: 'file',
+			screen: TermsScreen,
+		},
+		11: {
+			icon: 'file',
+			screen: PolicesScreen,
+		},
+		12: {
+			icon: 'info-circle',
+			screen: AboutScreen,
+		},
 	};
 
 	useFocusEffect(
@@ -66,14 +86,6 @@ function MainDrawerNavigator({ onGet, list }) {
 			onGet();
 		}, []),
 	);
-
-	// const loadingDrawer = useCallback((listCurrent) => {
-	// 	listCurrent.map((item) => {
-	// 		if (item.permissao) {
-	// 			components.forEach((element) => ({ ...item }));
-	// 		}
-	// 	});
-	// }, []);
 
 	return (
 		<Drawer.Navigator
@@ -108,11 +120,33 @@ function MainDrawerNavigator({ onGet, list }) {
 					component={components[item.posicao].screen}
 					options={{
 						title: item?.titulo,
-						drawerIcon: ({ focused, size }) =>
-							components[item.posicao].icon(focused, size),
+						drawerIcon: ({ focused, size }) => (
+							<FontAwesome5
+								name={components[item.posicao].icon}
+								size={size}
+								color={
+									focused ? Colors.primary : Colors.secondary
+								}
+							/>
+						),
 					}}
 				/>
 			))}
+
+			<Drawer.Screen
+				name="Help"
+				component={HelpScreen}
+				options={{
+					title: 'Ajuda',
+					drawerIcon: ({ focused, size }) => (
+						<FontAwesome5
+							name="question-circle"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
 
 			{/* <Drawer.Screen
 				name="Home"
