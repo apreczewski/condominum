@@ -136,7 +136,7 @@ function MainDrawerNavigator({ onGet, list }) {
 				})
 				.map((item, index) => (
 					<>
-						{index > 0 && (
+						{item.permissao && index > 0 && (
 							<Drawer.Screen
 								key={item.id}
 								name={item.slug}
