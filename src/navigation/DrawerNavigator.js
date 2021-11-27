@@ -40,20 +40,20 @@ function MainDrawerNavigator({ onGet, list }) {
 			screen: PublicationsScreen,
 		},
 		3: {
-			icon: 'calendar',
-			screen: ReservesManagementScreen,
-		},
-		4: {
 			icon: 'barcode',
 			screen: TicketScreen,
 		},
-		5: {
+		4: {
 			icon: 'table',
 			screen: BalanceScreen,
 		},
-		6: {
+		5: {
 			icon: 'table',
 			screen: ReservesScreen,
+		},
+		6: {
+			icon: 'calendar',
+			screen: ReservesManagementScreen,
 		},
 		7: {
 			icon: 'building',
@@ -68,11 +68,11 @@ function MainDrawerNavigator({ onGet, list }) {
 			screen: ChangePasswordScreen,
 		},
 		10: {
-			icon: 'file',
+			icon: 'file-alt',
 			screen: TermsScreen,
 		},
 		11: {
-			icon: 'file',
+			icon: 'file-alt',
 			screen: PolicesScreen,
 		},
 		12: {
@@ -113,25 +113,52 @@ function MainDrawerNavigator({ onGet, list }) {
 				drawerInactiveBackgroundColor: 'transparent',
 			}}
 			drawerContent={(props) => <CustomDrawerContent {...props} />}>
-			{list.map((item) => (
-				<Drawer.Screen
-					key={item?.id}
-					name={item?.slug}
-					component={components[item.posicao].screen}
-					options={{
-						title: item?.titulo,
-						drawerIcon: ({ focused, size }) => (
-							<FontAwesome5
-								name={components[item.posicao].icon}
-								size={size}
-								color={
-									focused ? Colors.primary : Colors.secondary
-								}
+			<Drawer.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{
+					title: 'Home',
+					drawerIcon: ({ focused, size }) => (
+						<FontAwesome5
+							name="home"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
+
+			{list
+				.sort((a, b) => {
+					if (a.posicao < b.posicao) return -1;
+					if (a.posicao > b.posicao) return 1;
+					return 0;
+				})
+				.map((item, index) => (
+					<>
+						{index > 0 && (
+							<Drawer.Screen
+								key={item.id}
+								name={item.slug}
+								component={components[item.posicao].screen}
+								options={{
+									title: item.titulo,
+									drawerIcon: ({ focused, size }) => (
+										<FontAwesome5
+											name={components[item.posicao].icon}
+											size={size}
+											color={
+												focused
+													? Colors.primary
+													: Colors.secondary
+											}
+										/>
+									),
+								}}
 							/>
-						),
-					}}
-				/>
-			))}
+						)}
+					</>
+				))}
 
 			<Drawer.Screen
 				name="Help"

@@ -24,7 +24,7 @@ const POLICES_URL = {
 		'https://repos.prolar.imb.br/html/politica-de-privacidade-termos.html',
 };
 
-const currentEnv = env.product;
+const currentEnv = env.dev;
 
 export const BASE_API = API_URL[currentEnv];
 export const POLICES = POLICES_URL[currentEnv];

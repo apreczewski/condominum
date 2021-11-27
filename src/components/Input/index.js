@@ -22,7 +22,7 @@ function Input({
 	const {
 		fieldName,
 		registerField,
-		defaultValue = '',
+		defaultValue = valueCurrent,
 		error,
 	} = useField(name);
 
@@ -57,7 +57,7 @@ function Input({
 					editable={disabled}
 					selectTextOnFocus={disabled}
 					style={styles.input}
-					defaultValue={valueCurrent || defaultValue}
+					defaultValue={defaultValue}
 					ref={inputElementRef}
 					onChangeText={(value) => {
 						inputValueRef.current.value = value;

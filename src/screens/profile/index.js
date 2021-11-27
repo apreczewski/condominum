@@ -19,10 +19,7 @@ function ProfileScreen({ user }) {
 	const dispatch = useDispatch();
 
 	const handleSubmit = useCallback(async (data) => {
-		// console.log(data);
 		try {
-			formRef.current?.setErrors({});
-
 			dispatch(authActions.changeUser(data));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
@@ -37,10 +34,6 @@ function ProfileScreen({ user }) {
 		}
 	}, []);
 
-	const handleErros = useCallback(() => {
-		formRef.current?.setErrors([]);
-	}, []);
-
 	return (
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
@@ -52,12 +45,11 @@ function ProfileScreen({ user }) {
 							name="email"
 							label="E-mail"
 							valueCurrent={user?.email}
+							value
 							autoCorrect={false}
-							labelError="Digite um e-mail válido!"
 							autoCapitalize="none"
 							keyboardType="email-address"
 							placeholder="E-mail"
-							clearErrors={handleErros}
 							disabled={false}
 						/>
 
@@ -66,23 +58,20 @@ function ProfileScreen({ user }) {
 							label="Nome Completo"
 							valueCurrent={user?.name}
 							autoCorrect={false}
-							labelError="Digite nome completo!"
 							autoCapitalize="none"
 							keyboardType="text"
 							placeholder="Nome Completo"
-							clearErrors={handleErros}
 						/>
 
 						<Input
 							name="social_name"
 							label="Nome Social"
 							valueCurrent={user?.social_name}
+							value={user?.social_name}
 							autoCorrect={false}
-							labelError="Digite nome social!"
 							autoCapitalize="none"
 							keyboardType="text"
 							placeholder="Nome com o qual deseja ser tratado"
-							clearErrors={handleErros}
 						/>
 
 						<Input
@@ -90,10 +79,8 @@ function ProfileScreen({ user }) {
 							label="Telefone"
 							valueCurrent={user?.fone}
 							autoCorrect={false}
-							labelError="Digite um telefone"
 							keyboardType="phone-pad"
 							placeholder="(   ) ___________"
-							clearErrors={handleErros}
 						/>
 
 						<Input
@@ -101,11 +88,9 @@ function ProfileScreen({ user }) {
 							label="CPF/CNPJ"
 							valueCurrent={user?.cpf ? user?.cpf : user?.cnpj}
 							autoCorrect={false}
-							labelError="Digite CPF/CNPJ"
 							autoCapitalize="none"
 							keyboardType="number-pad"
 							placeholder="CPF/CNPJ"
-							clearErrors={handleErros}
 						/>
 
 						<View style={styles.viewButton}>

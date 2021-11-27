@@ -6,7 +6,6 @@ import {
 	SET_CONDO,
 	SET_ERROR,
 	SET_SUCCESS,
-	CHANGE_USER,
 } from './types';
 
 const initialState = {
@@ -20,12 +19,6 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case CHANGE_USER:
-			return {
-				...state,
-				user: action.user,
-			};
-
 		case SET_USER_AUTH:
 			return {
 				...state,
@@ -69,6 +62,7 @@ const authReducer = (state = initialState, action) => {
 				...state,
 				success: action.success,
 			};
+
 		default:
 			return state;
 	}
