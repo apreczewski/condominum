@@ -8,9 +8,8 @@ import {
 	View,
 	Alert,
 } from 'react-native';
-import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { authActions } from '../../store/actions';
 import { Images, Strings, Pallete } from '../../lib/constants';
@@ -19,7 +18,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 
-function ChangePasswordScreen({ user }) {
+function ChangePasswordScreen() {
 	const dispatch = useDispatch();
 
 	const formRef = useRef(null);
@@ -42,7 +41,6 @@ function ChangePasswordScreen({ user }) {
 
 			dispatch(
 				authActions.putChangePassword({
-					...user,
 					senha: password.password,
 				}),
 			);
@@ -108,20 +106,4 @@ function ChangePasswordScreen({ user }) {
 	);
 }
 
-ChangePasswordScreen.propTypes = {
-	user: PropTypes.shape({
-		social_name: PropTypes.string,
-		email: PropTypes.string,
-		name: PropTypes.string,
-		fone: PropTypes.string,
-		condominio_id: PropTypes.number,
-		condominio_nome: PropTypes.string,
-	}).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-	loading: state.api.loading,
-	user: state.auth.user,
-});
-
-export default connect(mapStateToProps)(ChangePasswordScreen);
+export default ChangePasswordScreen;

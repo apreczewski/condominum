@@ -74,16 +74,6 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 		);
 	};
 
-	// const handleChangeItem = (balancete) => {
-	// 	const newBalancete = balancete.map(balance => {
-	// 		balancete.forEach(element => {
-	// 			if(balance.data === element.data){
-	// 				return element.descri
-	// 			}
-	// 		});
-	// 	})
-	// }
-
 	useFocusEffect(() => handleShowToast());
 
 	return (

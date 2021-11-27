@@ -30,15 +30,15 @@ export default function UnlinkedAccountScreen({ visible, close, email }) {
 					<View style={styles.viewText}>
 						<Text style={styles.text}>
 							Olá! {'\n'}
-							{'\n'} Seu cadastro foi realizado com sucesso:){' '}
+							{'\n'}Seu cadastro foi realizado com sucesso:)
 							{'\n'}
-							{'\n'} Para que seu acesso seja liberado, informe o
+							{'\n'}Para que seu acesso seja liberado, informe o
 							e-mail cadastrado ({`${email}`}) ao seu síndico ou
 							administradora e solicite que o vincule a sua
 							unidade. {'\n'}
-							{'\n'} Após o vínculo ter sido realizado, clique
+							{'\n'}Após o vínculo ter sido realizado, clique
 							abaixo para acesar o sistema. {'\n'}
-							{'\n'} Desfrute das facilidades que o aplicativo
+							{'\n'}Desfrute das facilidades que o aplicativo
 							proporciona.
 						</Text>
 					</View>

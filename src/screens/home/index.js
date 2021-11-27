@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 import PropTypes from 'prop-types';
@@ -17,6 +17,7 @@ function HomeScreen({
 	ItemPublication,
 	ItemTicket,
 	user,
+	loading,
 }) {
 	useFocusEffect(
 		React.useCallback(() => {
@@ -26,7 +27,9 @@ function HomeScreen({
 	);
 
 	return (
-		<ScrollView vertical>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<HeaderHome
 					user={user.name.split(' ')[0]}
@@ -41,6 +44,7 @@ function HomeScreen({
 }
 
 HomeScreen.propTypes = {
+	loading: PropTypes.bool.isRequired,
 	user: PropTypes.shape({
 		name: PropTypes.string,
 		condominio_nome: PropTypes.string,
@@ -69,6 +73,7 @@ HomeScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+	loading: state.api.loading,
 	ItemPublication: state.publications.list,
 	ItemTicket: state.tickes.list,
 	user: state.auth.user,

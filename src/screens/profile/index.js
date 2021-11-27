@@ -19,10 +19,11 @@ function ProfileScreen({ user }) {
 	const dispatch = useDispatch();
 
 	const handleSubmit = useCallback(async (data) => {
+		// console.log(data);
 		try {
 			formRef.current?.setErrors({});
 
-			dispatch(authActions.registerUser(data));
+			dispatch(authActions.changeUser(data));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
