@@ -1,7 +1,9 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+// import toastUser from 'react-native-root-toast';
+
+// import { Colors } from '../../../lib/constants';
 import * as actions from './actions';
 import * as auth from '../../../api/auth';
 import api from '../../../api/api';
@@ -95,27 +97,13 @@ export function* registerUser(payload) {
 
 		const response = yield call(auth.registerUser, userData);
 
-		if (response.data?.usuario) {
-			Toast.show(
-				'Olá! Seu cadastro foi realizado com sucesso. Para que seu acesso seja liberado, informe o e-mail cadastrado (xyz@.gmai.com) ao seu síndico ou administradora e solicite que  o vincule a sua unidade. Após o vínculo ter sido realizado, clique abaixo para acesar o sistema. Desfrute das facilidades que o aplicativo proporciona.',
-				{
-					duration: 5000,
-					position: Toast.positions.TOP,
-					animation: true,
-					hideOnPress: true,
-					backgroundColor: Colors.background,
-					textColor: Colors.secondary,
-					visible: true,
-					type: 'success',
-				},
-			);
-			// redirecionar o usuário para tela de login
-			RootNavigation.navigate('Auth');
-		} else
-			Toast.show({
-				text1: response.data.mensagem.mensagem,
-				type: 'error',
-			});
+		if (response.data.usuario) {
+			return;
+		}
+		Toast.show({
+			text1: response.data.mensagem.mensagem,
+			type: 'error',
+		});
 	} catch (error) {
 		Toast.show({
 			text1: 'Erro ao realizar o login tente novamente!',
@@ -186,6 +174,33 @@ export function* putChangePassword({ data }) {
 
 	try {
 		const response = yield call(auth.changePassword, {
+			// email: data.email,
+			// nome: data.name,
+			// nome_social: data.social_name,
+			// telefone: data.fone,
+			senha: data.senha,
+		});
+		if (response.data) {
+			Toast.show({
+				text1: response.data.mensagem.mensagem,
+				type: 'info',
+			});
+		}
+	} catch (error) {
+		Toast.show({
+			text1: 'Erro ao salvar nova senha',
+			type: 'error',
+		});
+	}
+
+	yield put(apiActions.apiEnd());
+}
+
+export function* changeUser(data) {
+	yield put(apiActions.apiStart());
+
+	try {
+		const response = yield call(auth.changeUser, {
 			email: data.email,
 			nome: data.name,
 			nome_social: data.social_name,
@@ -200,7 +215,7 @@ export function* putChangePassword({ data }) {
 		}
 	} catch (error) {
 		Toast.show({
-			text1: 'Erro ao salvar nova senha',
+			text1: 'Erro ao salvar usuário',
 			type: 'error',
 		});
 	}

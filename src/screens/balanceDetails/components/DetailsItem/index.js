@@ -8,28 +8,26 @@ import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
 function DetailsItem({ itemDetails }) {
 	return (
-		<View style={styles.card}>
-			<Text style={styles.cardTitle}>{`Dia ${moment(
+		<View style={styles({}).card}>
+			<Text style={styles({}).cardTitle}>{`Dia ${moment(
 				itemDetails?.data,
 				'DD-MM-YYYY HH: mm: ss',
 			).format('DD/MM')}`}</Text>
 
-			<View style={styles.col}>
-				<View style={styles.colLeft}>
+			<View style={styles({}).col}>
+				<View style={styles({}).colLeft}>
 					<Text style={Pallete.paragraph}>
 						{itemDetails.descricao}
 					</Text>
 				</View>
 
-				<View style={styles.colRight}>
+				<View style={styles({}).colRight}>
 					<ValueFormat
-						style={{
-							...styles.h3,
-							color:
-								itemDetails.valor >= 0
-									? Colors.secondary
-									: Colors.primary,
-						}}
+						style={
+							parseFloat(itemDetails.valor) < 0
+								? styles({ color: Colors.primary }).h3
+								: styles({ color: Colors.secondary }).h3
+						}
 						value={parseFloat(itemDetails.valor)}
 					/>
 				</View>

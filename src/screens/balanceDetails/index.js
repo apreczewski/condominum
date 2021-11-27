@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, RefreshControl } from 'react-native';
+import { View, ScrollView, RefreshControl, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
@@ -74,23 +74,13 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 		);
 	};
 
-	// const handleChangeItem = (balancete) => {
-	// 	const newBalancete = balancete.map(balance => {
-	// 		balancete.forEach(element => {
-	// 			if(balance.data === element.data){
-	// 				return element.descri
-	// 			}
-	// 		});
-	// 	})
-	// }
-
 	useFocusEffect(() => handleShowToast());
 
 	return (
-		<View style={Pallete.screen}>
-			<ScrollView
-				vertical
-				refreshControl={<RefreshControl refreshing={loading} />}>
+		<ScrollView
+			vertical
+			refreshControl={<RefreshControl refreshing={loading} />}>
+			<View style={Pallete.screen}>
 				<TitleSubTitleWithIcon
 					title={Strings.balanceteDetalhe}
 					subTitle={Strings.balanceteDetalheDescription}>
@@ -110,16 +100,21 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 				/>
 
 				<View style={styles.col}>
-					{item &&
-						item.movto_contabil?.map((itemDetails) => (
-							<DetailsItem
-								key={itemDetails?.id}
-								itemDetails={itemDetails}
-							/>
-						))}
+					{item ? (
+						<>
+							{item.movto_contabil?.map((itemDetails) => (
+								<DetailsItem
+									key={itemDetails?.id}
+									itemDetails={itemDetails}
+								/>
+							))}
+						</>
+					) : (
+						<Text />
+					)}
 				</View>
-			</ScrollView>
-		</View>
+			</View>
+		</ScrollView>
 	);
 }
 

@@ -1,12 +1,13 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { View, Alert, ScrollView, Text } from 'react-native';
-
 import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form } from '@unform/mobile';
+
+import ModalInfo from '../unlinkedAccount';
 import { authActions } from '../../store/actions';
-import { Strings } from '../../lib/constants';
+import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -15,7 +16,15 @@ import styles from './styles';
 function RegisterUserScreen({
 	/* onRegister */ onSetError /* onSetSuccess */,
 }) {
+	const [email, setEmail] = useState('');
+
+	const [modalInfo, setModalInfo] = useState(false);
+
+	const handleModal = (status) =>
+		status ? setModalInfo(true) : setModalInfo(false);
+
 	const dispatch = useDispatch();
+
 	const formRef = useRef(null);
 
 	const schema = Yup.object().shape({
@@ -44,6 +53,9 @@ function RegisterUserScreen({
 					pessoa_tipo: 'fisica',
 				}),
 			);
+
+			handleModal(!modalInfo);
+			setEmail(data.email);
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -61,8 +73,8 @@ function RegisterUserScreen({
 	}, []);
 
 	return (
-		<ScrollView vertical>
-			<View>
+		<ScrollView>
+			<View style={Pallete.screen}>
 				<Text style={styles.text}>{Strings.createUserText}</Text>
 
 				<Form ref={formRef} onSubmit={handleSubmit}>
@@ -142,20 +154,23 @@ function RegisterUserScreen({
 
 					<View style={styles.viewButton}>
 						<Button
-							text="Cfiar Conta"
+							text="Criar Conta"
 							onPress={() => formRef.current?.submitForm()}
 						/>
 					</View>
 				</Form>
+				<ModalInfo
+					visible={modalInfo}
+					close={() => handleModal(!modalInfo)}
+					email={email}
+				/>
 			</View>
 		</ScrollView>
 	);
 }
 
 RegisterUserScreen.propTypes = {
-	// onRegister: PropTypes.func.isRequired,
 	onSetError: PropTypes.func.isRequired,
-	// onSetSuccess: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

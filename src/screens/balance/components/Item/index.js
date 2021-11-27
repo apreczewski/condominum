@@ -18,7 +18,11 @@ const Item = ({ onPress, item, isLast }) => (
 				<View style={styles({}).saldo}>
 					<Text style={Pallete.paragraph}>Saldo </Text>
 					<ValueFormat
-						style={Pallete.paragraph}
+						style={
+							parseFloat(item.saldo_atual) < 0
+								? styles({ color: Colors.primary }).paragraph
+								: styles({ color: Colors.secondary }).paragraph
+						}
 						value={parseFloat(item.saldo_atual)}
 					/>
 				</View>

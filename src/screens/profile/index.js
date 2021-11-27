@@ -1,49 +1,29 @@
-import { View, Alert, ScrollView } from 'react-native';
+import { View, Alert, ScrollView, Text } from 'react-native';
 import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { connect, useDispatch } from 'react-redux';
 
-import CreateUser from '../../components/CreateUser';
+import PropTypes from 'prop-types';
+import { Form } from '@unform/mobile';
+
+import Button from '../../components/Button';
+import styles from './styles';
+import Input from '../../components/Input';
 import { Pallete, Strings } from '../../lib/constants';
 import getValidationErrors from '../../lib/utils/getValidationErrors';
+import { authActions } from '../../store/actions';
 
 function ProfileScreen({ user }) {
 	const formRef = useRef(null);
 
-	const schema = Yup.object().shape({
-		email: Yup.string()
-			.required('E-mail obrigatório')
-			.email('Digite um e-mail válido'),
-
-		name: Yup.string().required('Nome obrigatório'),
-
-		/* nameSocial: Yup.string().required('Nome social obrigatório'),
-
-		phone: Yup.string()
-			.min(8, 'Muito curto!')
-			.max(14, 'Muito longo!')
-			.required('Digite um telefone'),
-
-		cpfCnpj: Yup.string()
-			.max(20, 'Muito longo!')
-	.required('Digite CPF/CNPJ'), */
-
-		password: Yup.string().min(6, 'No mínimo 6 dígitos'),
-		passwordConfirmation: Yup.string().oneOf(
-			[Yup.ref('password'), null],
-			'As senhas devem corresponder',
-		),
-	});
+	const dispatch = useDispatch();
 
 	const handleSubmit = useCallback(async (data) => {
-		// console.log('data', data);
+		// console.log(data);
 		try {
 			formRef.current?.setErrors({});
 
-			await schema.validate(data, {
-				abortEarly: false,
-			});
+			dispatch(authActions.changeUser(data));
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				const errors = getValidationErrors(err);
@@ -64,20 +44,78 @@ function ProfileScreen({ user }) {
 	return (
 		<ScrollView vertical>
 			<View style={Pallete.screen}>
-				<CreateUser
-					formRef={formRef}
-					nameButton={Strings.profile}
-					onSubmit={handleSubmit}
-					onPress={() => formRef.current?.submitForm()}
-					data={{
-						email: user.email,
-						name: user.name,
-						nameSocial: user.social_name,
-						phone: user.fone,
-						cpfcnpj: user.cpf ? user.cpf : user.cnpj,
-					}}
-					clearErrors={handleErros}
-				/>
+				<View>
+					<Text style={styles.text}>{Strings.createUserText}</Text>
+
+					<Form ref={formRef} onSubmit={handleSubmit}>
+						<Input
+							name="email"
+							label="E-mail"
+							valueCurrent={user?.email}
+							autoCorrect={false}
+							labelError="Digite um e-mail válido!"
+							autoCapitalize="none"
+							keyboardType="email-address"
+							placeholder="E-mail"
+							clearErrors={handleErros}
+							disabled={false}
+						/>
+
+						<Input
+							name="name"
+							label="Nome Completo"
+							valueCurrent={user?.name}
+							autoCorrect={false}
+							labelError="Digite nome completo!"
+							autoCapitalize="none"
+							keyboardType="text"
+							placeholder="Nome Completo"
+							clearErrors={handleErros}
+						/>
+
+						<Input
+							name="social_name"
+							label="Nome Social"
+							valueCurrent={user?.social_name}
+							autoCorrect={false}
+							labelError="Digite nome social!"
+							autoCapitalize="none"
+							keyboardType="text"
+							placeholder="Nome com o qual deseja ser tratado"
+							clearErrors={handleErros}
+						/>
+
+						<Input
+							name="fone"
+							label="Telefone"
+							valueCurrent={user?.fone}
+							autoCorrect={false}
+							labelError="Digite um telefone"
+							keyboardType="phone-pad"
+							placeholder="(   ) ___________"
+							clearErrors={handleErros}
+						/>
+
+						<Input
+							name="cpf"
+							label="CPF/CNPJ"
+							valueCurrent={user?.cpf ? user?.cpf : user?.cnpj}
+							autoCorrect={false}
+							labelError="Digite CPF/CNPJ"
+							autoCapitalize="none"
+							keyboardType="number-pad"
+							placeholder="CPF/CNPJ"
+							clearErrors={handleErros}
+						/>
+
+						<View style={styles.viewButton}>
+							<Button
+								text={Strings.profile}
+								onPress={() => formRef.current?.submitForm()}
+							/>
+						</View>
+					</Form>
+				</View>
 			</View>
 		</ScrollView>
 	);

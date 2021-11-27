@@ -53,6 +53,12 @@ const styles = (p) =>
 			// marginLeft: 6,
 		},
 
+		paragraph: {
+			color: p.color,
+			fontFamily: 'Roboto-Regular',
+			fontSize: 14,
+		},
+
 		saldo: {
 			alignContent: 'space-between',
 			backgroundColor: Colors.white,

@@ -56,6 +56,11 @@ export const putChangePassword = (data) => ({
 	data,
 });
 
+export const changeUser = (user) => ({
+	type: types.CHANGE_USER,
+	user,
+});
+
 export default {
 	loginUserAction,
 	logout,
@@ -69,4 +74,5 @@ export default {
 	setError,
 	registerUser,
 	putChangePassword,
+	changeUser,
 };

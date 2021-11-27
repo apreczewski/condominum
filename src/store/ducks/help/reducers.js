@@ -1,7 +1,8 @@
-import { SET_HELP } from './types';
+import { SET_HELP, SET_TERMS } from './types';
 
 const initialState = {
 	help: [],
+	terms: [{}],
 };
 
 const helpReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const helpReducer = (state = initialState, action) => {
 			return {
 				...state,
 				help: action.data,
+			};
+
+		case SET_TERMS:
+			return {
+				...state,
+				terms: action.data,
 			};
 
 		default:
