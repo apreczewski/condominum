@@ -36,7 +36,7 @@ function MainDrawerNavigator({ onGet, list }) {
 			screen: HomeScreen,
 		},
 		2: {
-			icon: 'comment',
+			icon: 'newspaper',
 			screen: PublicationsScreen,
 		},
 		3: {

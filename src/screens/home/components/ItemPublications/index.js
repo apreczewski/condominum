@@ -15,7 +15,7 @@ export const ItemPublications = ({ item }) => (
 			<View style={styles.row}>
 				<Text style={styles.h1}>{Strings.publication}</Text>
 				<FontAwesome5
-					name="comment"
+					name="newspaper"
 					size={30}
 					color={Colors.secondary}
 				/>

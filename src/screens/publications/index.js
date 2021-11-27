@@ -50,7 +50,7 @@ function PublicationsScreen({ onGet, loading, list }) {
 					title={Strings.publication}
 					subTitle={Strings.publicationDescription}>
 					<FontAwesome5
-						name="comment"
+						name="newspaper"
 						size={42}
 						color={Colors.primary}
 					/>
