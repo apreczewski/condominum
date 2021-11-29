@@ -32,8 +32,8 @@ function HomeScreen({
 			refreshControl={<RefreshControl refreshing={loading} />}>
 			<View style={Pallete.screen}>
 				<HeaderHome
-					user={user.name.split(' ')[0]}
-					subTitle={user.condominio_nome}
+					user={user ? user.name.split(' ')[0] : ''}
+					subTitle={user ? user.condominio_nome : ''}
 				/>
 				<ItemPublications item={ItemPublication} />
 				<ItemTickets item={ItemTicket} />

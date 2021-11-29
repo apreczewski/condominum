@@ -1,11 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 /* import PropTypes from 'prop-types'; */
-import {
-	Feather,
-	MaterialCommunityIcons,
-	MaterialIcons,
-} from '@expo/vector-icons';
+import { Feather, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import styles from './styles';
 import { Colors } from '../../../../lib/constants';
 import * as Navigation from '../../../../lib/utils/navigation';
@@ -15,10 +11,10 @@ export const ItemSchedules = () => (
 		<View style={styles.body}>
 			<View style={styles.row}>
 				<Text style={styles.h1}>Agendamentos</Text>
-				<MaterialCommunityIcons
-					name="calendar-month-outline"
+				<FontAwesome5
+					name="calendar"
 					size={30}
-					color={Colors.secondary}
+					color={Colors.primary}
 				/>
 			</View>
 
@@ -34,7 +30,7 @@ export const ItemSchedules = () => (
 
 		<TouchableOpacity
 			style={styles.containerSeeAll}
-			onPress={() => Navigation.navigate('Reserves')}>
+			onPress={() => Navigation.navigate('Reservas')}>
 			<Text style={styles.h1}>Ver todos</Text>
 			<MaterialIcons
 				name="arrow-forward-ios"

@@ -2,23 +2,12 @@
 /* eslint-disable react/prop-types */
 import React, { useCallback } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-// import {
-// 	Ionicons,
-// 	FontAwesome,
-// 	MaterialCommunityIcons,
-// 	Feather,
-// } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useFocusEffect } from '@react-navigation/native';
 
-import {
-	Feather,
-	FontAwesome,
-	Ionicons,
-	MaterialCommunityIcons,
-} from '@expo/vector-icons';
 import CustomDrawerContent from './CustomDrawerContent';
 
 import HomeScreen from '../screens/home';
@@ -40,20 +29,63 @@ import { Colors, Images, Metrics } from '../lib/constants';
 
 const Drawer = createDrawerNavigator();
 
-function MainDrawerNavigator({ onGet }) {
+function MainDrawerNavigator({ onGet, list }) {
+	const components = {
+		1: {
+			icon: 'home',
+			screen: HomeScreen,
+		},
+		2: {
+			icon: 'newspaper',
+			screen: PublicationsScreen,
+		},
+		3: {
+			icon: 'barcode',
+			screen: TicketScreen,
+		},
+		4: {
+			icon: 'table',
+			screen: BalanceScreen,
+		},
+		5: {
+			icon: 'calendar',
+			screen: ReservesScreen,
+		},
+		6: {
+			icon: 'calendar',
+			screen: ReservesManagementScreen,
+		},
+		7: {
+			icon: 'building',
+			screen: CondominiumScreen,
+		},
+		8: {
+			icon: 'user',
+			screen: ProfileScreen,
+		},
+		9: {
+			icon: 'key',
+			screen: ChangePasswordScreen,
+		},
+		10: {
+			icon: 'file-alt',
+			screen: TermsScreen,
+		},
+		11: {
+			icon: 'file-alt',
+			screen: PolicesScreen,
+		},
+		12: {
+			icon: 'info-circle',
+			screen: AboutScreen,
+		},
+	};
+
 	useFocusEffect(
 		useCallback(() => {
 			onGet();
 		}, []),
 	);
-
-	// const loadingDrawer = useCallback((listCurrent) => {
-	// 	listCurrent.map((item) => {
-	// 		if (item.permissao) {
-	// 			components.forEach((element) => ({ ...item }));
-	// 		}
-	// 	});
-	// }, []);
 
 	return (
 		<Drawer.Navigator
@@ -81,22 +113,69 @@ function MainDrawerNavigator({ onGet }) {
 				drawerInactiveBackgroundColor: 'transparent',
 			}}
 			drawerContent={(props) => <CustomDrawerContent {...props} />}>
-			{/*
-			{list.map((item) => (
-				<Drawer.Screen
-					key={item?.id}
-					name={item?.slug}
-					component={components[item.posicao].screen}
-					options={{
-						title: item?.titulo,
-						drawerIcon: ({ focused, size }) =>
-							components[item.posicao].icon(focused, size),
-					}}
-				/>
-			))}
-			*/}
+			<Drawer.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{
+					title: 'Home',
+					drawerIcon: ({ focused, size }) => (
+						<FontAwesome5
+							name="home"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
+
+			{list
+				.sort((a, b) => {
+					if (a.posicao < b.posicao) return -1;
+					if (a.posicao > b.posicao) return 1;
+					return 0;
+				})
+				.map((item, index) => (
+					<>
+						{item.permissao && index > 0 && (
+							<Drawer.Screen
+								key={item.id}
+								name={item.slug}
+								component={components[item.posicao].screen}
+								options={{
+									title: item.titulo,
+									drawerIcon: ({ focused, size }) => (
+										<FontAwesome5
+											name={components[item.posicao].icon}
+											size={size}
+											color={
+												focused
+													? Colors.primary
+													: Colors.secondary
+											}
+										/>
+									),
+								}}
+							/>
+						)}
+					</>
+				))}
 
 			<Drawer.Screen
+				name="Help"
+				component={HelpScreen}
+				options={{
+					title: 'Ajuda',
+					drawerIcon: ({ focused, size }) => (
+						<FontAwesome5
+							name="question-circle"
+							size={size}
+							color={focused ? Colors.primary : Colors.secondary}
+						/>
+					),
+				}}
+			/>
+
+			{/* <Drawer.Screen
 				name="Home"
 				component={HomeScreen}
 				options={{
@@ -109,8 +188,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Publications"
 				component={PublicationsScreen}
 				options={{
@@ -123,8 +202,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Ticket"
 				component={TicketScreen}
 				options={{
@@ -137,8 +216,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Balance"
 				component={BalanceScreen}
 				options={{
@@ -151,8 +230,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Reserves"
 				component={ReservesScreen}
 				options={{
@@ -165,8 +244,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="ReservesManagement"
 				component={ReservesManagementScreen}
 				options={{
@@ -179,8 +258,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Condominium"
 				component={CondominiumScreen}
 				options={{
@@ -193,8 +272,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Profile"
 				component={ProfileScreen}
 				options={{
@@ -207,8 +286,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="ChangePassword"
 				component={ChangePasswordScreen}
 				options={{
@@ -221,8 +300,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Help"
 				component={HelpScreen}
 				options={{
@@ -235,8 +314,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Terms"
 				component={TermsScreen}
 				options={{
@@ -249,8 +328,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="Polices"
 				component={PolicesScreen}
 				options={{
@@ -263,8 +342,8 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
-			<Drawer.Screen
+			/> */}
+			{/* <Drawer.Screen
 				name="About"
 				component={AboutScreen}
 				options={{
@@ -277,7 +356,7 @@ function MainDrawerNavigator({ onGet }) {
 						/>
 					),
 				}}
-			/>
+			/> */}
 		</Drawer.Navigator>
 	);
 }

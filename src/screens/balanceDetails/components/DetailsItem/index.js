@@ -24,11 +24,16 @@ function DetailsItem({ itemDetails }) {
 				<View style={styles({}).colRight}>
 					<ValueFormat
 						style={
-							parseFloat(itemDetails.valor) < 0
+							parseFloat(itemDetails.valor) < 0 ||
+							itemDetails.operacao === 'debito'
 								? styles({ color: Colors.primary }).h3
 								: styles({ color: Colors.secondary }).h3
 						}
-						value={parseFloat(itemDetails.valor)}
+						value={
+							itemDetails.operacao === 'debito'
+								? parseFloat(itemDetails.valor) * -1
+								: parseFloat(itemDetails.valor)
+						}
 					/>
 				</View>
 			</View>
@@ -44,6 +49,7 @@ DetailsItem.propTypes = {
 		conta: PropTypes.string,
 		tipo: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		descricao: PropTypes.string,
+		operacao: PropTypes.string,
 		valor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	}).isRequired,
 };

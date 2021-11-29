@@ -196,17 +196,17 @@ export function* putChangePassword({ data }) {
 	yield put(apiActions.apiEnd());
 }
 
-export function* changeUser(data) {
+export function* changeUser({ user }) {
 	yield put(apiActions.apiStart());
 
 	try {
 		const response = yield call(auth.changeUser, {
-			email: data.email,
-			nome: data.name,
-			nome_social: data.social_name,
-			telefone: data.fone,
-			senha: data.senha,
+			email: user.email,
+			nome: user.name,
+			nome_social: user.social_name,
+			telefone: user.fone,
 		});
+
 		if (response.data) {
 			Toast.show({
 				text1: response.data.mensagem.mensagem,
@@ -226,6 +226,7 @@ export function* changeUser(data) {
 export default function* watchUserAuthentication() {
 	yield takeLatest(types.LOGIN_USER, login);
 	yield takeLatest(types.REGISTER_USER, registerUser);
+	yield takeLatest(types.CHANGE_USER, changeUser);
 	yield takeLatest(types.CHECK_USER, checkUser);
 	yield takeLatest(types.LOGOUT, logout);
 	yield takeLatest(types.PUT_CHANGEPASSWORD, putChangePassword);

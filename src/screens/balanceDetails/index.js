@@ -3,7 +3,7 @@ import { View, ScrollView, RefreshControl, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import Toast from 'react-native-root-toast';
 
@@ -84,9 +84,9 @@ function BalanceDetailsScreen({ onGetItem, route, loading, item }) {
 				<TitleSubTitleWithIcon
 					title={Strings.balanceteDetalhe}
 					subTitle={Strings.balanceteDetalheDescription}>
-					<MaterialIcons
-						name="description"
-						size={50}
+					<FontAwesome5
+						name="table"
+						size={42}
 						color={Colors.primary}
 					/>
 				</TitleSubTitleWithIcon>

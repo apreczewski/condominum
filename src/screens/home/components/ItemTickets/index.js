@@ -79,7 +79,7 @@ export const ItemTickets = ({ item }) => {
 
 			<TouchableOpacity
 				style={styles({}).containerSeeAll}
-				onPress={() => Navigation.navigate('Ticket')}>
+				onPress={() => Navigation.navigate('Boletos')}>
 				<Text style={styles({}).h2}>Ver todos</Text>
 				<MaterialIcons
 					name="arrow-forward-ios"

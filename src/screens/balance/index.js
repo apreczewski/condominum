@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { View, ScrollView, FlatList, RefreshControl, Text } from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -29,9 +29,9 @@ function BalanceScreen({ onGet, loading, list }) {
 				<TitleSubTitleWithIcon
 					title={Strings.balancete}
 					subTitle={Strings.balanceteDescription}>
-					<MaterialIcons
-						name="description"
-						size={50}
+					<FontAwesome5
+						name="table"
+						size={42}
 						color={Colors.primary}
 					/>
 				</TitleSubTitleWithIcon>

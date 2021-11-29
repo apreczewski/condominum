@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 
 import styles from './styles';
 import { Strings, Colors } from '../../../../lib/constants';
@@ -14,8 +14,8 @@ export const ItemPublications = ({ item }) => (
 		<View style={styles.body}>
 			<View style={styles.row}>
 				<Text style={styles.h1}>{Strings.publication}</Text>
-				<MaterialCommunityIcons
-					name="tooltip-text-outline"
+				<FontAwesome5
+					name="newspaper"
 					size={30}
 					color={Colors.secondary}
 				/>
@@ -44,7 +44,7 @@ export const ItemPublications = ({ item }) => (
 
 		<TouchableOpacity
 			style={styles.containerSeeAll}
-			onPress={() => Navigation.navigate('Publications')}>
+			onPress={() => Navigation.navigate('Publicações')}>
 			<Text style={styles.h1}>Ver todas</Text>
 			<MaterialIcons
 				name="arrow-forward-ios"
