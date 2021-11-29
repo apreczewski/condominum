@@ -174,10 +174,6 @@ export function* putChangePassword({ data }) {
 
 	try {
 		const response = yield call(auth.changePassword, {
-			// email: data.email,
-			// nome: data.name,
-			// nome_social: data.social_name,
-			// telefone: data.fone,
 			senha: data.senha,
 		});
 		if (response.data) {

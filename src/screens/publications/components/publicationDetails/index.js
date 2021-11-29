@@ -29,13 +29,18 @@ function PublicationDetailsScreen({
 
 	useFocusEffect(
 		React.useCallback(() => {
-			onGetItem(idCurrent);
+			onGetItem(idCurrent, item);
 		}, []),
 	);
 
 	// console.log('idCurrent>>', item);
 	const hangleIsLike = (id, status) => {
-		dispatch(publicationsActions.putLike(id, status));
+		if (status === true) {
+			status = 'curtiu';
+			dispatch(publicationsActions.putLike(id, status));
+		} else {
+			dispatch(publicationsActions.putLike(id, status));
+		}
 
 		item.status_curtida = !item.status_curtida;
 	};
@@ -82,7 +87,7 @@ function PublicationDetailsScreen({
 
 					<TouchableOpacity
 						onPress={() =>
-							hangleIsLike(item.id, item.status_curtida)
+							hangleIsLike(item.id, !item.status_curtida)
 						}>
 						<View style={styles.like}>
 							<AntDesign
