@@ -37,7 +37,7 @@ export default function UnlinkedAccountScreen({ visible, close, email }) {
 							administradora e solicite que o vincule a sua
 							unidade. {'\n'}
 							{'\n'}Após o vínculo ter sido realizado, clique
-							abaixo para acesar o sistema. {'\n'}
+							abaixo para acessar o sistema. {'\n'}
 							{'\n'}Desfrute das facilidades que o aplicativo
 							proporciona.
 						</Text>
