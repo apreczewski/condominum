@@ -15,8 +15,7 @@ const styles = StyleSheet.create({
 	expenses: {
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
-		fontSize: 18,
-		marginBottom: 20,
+		fontSize: 20,
 		width: '100%',
 	},
 
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
 	row: {
 		alignItems: 'center',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'space-around',
 		marginVertical: 10,
 	},
 
@@ -58,9 +57,27 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
 
-	value: {
+	titleEspenses: {
 		color: Colors.secondary,
 		fontFamily: 'Roboto-Bold',
+		fontSize: 18,
+		marginBottom: 10,
+		marginTop: 20,
+		width: '100%',
+	},
+
+	total: {
+		color: Colors.secondary,
+		fontFamily: 'Roboto-Bold',
+		fontSize: 12,
+		marginBottom: 15,
+		marginTop: 10,
+		maxWidth: '70%',
+	},
+
+	value: {
+		color: Colors.secondary,
+		fontFamily: 'Roboto-Regular',
 		fontSize: 11,
 		maxWidth: '30%',
 	},

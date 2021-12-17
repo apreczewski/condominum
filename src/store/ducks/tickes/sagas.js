@@ -27,10 +27,74 @@ export function* getItem(payload) {
 	yield put(apiActions.apiStart());
 
 	try {
-		const response = yield call(tickes.getTicket, id);
+		const {
+			data: { boleto },
+		} = yield call(tickes.getTicket, id);
 
-		if (response.data) {
-			yield put(actions.setItem(response.data.boleto));
+		// console.log('boleto >> ', boleto);
+
+		// const temp = [
+		// 	...boleto.desepesa,
+		// 	{
+		// 		conta: '211.001',
+		// 		data_geracao_despesa: '18/11/2021',
+		// 		descricao: 'SALÁRIOS',
+		// 		id: 108,
+		// 		id_sgcon: 32194900,
+		// 		unidadeautonoma_id: 16,
+		// 		valor: '606.12',
+		// 	},
+		// ];
+
+		const units = [];
+
+		boleto.desepesa.forEach((element, index) => {
+			if (index === 0) {
+				units.push({
+					id: element?.unidadeautonoma_id,
+					name: `${element?.unidadeautonoma_id}`,
+					expenditure: [],
+					subtotal: 0,
+				});
+
+				return;
+			}
+
+			units.forEach((unit) => {
+				if (element?.unidadeautonoma_id !== unit.id) {
+					units.push({
+						id: element?.unidadeautonoma_id,
+						name: `${element?.unidadeautonoma_id}`,
+						expenditure: [],
+						subtotal: 0,
+					});
+				}
+			});
+		});
+
+		boleto.desepesa.forEach((element) => {
+			// console.log(element);
+			units.forEach((unit, index) => {
+				if (element?.unidadeautonoma_id === unit.id) {
+					units[index] = {
+						...unit,
+						expenditure: [
+							...unit.expenditure,
+							{
+								descricao: element?.descricao,
+								valor: parseFloat(element?.valor),
+							},
+						],
+						subtotal: unit.subtotal + parseFloat(element?.valor),
+					};
+				}
+			});
+		});
+
+		// console.log('>>>>>>>> ', units);
+
+		if (boleto) {
+			yield put(actions.setItem({ ...boleto, desepesa: units }));
 		}
 	} catch (error) {
 		showToast('error', `Erro ao buscar boleto id: ${id}`);

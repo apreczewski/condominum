@@ -13,7 +13,7 @@ import Toast from 'react-native-root-toast';
 
 import * as Clipboard from 'expo-clipboard';
 import * as WebBrowser from 'expo-web-browser';
-import { FontAwesome, EvilIcons, Feather } from '@expo/vector-icons';
+import { FontAwesome, /* EvilIcons */ Feather } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
 import * as Sharing from 'expo-sharing';
@@ -145,7 +145,7 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 						</View>
 					</TouchableOpacity>
 
-					<TouchableOpacity onPress={openShareAsync}>
+					{/* <TouchableOpacity onPress={openShareAsync}>
 						<View style={styles.square}>
 							<EvilIcons
 								name="share-google"
@@ -156,7 +156,7 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 								{Strings.toShare}
 							</Text>
 						</View>
-					</TouchableOpacity>
+					</TouchableOpacity> */}
 
 					<TouchableOpacity
 						onPress={() =>
@@ -180,23 +180,50 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 
 				<View style={styles.container}>
 					<Text style={styles.expenses}>{Strings.valuesDetails}</Text>
-					<ScrollView>
-						<FlatList
-							data={item?.desepesa}
-							keyExtractor={(item, index) => index.toString()}
-							renderItem={({ item: desepesa }) => (
+
+					{item?.desepesa &&
+						item?.desepesa.map((despesa) => (
+							<>
+								<Text style={styles.titleEspenses}>
+									{despesa?.name}
+								</Text>
+								<ScrollView>
+									<FlatList
+										data={despesa?.expenditure}
+										keyExtractor={(i, index) =>
+											index.toString()
+										}
+										renderItem={({
+											item: { descricao, valor },
+										}) => (
+											<View style={styles.row_ticket}>
+												<Text style={styles.h3}>
+													{descricao}
+												</Text>
+												<ValueFormat
+													style={styles.value}
+													value={parseFloat(valor)}
+												/>
+											</View>
+										)}
+									/>
+								</ScrollView>
 								<View style={styles.row_ticket}>
-									<Text style={styles.h3}>
-										{desepesa?.descricao}
-									</Text>
+									<Text style={styles.total}>SUBTOTAL</Text>
 									<ValueFormat
-										style={styles.value}
-										value={parseFloat(desepesa?.valor)}
+										style={styles.total}
+										value={despesa.subtotal}
 									/>
 								</View>
-							)}
+							</>
+						))}
+					<View style={styles.row_ticket}>
+						<Text style={styles.total}>TOTAL</Text>
+						<ValueFormat
+							style={styles.total}
+							value={parseFloat(itemCurrent?.valor)}
 						/>
-					</ScrollView>
+					</View>
 				</View>
 			</View>
 		</ScrollView>
@@ -221,6 +248,8 @@ TicketDetailsScreen.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	onGetItem: PropTypes.func.isRequired,
 
+	// console.log('>>>>>>>> ', item.desepesa[0].expenditure[0].valor);
+
 	item: PropTypes.shape({
 		pdf_url: PropTypes.string,
 		url_boleto: PropTypes.string,
@@ -228,8 +257,18 @@ TicketDetailsScreen.propTypes = {
 		codigo_barras: PropTypes.string,
 		desepesa: PropTypes.arrayOf(
 			PropTypes.shape({
-				descricao: PropTypes.string,
-				valor: PropTypes.oneOfType([
+				expenditure: PropTypes.arrayOf(
+					PropTypes.shape({
+						descricao: PropTypes.string,
+						valor: PropTypes.oneOfType([
+							PropTypes.string,
+							PropTypes.number,
+						]),
+					}),
+				),
+				id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+				name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+				subtotal: PropTypes.oneOfType([
 					PropTypes.string,
 					PropTypes.number,
 				]),
