@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text /* Pressable */ } from 'react-native';
+// import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 
 import { Colors, Pallete } from '../../../../lib/constants';
@@ -8,7 +8,7 @@ import { ValueFormat } from '../../../../lib/utils/formatCurrency';
 
 import styles from './styles';
 
-export const ItemEmphasis = ({ onPress, item }) => (
+export const ItemEmphasis = ({ /* onPress, */ item }) => (
 	<View style={styles({}).container}>
 		{item?.mes !== undefined && (
 			<View style={styles({}).bodyLeft}>
@@ -69,7 +69,7 @@ export const ItemEmphasis = ({ onPress, item }) => (
 		)}
 
 		<View style={styles({}).bodyRight}>
-			<Pressable onPress={onPress}>
+			{/* <Pressable onPress={onPress}>
 				<View style={styles({}).anchorShare}>
 					<MaterialIcons
 						name="share"
@@ -79,13 +79,13 @@ export const ItemEmphasis = ({ onPress, item }) => (
 					<Text style={styles({}).textShare}>Compartilhar</Text>
 					<Text style={styles({}).textShare}>pdf</Text>
 				</View>
-			</Pressable>
+			</Pressable> */}
 		</View>
 	</View>
 );
 
 ItemEmphasis.propTypes = {
-	onPress: PropTypes.func,
+	// onPress: PropTypes.func,
 	item: PropTypes.shape({
 		mes: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		ano: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -107,7 +107,7 @@ ItemEmphasis.propTypes = {
 };
 
 ItemEmphasis.defaultProps = {
-	onPress: () => {},
+	// onPress: () => {},
 	item: {
 		mes: '' || 0,
 		ano: '' || 0,

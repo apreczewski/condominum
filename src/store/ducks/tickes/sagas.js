@@ -73,7 +73,6 @@ export function* getItem(payload) {
 		});
 
 		boleto.desepesa.forEach((element) => {
-			// console.log(element);
 			units.forEach((unit, index) => {
 				if (element?.unidadeautonoma_id === unit.id) {
 					units[index] = {
@@ -90,8 +89,6 @@ export function* getItem(payload) {
 				}
 			});
 		});
-
-		// console.log('>>>>>>>> ', units);
 
 		if (boleto) {
 			yield put(actions.setItem({ ...boleto, desepesa: units }));

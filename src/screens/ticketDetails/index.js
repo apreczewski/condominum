@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useCallback } from 'react';
 import {
 	View,
@@ -247,8 +246,6 @@ TicketDetailsScreen.propTypes = {
 
 	loading: PropTypes.bool.isRequired,
 	onGetItem: PropTypes.func.isRequired,
-
-	// console.log('>>>>>>>> ', item.desepesa[0].expenditure[0].valor);
 
 	item: PropTypes.shape({
 		pdf_url: PropTypes.string,
