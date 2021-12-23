@@ -34,7 +34,7 @@ export function* getItem(payload) {
 		// console.log('boleto >> ', boleto);
 
 		// const temp = [
-		// 	...boleto.desepesa,
+		// 	...boleto.despesa,
 		// 	{
 		// 		conta: '211.001',
 		// 		data_geracao_despesa: '18/11/2021',
@@ -43,20 +43,20 @@ export function* getItem(payload) {
 		// 		id_sgcon: 32194900,
 		// 		unidadeautonoma_id: 16,
 		// 		valor: '606.12',
+		// 		unidadeautonoma_descricao: 'B204',
 		// 	},
 		// ];
 
 		const units = [];
 
-		boleto.desepesa.forEach((element, index) => {
+		boleto.despesa.forEach((element, index) => {
 			if (index === 0) {
 				units.push({
 					id: element?.unidadeautonoma_id,
-					name: `${element?.unidadeautonoma_id}`,
+					name: `${element?.unidadeautonoma_descricao}`,
 					expenditure: [],
 					subtotal: 0,
 				});
-
 				return;
 			}
 
@@ -64,7 +64,7 @@ export function* getItem(payload) {
 				if (element?.unidadeautonoma_id !== unit.id) {
 					units.push({
 						id: element?.unidadeautonoma_id,
-						name: `${element?.unidadeautonoma_id}`,
+						name: `${element?.unidadeautonoma_descricao}`,
 						expenditure: [],
 						subtotal: 0,
 					});
@@ -72,7 +72,7 @@ export function* getItem(payload) {
 			});
 		});
 
-		boleto.desepesa.forEach((element) => {
+		boleto.despesa.forEach((element) => {
 			units.forEach((unit, index) => {
 				if (element?.unidadeautonoma_id === unit.id) {
 					units[index] = {
@@ -91,7 +91,7 @@ export function* getItem(payload) {
 		});
 
 		if (boleto) {
-			yield put(actions.setItem({ ...boleto, desepesa: units }));
+			yield put(actions.setItem({ ...boleto, despesa: units }));
 		}
 	} catch (error) {
 		showToast('error', `Erro ao buscar boleto id: ${id}`);

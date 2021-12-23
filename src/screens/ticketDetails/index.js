@@ -180,8 +180,8 @@ function TicketDetailsScreen({ onGetItem, route, loading, item }) {
 				<View style={styles.container}>
 					<Text style={styles.expenses}>{Strings.valuesDetails}</Text>
 
-					{item?.desepesa &&
-						item?.desepesa.map((despesa) => (
+					{item?.despesa &&
+						item?.despesa.map((despesa) => (
 							<>
 								<Text style={styles.titleEspenses}>
 									{despesa?.name}
@@ -252,7 +252,7 @@ TicketDetailsScreen.propTypes = {
 		url_boleto: PropTypes.string,
 		acao_reemite: PropTypes.string,
 		codigo_barras: PropTypes.string,
-		desepesa: PropTypes.arrayOf(
+		despesa: PropTypes.arrayOf(
 			PropTypes.shape({
 				expenditure: PropTypes.arrayOf(
 					PropTypes.shape({
