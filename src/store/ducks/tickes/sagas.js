@@ -57,11 +57,12 @@ export function* getItem(payload) {
 					expenditure: [],
 					subtotal: 0,
 				});
-				return;
-			}
+			} else {
+				const test = units.filter(
+					(item) => item?.id === element?.unidadeautonoma_id,
+				);
 
-			units.forEach((unit) => {
-				if (element?.unidadeautonoma_id !== unit.id) {
+				if (test.length === 0) {
 					units.push({
 						id: element?.unidadeautonoma_id,
 						name: `${element?.unidadeautonoma_descricao}`,
@@ -69,8 +70,10 @@ export function* getItem(payload) {
 						subtotal: 0,
 					});
 				}
-			});
+			}
 		});
+
+		// console.log(units);
 
 		boleto.despesa.forEach((element) => {
 			units.forEach((unit, index) => {
